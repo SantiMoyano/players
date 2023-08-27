@@ -1,0 +1,58 @@
+/* Estilos base para el cuerpo de la página */
+body {
+  margin: 0;
+  padding: 0;
+}
+
+/* Estilos para la barra de encabezado */
+header {
+  display: flex;
+  align-items: center;
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.1);
+  color: white;
+  width: 100%;
+  padding: 10px;
+  z-index: 1;
+}
+
+/* Estilos para el contenedor de bienvenida */
+.welcome-container {
+  display: flex;
+  overflow: hidden;
+  min-height: 100vh;
+  max-height: 100vh;
+  text-align: center;
+}
+
+/* Estilos para el fondo semitransparente del contenedor */
+.welcome-container::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+/* Estilos para la imagen de fondo */
+.welcome-container img {
+  width: 100vw;
+  object-fit: cover;
+}
+
+/* Estilos para el título */
+.welcome-container h1 {
+  display: flex;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  margin-top: auto;
+  color: white;
+  width: 100%;
+  height: 100%;
+  font-size: 70px;
+}
+
+figure {
+  margin: 0;
+}
