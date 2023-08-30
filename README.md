@@ -1,6 +1,6 @@
-# anime-world-rework-2.0
+# players
 
-rework del rework
+App para mostrar datos sobre jugadores de futbol.
 
 # comandos utilizados para la instalacion de librerias y dependencias
 

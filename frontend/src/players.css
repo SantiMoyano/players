@@ -1,0 +1,66 @@
+/*ESTILOS PARA playersS*/
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&display=swap");
+
+.players {
+  margin-top: 10vh;
+  overflow: hidden;
+}
+
+.players h1 {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+.players ul {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+}
+
+.players li {
+  margin: 20px 0;
+  list-style: none;
+}
+
+.players h2,
+.players .skill-list,
+.players figcaption {
+  padding: 0 15px;
+}
+
+.players li figure img,
+.players ul,
+figcaption,
+.players li {
+  max-width: 100vw;
+}
+
+.players figure,
+figure {
+  margin: 0;
+}
+
+.skill-list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+
+.skill {
+  padding: 2px 12px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 500;
+}
+
+.skill span {
+  color: white;
+}
