@@ -17,3 +17,5 @@ App para mostrar datos sobre jugadores de futbol.
 - `npm i nodemon -D`: Instala el paquete nodemon como una dependencia de desarrollo en tu proyecto. nodemon es una herramienta que ayuda en el desarrollo de aplicaciones Node.js.
 
 - `npx create-react-app`: Es una utilidad de línea de comandos que se utiliza para crear una nueva aplicación de React con una estructura y configuración predefinidas.
+
+- `npm i react-router-dom`:

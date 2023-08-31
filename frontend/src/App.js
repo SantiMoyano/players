@@ -1,17 +1,53 @@
-import "./App.css";
-import "./players.css";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
 
+// Styles
+import "./App.css";
+import "./players.css";
+
+// Components
 import Header from "./components/Header";
 import Welcome from "./components/Welcome";
+import Players from "./components/Players";
 
+// Mock data
 import players from "./data-players";
+
+const player = [
+  {
+    name: "Lionel Andrés Messi",
+    imageRoute: "/messi.jpg",
+    position: ["Delantero", "Extremo", "Mediocampo"],
+    description:
+      "Lionel Andrés Messi Cuccittini, conocido como Leo Messi, es un futbolista argentino que juega como delantero o centrocampista.",
+  },
+];
 
 function App() {
   return (
-    <div className="App">
-      <Header />
-      <Content />
+    <Router>
+      <div className="App">
+        <Header />
+        <Routes>
+          <Route path="/" exact element={<Content />} />
+          <Route path="/players" element={<Players data={players} />} />
+          <Route path="/players/1" element={<DetailedPlayer />}></Route>
+          <Route path="/profile" element={<Profile />} />
+        </Routes>
+      </div>
+    </Router>
+  );
+}
+
+function DetailedPlayer() {
+  return <Players data={player} />;
+}
+
+function Profile() {
+  return (
+    <div>
+      <img src="profile.jpg" alt="scorpion" />
+      <p>tu perfil</p>
     </div>
   );
 }
@@ -22,61 +58,6 @@ function Content() {
       <Welcome />
       <Players data={players} />
     </main>
-  );
-}
-
-function Players({ data }) {
-  return (
-    <section className="players">
-      <h1>ULTIMOS JUGADORES</h1>
-      <ul>
-        {data.map((el) => (
-          <Player
-            name={el.name}
-            imageRoute={el.imageRoute}
-            positions={el.position}
-            description={el.description}
-            key={el.imageRoute}
-          />
-        ))}
-      </ul>
-    </section>
-  );
-}
-
-function Player({ name, imageRoute, positions, description }) {
-  return (
-    <li>
-      <figure>
-        <img src={imageRoute} alt="arbol" />
-        <h2>{name}</h2>
-        <div className="skill-list">
-          {positions.map((el) => (
-            <Position position={el} key={el + name} />
-          ))}
-        </div>
-        <figcaption>{description}</figcaption>
-      </figure>
-    </li>
-  );
-}
-
-function Position({ position }) {
-  const [color, setColor] = useState("");
-
-  useEffect(() => {
-    if (position === "Delantero" || position === "Extremo") setColor("#FF3B00");
-    if (position === "Defensor") setColor("#60DAFB");
-    if (position === "Mediocampo") setColor("#C3FCAF");
-    if (position === "Arquero") setColor("#EFD81D");
-  }, []);
-
-  return (
-    <div className="skill" style={{ backgroundColor: color }}>
-      <span>
-        <strong>{position}</strong>
-      </span>
-    </div>
   );
 }
 

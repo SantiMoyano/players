@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 function Header() {
   const [clickedMenu, setClickedMenu] = useState(false);
@@ -31,8 +32,15 @@ function Header() {
       {clickedMenu && (
         <div className="menu-content">
           <ul>
-            <li>HOLA</li>
-            <li>AMIGO</li>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/players">Jugadores</Link>
+            </li>
+            <li>
+              <Link to="/profile">Perfil</Link>
+            </li>
           </ul>
         </div>
       )}

@@ -27,6 +27,13 @@ const players = [
     description:
       "Neymar da Silva Santos Júnior, conocido como Neymar Júnior o simplemente Neymar, es un futbolista brasileño que juega como delantero en el Al-Hilal Saudi F. C.",
   },
+  {
+    name: "Benedetto",
+    imageRoute: "/benedetto.jpeg",
+    position: ["Extremo"],
+    description:
+      "Darío Ismael Benedetto es un futbolista que juega de Delantero. Actualmente juega en el Club Atlético Boca Juniors de la Liga Profesional de Fútbol Argentino.",
+  },
 ];
 
 export default players;

@@ -2,13 +2,11 @@
 @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&display=swap");
 
 .players {
-  margin-top: 10vh;
-  overflow: hidden;
+  padding-top: 100px;
 }
 
 .players h1 {
   margin: 0;
-  padding: 0;
   text-align: center;
 }
 
@@ -31,10 +29,7 @@
   padding: 0 15px;
 }
 
-.players li figure img,
-.players ul,
-figcaption,
-.players li {
+.players li figure img {
   max-width: 100vw;
 }
 
