@@ -6,7 +6,7 @@ function Position({ position }) {
   useEffect(() => {
     if (position === "Delantero" || position === "Extremo") setColor("#FF3B00");
     if (position === "Defensor") setColor("#60DAFB");
-    if (position === "Mediocampo") setColor("#C3FCAF");
+    if (position === "Mediocampo") setColor("#51A35F");
     if (position === "Arquero") setColor("#EFD81D");
   }, []);
 

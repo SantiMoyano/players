@@ -1,0 +1,45 @@
+.profile {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 100px;
+}
+
+.img-profile {
+  max-width: 35vw;
+}
+
+.profile figcaption,
+.favourite-player figcaption {
+  margin-top: 10px;
+}
+
+.favourite-players {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.favourite-players ul {
+  padding: 0;
+}
+
+.favourite-player {
+  list-style: none;
+  margin: 10px;
+  padding: 5px;
+  border: solid black 3px;
+}
+
+.favourite-player figure {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.favourite-player img {
+  max-width: 70vw;
+}

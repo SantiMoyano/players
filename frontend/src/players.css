@@ -1,13 +1,39 @@
 /*ESTILOS PARA playersS*/
 @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&display=swap");
 
+.sort-players {
+  display: flex;
+  align-items: baseline;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.sort-players h2 {
+  padding: 0 0 20px 0;
+}
+
 .players {
   padding-top: 100px;
+}
+
+.players .top {
+  display: flex;
+  align-items: center;
+}
+
+.players .top span {
+  font-size: large;
+  margin-left: auto;
+  color: rgb(217, 19, 19);
 }
 
 .players h1 {
   margin: 0;
   text-align: center;
+}
+
+.players h2 {
+  margin: 0;
 }
 
 .players ul {
@@ -23,10 +49,8 @@
   list-style: none;
 }
 
-.players h2,
-.players .skill-list,
-.players figcaption {
-  padding: 0 15px;
+.players .content {
+  padding: 15px 15px;
 }
 
 .players li figure img {

@@ -1,17 +1,27 @@
 import Position from "./Position";
 
-function Player({ name, imageRoute, positions, description }) {
+function Player({ name, imageRoute, positions, score, description }) {
   return (
     <li>
       <figure>
         <img src={imageRoute} alt="arbol" />
-        <h2>{name}</h2>
-        <div className="skill-list">
-          {positions.map((el) => (
-            <Position position={el} key={el + name} />
-          ))}
+
+        <div className="content">
+          <div className="top">
+            <h2>{name}</h2>
+            <span>
+              <strong>{score}</strong>⭐
+            </span>
+          </div>
+
+          <div className="skill-list">
+            {positions.map((el) => (
+              <Position position={el} key={el + name} />
+            ))}
+          </div>
+
+          <figcaption>{description}</figcaption>
         </div>
-        <figcaption>{description}</figcaption>
       </figure>
     </li>
   );
