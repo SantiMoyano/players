@@ -53,6 +53,10 @@
   padding: 15px 15px;
 }
 
+.player li:hover {
+  cursor: pointer;
+}
+
 .players li figure img {
   max-width: 100vw;
 }
@@ -82,4 +86,15 @@ figure {
 
 .skill span {
   color: white;
+}
+
+/* ANIMATIONS */
+
+.player {
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.player.clicked {
+  transform: scale(0.95);
 }

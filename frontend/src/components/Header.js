@@ -9,7 +9,7 @@ function Header() {
   };
 
   return (
-    <header className={clickedMenu ? "show-menu" : ""}>
+    <header className={`main-header ${clickedMenu ? "show-menu" : ""}`}>
       <svg
         onClick={handleMenuClick}
         xmlns="http://www.w3.org/2000/svg"
@@ -33,13 +33,25 @@ function Header() {
         <div className="menu-content">
           <ul>
             <li>
-              <Link to="/">Home</Link>
+              <Link to="/" style={{ color: "white", textDecoration: "none" }}>
+                Home
+              </Link>
             </li>
             <li>
-              <Link to="/players">Jugadores</Link>
+              <Link
+                to="/players"
+                style={{ color: "white", textDecoration: "none" }}
+              >
+                Jugadores
+              </Link>
             </li>
             <li>
-              <Link to="/profile">Perfil</Link>
+              <Link
+                to="/profile"
+                style={{ color: "white", textDecoration: "none" }}
+              >
+                Perfil
+              </Link>
             </li>
           </ul>
         </div>

@@ -4,10 +4,13 @@ function Position({ position }) {
   const [color, setColor] = useState("");
 
   useEffect(() => {
-    if (position === "Delantero" || position === "Extremo") setColor("#FF3B00");
+    if (position === "Delantero" || position === "Extremo") setColor("#D2231E");
     if (position === "Defensor") setColor("#60DAFB");
     if (position === "Mediocampo") setColor("#51A35F");
     if (position === "Arquero") setColor("#EFD81D");
+    if (position === "Barcelona FC") setColor("#D2231E");
+    if (position === "PSG") setColor("#223B8E");
+    if (position === "Inter Miami") setColor("#B83981");
   }, []);
 
   return (

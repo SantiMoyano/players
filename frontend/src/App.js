@@ -5,24 +5,29 @@ import { useState, useEffect } from "react";
 import "./App.css";
 import "./players.css";
 import "./profile.css";
+import "./detailed-player.css";
 
 // Components
 import Header from "./components/Header";
 import Welcome from "./components/Welcome";
 import Players from "./components/Players";
+import Profile from "./components/Profile";
+import DetailedPlayer from "./components/DetailedPlayer";
 
 // Mock data
 import players from "./data-players";
 
-const player = [
-  {
-    name: "Lionel Andrés Messi",
-    imageRoute: "/messi.jpg",
-    position: ["Delantero", "Extremo", "Mediocampo"],
-    description:
-      "Lionel Andrés Messi Cuccittini, conocido como Leo Messi, es un futbolista argentino que juega como delantero o centrocampista.",
-  },
-];
+const player = {
+  name: "Lionel Andrés Messi",
+  imageRoute: "/messi.jpg",
+  positions: ["Delantero", "Extremo", "Mediocampo"],
+  teams: ["Barcelona FC", "PSG", "Inter Miami"],
+  score: 10,
+  trophies: 44,
+  gifRoute: "/ankaramessi-barcelona.gif",
+  description:
+    "Lionel Andrés Messi Cuccittini, conocido como Leo Messi, es un futbolista argentino que juega como delantero o centrocampista.",
+};
 
 function App() {
   return (
@@ -32,58 +37,14 @@ function App() {
         <Routes>
           <Route path="/" exact element={<Content />} />
           <Route path="/players" element={<Players data={players} />} />
-          <Route path="/players/1" element={<DetailedPlayer />}></Route>
-          <Route path="/profile" element={<Profile />} />
+          <Route
+            path="/players/1"
+            element={<DetailedPlayer data={player} />}
+          ></Route>
+          <Route path="/profile" element={<Profile data={players} />} />
         </Routes>
       </div>
     </Router>
-  );
-}
-
-function DetailedPlayer() {
-  return <Players data={player} />;
-}
-
-function Profile() {
-  return (
-    <main>
-      <figure className="profile">
-        <img className="img-profile" src="profile.jpg" alt="scorpion" />
-        <figcaption>scorpion99</figcaption>
-        <p>Editar perfil / Loguearse / Desloguearse / Registrarse</p>
-      </figure>
-      <section>
-        <p>Jugadores favoritos</p>
-        <FavouritePlayers data={players} />
-      </section>
-    </main>
-  );
-}
-
-function FavouritePlayers({ data }) {
-  return (
-    <section className="favourite-players">
-      <ul>
-        {data.map((el) => (
-          <FavouritePlayer
-            name={el.name}
-            imageRoute={el.imageRoute}
-            key={el.imageRoute}
-          />
-        ))}
-      </ul>
-    </section>
-  );
-}
-
-function FavouritePlayer({ name, imageRoute }) {
-  return (
-    <li className="favourite-player">
-      <figure>
-        <img src={imageRoute} alt="arbol" />
-        <figcaption>{name}</figcaption>
-      </figure>
-    </li>
   );
 }
 

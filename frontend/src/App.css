@@ -14,8 +14,7 @@ p {
 }
 
 /* Estilos para la barra de encabezado */
-header {
-  padding: 10px;
+.main-header {
   display: flex;
   position: fixed;
   background-color: rgba(0, 0, 0, 0.1);
@@ -24,20 +23,32 @@ header {
   z-index: 1;
 }
 
+.main-header svg {
+  padding: 0.6rem;
+}
+
 .show-menu {
-  padding: 0;
   flex-direction: column;
   text-align: start;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.8);
+  min-height: 100vh;
 }
 
-header ul {
+.menu-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.main-header ul {
+  min-height: 100vh;
   padding: 0;
 }
 
-header ul li {
-  padding: 5px;
-  display: flex;
-  justify-content: center;
+.main-header ul li {
+  padding: 0.6rem 0;
   list-style: none;
   font-size: 20px;
 }
