@@ -1,0 +1,78 @@
+.management-content {
+  padding-top: 5rem;
+}
+
+.manage-buttons button {
+  margin: 0.6rem 0;
+  background-color: #367efa;
+  color: white;
+  padding: 0.5rem 1.4rem;
+  border: none;
+  border-radius: 0.3rem;
+  font-size: large;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.management-content h2 {
+  margin: 0;
+}
+
+.management-content .sort-players {
+  margin: 2rem 0;
+}
+
+.management-content ul {
+  margin: 0;
+  padding: 0;
+}
+
+.management-content li img {
+  max-width: 60vw;
+}
+
+.management-content li {
+  display: flex;
+  padding: 1rem 0;
+}
+
+.management-content figure {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 60vw;
+}
+
+.management-content figure figcaption {
+  font-size: large;
+  padding: 0.4rem;
+}
+
+.management-content .manage-buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.management-content .manage-buttons button {
+  margin: 0.5rem 0;
+  padding: 0.3rem 0.7rem;
+}
+
+.management-content .align-buttons {
+  flex-direction: row;
+  gap: 0.3rem;
+}
+
+.management-content .player-name {
+  display: flex;
+  align-items: center;
+  color: white;
+  min-width: 50vw;
+}
+
+.management-content .player-name span {
+  margin-left: 0.5rem;
+}

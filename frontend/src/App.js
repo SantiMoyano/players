@@ -6,17 +6,18 @@ import "./App.css";
 import "./players.css";
 import "./profile.css";
 import "./detailed-player.css";
+import "./management.css";
 
 // Components
-import Header from "./components/Header";
-import Welcome from "./components/Welcome";
-import Players from "./components/Players";
-import Profile from "./components/Profile";
-import DetailedPlayer from "./components/DetailedPlayer";
+import Header from "./components/user/Header";
+import Content from "./components/user/Content";
+import Players from "./components/user/Players";
+import Profile from "./components/user/Profile";
+import DetailedPlayer from "./components/user/DetailedPlayer";
+import PlayersManagement from "./components/admin/PlayersManagement";
 
 // Mock data
 import players from "./data-players";
-
 const player = {
   name: "Lionel Andrés Messi",
   imageRoute: "/messi.jpg",
@@ -35,25 +36,23 @@ function App() {
       <div className="App">
         <Header />
         <Routes>
-          <Route path="/" exact element={<Content />} />
-          <Route path="/players" element={<Players data={players} />} />
+          <Route path="/" exact element={<Content players={players} />} />
+          <Route
+            path="/players"
+            element={<Players data={players} showFilter={true} />}
+          />
           <Route
             path="/players/1"
             element={<DetailedPlayer data={player} />}
           ></Route>
           <Route path="/profile" element={<Profile data={players} />} />
+          <Route
+            path="/management"
+            element={<PlayersManagement data={players} />}
+          />
         </Routes>
       </div>
     </Router>
-  );
-}
-
-function Content() {
-  return (
-    <main>
-      <Welcome />
-      <Players data={players} />
-    </main>
   );
 }
 

@@ -3,13 +3,63 @@
 
 .sort-players {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   flex-direction: column;
   padding: 20px;
 }
 
 .sort-players h2 {
   padding: 0 0 20px 0;
+}
+
+/* Estilo base del select */
+.sort-players select {
+  appearance: none; /* Esto quita el estilo por defecto del sistema operativo */
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+  cursor: pointer;
+}
+
+/* Estilo cuando el usuario interactúa con el select */
+.sort-players select:hover {
+  border-color: #555;
+}
+
+/* Estilo cuando el select está enfocado */
+.sort-players select:focus {
+  border-color: #007bff; /* Puedes cambiar este color según tus preferencias */
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Efecto de sombra cuando está enfocado */
+}
+
+.players-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.players-button h2,
+button {
+  margin: 1rem;
+}
+
+.players button {
+  background-color: #d62f2f;
+  color: white;
+  padding: 0.5rem 1.4rem;
+  border: none;
+  border-radius: 0.3rem;
+  font-size: larger;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.players button:hover {
+  background-color: #636363; /* Cambia el color al pasar el mouse sobre el botón */
 }
 
 .players {

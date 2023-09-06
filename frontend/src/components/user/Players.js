@@ -1,10 +1,27 @@
 import Player from "./Player";
 import { useState } from "react";
+import { Navigate } from "react-router-dom";
 
-function Players({ data }) {
+function Players({ data, showFilter }) {
+  const [navigate, setNavigate] = useState("");
+
+  function handleNavigate() {
+    setTimeout(function () {
+      setNavigate("/players");
+    }, 300);
+  }
+
   return (
     <section className="players">
-      <SortPlayers />
+      {showFilter ? (
+        <SortPlayers />
+      ) : (
+        <div className="players-button">
+          <Navigate to={navigate} />
+          <h2>Ultimos jugadores</h2>
+          <button onClick={handleNavigate}>Ver mas jugadores</button>
+        </div>
+      )}
       <ul>
         {data.map((el) => (
           <Player

@@ -3,6 +3,9 @@ import { Link } from "react-router-dom";
 
 function Header() {
   const [clickedMenu, setClickedMenu] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(true);
+
+  const linkStyle = { color: "white", textDecoration: "none" };
 
   const handleMenuClick = () => {
     setClickedMenu(!clickedMenu);
@@ -33,26 +36,39 @@ function Header() {
         <div className="menu-content">
           <ul>
             <li>
-              <Link to="/" style={{ color: "white", textDecoration: "none" }}>
+              <Link to="/" style={linkStyle}>
                 Home
               </Link>
             </li>
             <li>
-              <Link
-                to="/players"
-                style={{ color: "white", textDecoration: "none" }}
-              >
+              <Link to="/players" style={linkStyle}>
                 Jugadores
               </Link>
             </li>
             <li>
-              <Link
-                to="/profile"
-                style={{ color: "white", textDecoration: "none" }}
-              >
+              <Link to="/profile" style={linkStyle}>
                 Perfil
               </Link>
             </li>
+            {isAdmin && (
+              <>
+                <li>
+                  <Link to="/management" style={linkStyle}>
+                    Administrar Jugadores
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/management" style={linkStyle}>
+                    Crear Jugador
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/management" style={linkStyle}>
+                    Crear Tag
+                  </Link>
+                </li>
+              </>
+            )}
           </ul>
         </div>
       )}

@@ -1,4 +1,4 @@
-import { useState, useHistory } from "react";
+import { useState } from "react";
 import Position from "./Position";
 import { Navigate } from "react-router-dom";
 
@@ -24,7 +24,7 @@ function Player({ name, imageRoute, positions, score, description }) {
       onClick={handleClick}
     >
       <figure>
-        <Navigate to={navigate} />;
+        <Navigate to={navigate} />
         <img src={imageRoute} alt="arbol" />
         <div className="content">
           <div className="top">
