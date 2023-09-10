@@ -58,13 +58,13 @@ function Header() {
                   </Link>
                 </li>
                 <li>
-                  <Link to="/management" style={linkStyle}>
+                  <Link to="/create-player" style={linkStyle}>
                     Crear Jugador
                   </Link>
                 </li>
                 <li>
-                  <Link to="/management" style={linkStyle}>
-                    Crear Tag
+                  <Link to="/tags-management" style={linkStyle}>
+                    Editar Tags
                   </Link>
                 </li>
               </>

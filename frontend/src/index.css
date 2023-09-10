@@ -1,4 +1,3 @@
-body,
-button {
+body * {
   font-family: "Montserrat", sans-serif;
 }

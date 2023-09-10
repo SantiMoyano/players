@@ -1,0 +1,52 @@
+.create-player-content {
+  padding: 0 1rem;
+  padding-top: 4rem;
+}
+
+.create-player-content form,
+.tags-management-container form {
+  display: flex;
+  flex-direction: column;
+}
+
+.create-player-content form div,
+.tags-management-container form div {
+  display: flex;
+  flex-direction: column;
+  padding: 0.3rem;
+}
+
+.create-player-content label,
+.tags-management-container label {
+  margin: 0.5rem;
+  font-weight: bold;
+  color: white;
+}
+
+.create-player-content input[type="text"],
+.tags-management-container input[type="text"],
+.create-player-content input[type="number"],
+.create-player-content textarea {
+  padding: 0.6rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.create-player-content textarea {
+  resize: vertical;
+}
+
+.create-player-content button,
+.tags-management-container form button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.create-player-content button:hover,
+.tags-management-container form button:hover {
+  background-color: #0056b3;
+}

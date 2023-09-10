@@ -7,6 +7,8 @@ import "./players.css";
 import "./profile.css";
 import "./detailed-player.css";
 import "./management.css";
+import "./create-player.css";
+import "./tags.css";
 
 // Components
 import Header from "./components/user/Header";
@@ -15,6 +17,8 @@ import Players from "./components/user/Players";
 import Profile from "./components/user/Profile";
 import DetailedPlayer from "./components/user/DetailedPlayer";
 import PlayersManagement from "./components/admin/PlayersManagement";
+import CreatePlayer from "./components/admin/CreatePlayer";
+import TagsManagement from "./components/admin/TagsManagement";
 
 // Mock data
 import players from "./data-players";
@@ -29,6 +33,34 @@ const player = {
   description:
     "Lionel Andrés Messi Cuccittini, conocido como Leo Messi, es un futbolista argentino que juega como delantero o centrocampista.",
 };
+
+const tags = [
+  {
+    name: "Delantero",
+    color: "#D2231E",
+    type: "position",
+  },
+  {
+    name: "Arquero",
+    color: "#EFD81D",
+    type: "position",
+  },
+  {
+    name: "Barcelona",
+    color: "#D2231E",
+    type: "club",
+  },
+  {
+    name: "PSG",
+    color: "#223B8E",
+    type: "club",
+  },
+  {
+    name: "Mediocampo",
+    color: "#51A35F",
+    type: "position",
+  },
+];
 
 function App() {
   return (
@@ -49,6 +81,11 @@ function App() {
           <Route
             path="/management"
             element={<PlayersManagement data={players} />}
+          />
+          <Route path="/create-player" element={<CreatePlayer />} />
+          <Route
+            path="/tags-management"
+            element={<TagsManagement tags={tags} />}
           />
         </Routes>
       </div>

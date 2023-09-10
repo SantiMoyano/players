@@ -13,6 +13,10 @@ p {
   color: white;
 }
 
+h2 {
+  margin: 0;
+}
+
 /* Estilos para la barra de encabezado */
 .main-header {
   display: flex;

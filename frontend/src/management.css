@@ -1,5 +1,5 @@
 .management-content {
-  padding-top: 5rem;
+  padding-top: 3rem;
 }
 
 .manage-buttons button {
@@ -33,7 +33,7 @@
 
 .management-content li {
   display: flex;
-  padding: 1rem 0;
+  padding: 0.5rem 0;
 }
 
 .management-content figure {
@@ -57,7 +57,6 @@
 }
 
 .management-content .manage-buttons button {
-  margin: 0.5rem 0;
   padding: 0.3rem 0.7rem;
 }
 
