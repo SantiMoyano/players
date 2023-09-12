@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 
 // Styles
 import "./App.css";
+import "./content.css";
 import "./players.css";
 import "./profile.css";
 import "./detailed-player.css";
@@ -88,8 +89,17 @@ function App() {
             element={<TagsManagement tags={tags} />}
           />
         </Routes>
+        <Footer />
       </div>
     </Router>
+  );
+}
+
+function Footer() {
+  return (
+    <footer>
+      <span>COPYRIGHT SANTI</span>
+    </footer>
   );
 }
 

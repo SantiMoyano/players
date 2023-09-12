@@ -16,11 +16,13 @@ function Players({ data, showFilter }) {
       {showFilter ? (
         <SortPlayers />
       ) : (
-        <div className="players-button">
+        <section className="view-more-players">
           <Navigate to={navigate} />
           <h2>Ultimos jugadores</h2>
-          <button onClick={handleNavigate}>Ver mas jugadores</button>
-        </div>
+          <button className="view-more-players-button" onClick={handleNavigate}>
+            Ver mas jugadores
+          </button>
+        </section>
       )}
       <ul>
         {data.map((el) => (

@@ -2,11 +2,6 @@
   padding-top: 80px;
 }
 
-.detailed-player h2 {
-  margin: 0;
-  color: #dbd6d9;
-}
-
 .detailed-player header {
   display: flex;
   align-items: center;

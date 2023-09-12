@@ -1,15 +1,17 @@
 /*ESTILOS PARA playersS*/
 @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&display=swap");
 
+.players {
+  padding-top: 100px;
+}
+
+/*STYLES FOR PLAYERS PAGE*/
+
 .sort-players {
   display: flex;
   align-items: center;
   flex-direction: column;
-  padding: 20px;
-}
-
-.sort-players h2 {
-  padding: 0 0 20px 0;
+  margin: 20px;
 }
 
 /* Estilo base del select */
@@ -21,6 +23,7 @@
   border-radius: 5px;
   outline: none;
   cursor: pointer;
+  margin-top: 10px;
 }
 
 /* Estilo cuando el usuario interactúa con el select */
@@ -34,7 +37,9 @@
   box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Efecto de sombra cuando está enfocado */
 }
 
-.players-button {
+/*STYLES FOR HOME PAGE*/
+
+.view-more-players {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -42,12 +47,7 @@
   margin-bottom: 2rem;
 }
 
-.players-button h2,
-button {
-  margin: 1rem;
-}
-
-.players button {
+.players .view-more-players-button {
   background-color: #d62f2f;
   color: white;
   padding: 0.5rem 1.4rem;
@@ -56,14 +56,11 @@ button {
   font-size: larger;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  margin-top: 15px;
 }
 
-.players button:hover {
+.players .view-more-players-button:hover {
   background-color: #636363; /* Cambia el color al pasar el mouse sobre el botón */
-}
-
-.players {
-  padding-top: 100px;
 }
 
 .players .top {
@@ -77,30 +74,19 @@ button {
   color: rgb(217, 19, 19);
 }
 
-.players h1 {
-  margin: 0;
-  text-align: center;
-}
-
-.players h2 {
-  margin: 0;
-}
-
 .players ul {
+  list-style: none;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin: 0;
+  max-width: 100dvw;
   padding: 0;
 }
 
 .players li {
-  margin: 20px 0;
-  list-style: none;
-}
-
-.players .content {
-  padding: 15px 15px;
+  margin: 30px 0;
+  width: 100%;
+  background-color: white;
 }
 
 .player li:hover {
@@ -108,12 +94,11 @@ button {
 }
 
 .players li figure img {
-  max-width: 100vw;
+  width: 100%;
 }
 
-.players figure,
-figure {
-  margin: 0;
+.players .content {
+  padding: 20px 15px 30px 15px;
 }
 
 .skill-list {
@@ -131,7 +116,6 @@ figure {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-weight: 500;
 }
 
 .skill span {
@@ -146,5 +130,28 @@ figure {
 }
 
 .player.clicked {
-  transform: scale(0.95);
+  transform: scale(0.95); /*solo funciona en mobile*/
+}
+
+@media screen and (width >= 768px) {
+  .players ul {
+    display: flex;
+    flex-direction: unset;
+    flex-wrap: wrap;
+  }
+
+  .players li {
+    max-width: calc(35%);
+    margin: 20px 50px;
+    outline: #bcbcbc 1px solid;
+    border-radius: 3px;
+  }
+
+  .players li:hover {
+    transform: scale(1.05);
+  }
+
+  .players .content {
+    padding: 20px 30px 40px 20px;
+  }
 }

@@ -4,16 +4,21 @@ body {
   padding: 0;
   overflow-x: hidden;
   max-width: 100vw;
-  background-color: rgb(34, 34, 34);
+  background-color: rgb(217, 217, 217);
+}
+
+main {
 }
 
 h2,
 figcaption,
 p {
-  color: white;
+  color: rgb(0, 0, 0);
 }
 
-h2 {
+h1,
+h2,
+figure {
   margin: 0;
 }
 
@@ -21,7 +26,7 @@ h2 {
 .main-header {
   display: flex;
   position: fixed;
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: rgba(33, 33, 33, 0.9);
   color: white;
   width: 100%;
   z-index: 1;
@@ -39,13 +44,6 @@ h2 {
   min-height: 100vh;
 }
 
-.menu-content {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-}
-
 .main-header ul {
   min-height: 100vh;
   padding: 0;
@@ -54,42 +52,54 @@ h2 {
 .main-header ul li {
   padding: 0.6rem 0;
   list-style: none;
-  font-size: 20px;
+  font-size: larger;
 }
 
-/* Estilos para el contenedor de bienvenida */
-.welcome-container {
+.menu-content {
   display: flex;
-  overflow: hidden;
-  min-height: 100vh;
-  max-height: 100vh;
-  text-align: center;
-}
-
-/* Estilos para el fondo semitransparente del contenedor */
-.welcome-container::before {
-  content: "";
-  position: absolute;
+  justify-content: center;
   width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.6);
+  margin-top: 4rem;
 }
 
-/* Estilos para la imagen de fondo */
-.welcome-container img {
-  width: 100vw;
-  object-fit: cover;
+.background-menu {
+  background-color: rgba(0, 0, 0, 0.8);
 }
 
-/* Estilos para el título */
-.welcome-container h1 {
+footer {
   display: flex;
-  position: absolute;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: auto;
+  background-color: rgb(33, 33, 33);
+  min-height: 200px;
+  clip-path: polygon(0% 30%, 100% 0, 100% 100%, 0% 100%);
+}
+
+footer span {
   color: white;
-  width: 100%;
-  height: 100%;
-  font-size: 12vw;
+}
+
+@media screen and (width >= 768px) {
+  .menu-content {
+    display: flex;
+    margin-top: 0;
+  }
+
+  .main-header ul {
+    display: flex;
+    min-height: 0vh;
+  }
+
+  .main-header ul li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 2rem;
+    font-size: medium;
+  }
+
+  .main-header ul li a {
+    text-align: center;
+  }
 }

@@ -1,0 +1,55 @@
+.welcome {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(33, 33, 33);
+  min-height: 500px;
+  clip-path: polygon(0 0, 100% 0, 100% 80%, 0% 100%);
+}
+
+.welcome h1 {
+  text-align: center;
+  color: white;
+  font-size: 32px;
+}
+
+.welcome h3 {
+  color: white;
+}
+
+@media screen and (width >= 768px) {
+  .welcome h1 {
+    font-size: 48px;
+  }
+
+  .search-input {
+    display: flex;
+    align-items: center;
+    position: relative;
+  }
+
+  .welcome input {
+    min-width: 400px;
+    padding: 16px 20px;
+    border-radius: 50px;
+    border: 0;
+    outline: none;
+  }
+
+  .welcome button {
+    display: flex;
+    position: absolute;
+    border-radius: 0 50px 50px 0;
+    background-color: rgb(176, 36, 36);
+    padding: 12px 20px 12px 40px;
+    margin: 0;
+    margin-left: 359px;
+    border: 0;
+  }
+
+  .welcome button:hover {
+    cursor: pointer;
+    background-color: rgb(144, 35, 35);
+  }
+}
