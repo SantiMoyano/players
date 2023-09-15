@@ -75,3 +75,9 @@
 .management-content .player-name span {
   margin-left: 0.5rem;
 }
+
+@media screen and (width >= 768px) {
+  .management-content {
+    margin: 0 200px;
+  }
+}

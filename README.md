@@ -19,3 +19,5 @@ App para mostrar datos sobre jugadores de futbol.
 - `npx create-react-app`: Es una utilidad de línea de comandos que se utiliza para crear una nueva aplicación de React con una estructura y configuración predefinidas.
 
 - `npm i react-router-dom`:
+
+- `npm i axios`:

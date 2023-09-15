@@ -1,6 +1,8 @@
-import Player from "./Player";
 import { useState } from "react";
 import { Navigate } from "react-router-dom";
+
+import Player from "./Player";
+import SearchPlayer from "./SearchPlayer.js";
 
 function Players({ data, showFilter }) {
   const [navigate, setNavigate] = useState("");
@@ -14,7 +16,10 @@ function Players({ data, showFilter }) {
   return (
     <section className="players">
       {showFilter ? (
-        <SortPlayers />
+        <section className="players-searcher">
+          <SortPlayers />
+          <SearchPlayer />
+        </section>
       ) : (
         <section className="view-more-players">
           <Navigate to={navigate} />

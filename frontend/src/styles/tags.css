@@ -27,7 +27,8 @@
 }
 
 .tags-management-container li span {
-  color: white;
+  color: black;
+  font-weight: bold;
   font-size: 1.3rem;
   padding: 0.1rem 0.4rem;
   border-radius: 5px;
@@ -48,4 +49,17 @@
 
 .tags-management-container form button {
   margin-top: 3rem;
+}
+
+@media screen and (width >= 768px) {
+  .tags-management-container {
+    justify-content: center;
+    padding-top: 0;
+    margin: 0 350px;
+    min-height: 100dvh;
+  }
+
+  #delete-icon {
+    cursor: pointer;
+  }
 }

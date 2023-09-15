@@ -20,7 +20,7 @@
 .tags-management-container label {
   margin: 0.5rem;
   font-weight: bold;
-  color: white;
+  color: rgb(40, 40, 40);
 }
 
 .create-player-content input[type="text"],
@@ -49,4 +49,10 @@
 .create-player-content button:hover,
 .tags-management-container form button:hover {
   background-color: #0056b3;
+}
+
+@media screen and (width >= 768px) {
+  .create-player-content {
+    margin: 0 400px;
+  }
 }

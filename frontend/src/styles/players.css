@@ -14,27 +14,29 @@
   margin: 20px;
 }
 
-/* Estilo base del select */
 .sort-players select {
-  appearance: none; /* Esto quita el estilo por defecto del sistema operativo */
-  padding: 10px;
+  padding: 5px;
   font-size: 16px;
   border: 1px solid #ccc;
-  border-radius: 5px;
+  border-radius: 3px;
   outline: none;
   cursor: pointer;
   margin-top: 10px;
 }
 
-/* Estilo cuando el usuario interactúa con el select */
 .sort-players select:hover {
   border-color: #555;
 }
 
-/* Estilo cuando el select está enfocado */
 .sort-players select:focus {
-  border-color: #007bff; /* Puedes cambiar este color según tus preferencias */
-  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Efecto de sombra cuando está enfocado */
+  box-shadow: 0 0 5px rgba(18, 18, 18, 0.5); /* Efecto de sombra cuando está enfocado */
+}
+
+.players-searcher {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 /*STYLES FOR HOME PAGE*/
@@ -134,6 +136,11 @@
 }
 
 @media screen and (width >= 768px) {
+  .sort-players {
+    flex-direction: row;
+    gap: 20px;
+  }
+
   .players ul {
     display: flex;
     flex-direction: unset;

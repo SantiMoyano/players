@@ -1,0 +1,94 @@
+.welcome {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(33, 33, 33);
+  min-height: calc(100vh - 80px);
+  max-height: calc(100vh - 80px);
+  max-width: 100dvw;
+  clip-path: polygon(0 0, 100% 0, 100% 95%, 0% 100%);
+  overflow: hidden;
+}
+
+.welcome-content {
+  position: absolute;
+}
+
+.welcome img {
+  object-fit: cover;
+  min-height: 100%;
+}
+
+.welcome::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.welcome h1 {
+  text-align: center;
+  color: white;
+  font-size: 40px;
+}
+
+.welcome h3 {
+  margin: 40px 0;
+  color: rgb(215, 215, 215);
+  font-size: 14px;
+}
+
+.search-input {
+  display: flex;
+  align-items: center;
+}
+
+.search-input input {
+  min-width: 200px;
+  padding: 16px 20px;
+  border-radius: 50px 0px 0px 50px;
+  border: 0;
+  outline: none;
+}
+
+.search-input button {
+  display: flex;
+  justify-content: center;
+  background-color: rgb(176, 36, 36);
+  border-radius: 0 50px 50px 0;
+  width: 66px;
+  padding: 12px 20px;
+  margin: 0;
+  border: 0;
+}
+
+@media screen and (width >= 768px) {
+  .welcome img {
+    object-fit: cover;
+    width: 100%;
+  }
+
+  .welcome h1 {
+    font-size: 64px;
+  }
+
+  .welcome h3 {
+    font-size: 24px;
+  }
+
+  .search-input input {
+    min-width: 400px;
+    padding: 16px 20px;
+  }
+
+  .search-input button {
+    width: 88px;
+  }
+
+  .search-input button:hover {
+    cursor: pointer;
+    background-color: rgb(144, 35, 35);
+  }
+}

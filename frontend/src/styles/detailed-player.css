@@ -1,0 +1,54 @@
+.detailed-player {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 80px;
+}
+
+.detailed-player main {
+  max-width: 100%;
+}
+
+.top-detailed-player {
+  display: flex;
+  align-items: center;
+  padding: 10px 0;
+}
+
+.detailed-player .skill-list {
+  justify-content: end;
+  margin: 5px 0;
+  padding: 5px 0;
+}
+
+.top-detailed-player h1 {
+  font-size: 32px;
+  margin-right: 10px;
+}
+
+.top-detailed-player span {
+  margin-left: auto;
+  color: #d2231e;
+}
+
+.detailed-player main img {
+  width: 100%;
+}
+
+@media screen and (width >= 768px) {
+  .detailed-player main {
+    max-width: 50%;
+  }
+
+  .detailed-player figcaption {
+    font-size: 18px;
+    padding: 20px 15px;
+  }
+
+  .detailed-player .skill:hover {
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    transform: scale(1.05);
+  }
+}
