@@ -5,6 +5,8 @@ const {
   getTags,
   createTag,
   deleteTag,
+  updateTag,
+  getTag,
 } = require("../controllers/tags.controllers");
 
 //prettier-ignore
@@ -16,6 +18,8 @@ router
 //prettier-ignore
 router
     .route("/:id")
-    .delete(deleteTag);
+    .get(getTag)
+    .delete(deleteTag)
+    .put(updateTag);
 
 module.exports = router;

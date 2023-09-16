@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-function TagsList() {
+function TagsList({ handleEdit }) {
   const [tagList, setTagList] = useState([]);
   const [selectedFilter, setSelectedFilter] = useState("position");
 
@@ -18,7 +18,7 @@ function TagsList() {
     }
   }
 
-  async function handleClick(id) {
+  async function handleDelete(id) {
     await axios.delete("http://localhost:4000/api/tags/" + id);
     fetchData();
   }
@@ -41,7 +41,8 @@ function TagsList() {
             key={el._id}
             name={el.tagName}
             color={el.tagColor}
-            onHandleClick={() => handleClick(el._id)}
+            handleEdit={() => handleEdit(el._id)}
+            handleDelete={() => handleDelete(el._id)}
           />
         ))}
       </ul>
@@ -64,12 +65,13 @@ function SortTags({ handleFilterChange, selectedFilter }) {
   );
 }
 
-function Tag({ name, color, onHandleClick }) {
+function Tag({ name, color, handleDelete, handleEdit }) {
   return (
     <li>
       <span>{name}</span>
       <span style={{ backgroundColor: color }}>{color}</span>
-      <span id="delete-icon" onClick={onHandleClick}>
+      <span onClick={handleEdit}>Edit</span>
+      <span id="delete-icon" onClick={handleDelete}>
         X
       </span>
     </li>

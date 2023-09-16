@@ -1,18 +1,27 @@
 import { useState } from "react";
 import axios from "axios";
 
-function CreateTag() {
+function CreateTag({ handleUpdatedTag, updateTag, tagNameEditing, id }) {
   const [tagName, setTagName] = useState("");
   const [tagColor, setTagColor] = useState("");
   const [tagType, setTagType] = useState("position");
 
   async function handleSubmit(e) {
     e.preventDefault();
-    await axios.post("http://localhost:4000/api/tags", {
-      tagName: tagName,
-      tagColor: tagColor,
-      tagType: tagType,
-    });
+    if (!updateTag) {
+      await axios.post("http://localhost:4000/api/tags", {
+        tagName: tagName,
+        tagColor: tagColor,
+        tagType: tagType,
+      });
+    } else {
+      await axios.put("http://localhost:4000/api/tags/" + id, {
+        tagName: tagName,
+        tagColor: tagColor,
+        tagType: tagType,
+      });
+      handleUpdatedTag();
+    }
   }
 
   function handleChangeUsername(e) {
@@ -35,6 +44,7 @@ function CreateTag() {
           type="text"
           id="name"
           name="name"
+          defaultValue={tagNameEditing}
           onChange={handleChangeUsername}
         />
       </div>
@@ -50,7 +60,7 @@ function CreateTag() {
         <input type="color" id="colorPicker" onChange={handleChangeColor} />
       </div>
       <button type="submit">
-        <strong>Crear Tag</strong>
+        <strong>{!updateTag ? "Crear Tag" : "Actualizar Tag"}</strong>
       </button>
     </form>
   );
