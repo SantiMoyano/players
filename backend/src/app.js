@@ -13,5 +13,6 @@ app.use(express.json());
 // routes
 app.use("/api/users", require("./routes/users"));
 app.use("/api/tags", require("./routes/tags"));
+app.use("/api/players", require("./routes/players"));
 
 module.exports = app;

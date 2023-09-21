@@ -84,6 +84,7 @@ function App() {
             element={<PlayersManagement data={players} />}
           />
           <Route path="/create-player" element={<CreatePlayer />} />
+          <Route path="/create-player/:id" element={<CreatePlayer />} />
           <Route
             path="/tags-management"
             element={<TagsManagement tags={tags} />}

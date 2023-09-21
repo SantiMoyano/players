@@ -1,43 +1,70 @@
-import { useState } from "react";
-import { Navigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 import Player from "./Player";
 import SearchPlayer from "./SearchPlayer.js";
 
-function Players({ data, showFilter }) {
-  const [navigate, setNavigate] = useState("");
+function Players({ showFilter }) {
+  const [playerSearched, setPlayerSearched] = useState("");
+  const [playerList, setPlayerList] = useState([]);
+  const [filteredPlayerList, setFilteredPlayerList] = useState([]);
 
-  function handleNavigate() {
-    setTimeout(function () {
-      setNavigate("/players");
-    }, 300);
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  async function fetchData() {
+    try {
+      const res = await axios.get("http://localhost:4000/api/players");
+      setPlayerList(res.data);
+      setFilteredPlayerList(res.data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  }
+
+  function handleSearch(searchTerm) {
+    const filteredPlayers = playerList.filter((player) =>
+      player.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    setFilteredPlayerList(filteredPlayers);
+  }
+
+  function handleClick(playerId) {
+    console.log(playerId);
+  }
+
+  function handleSort() {
+    const sortedPlayers = [...filteredPlayerList];
+    sortedPlayers.sort((a, b) => b.score - a.score);
+    setFilteredPlayerList(sortedPlayers);
   }
 
   return (
     <section className="players">
       {showFilter ? (
         <section className="players-searcher">
-          <SortPlayers />
-          <SearchPlayer />
+          <SortPlayers handleSort={handleSort} />
+          <SearchPlayer handleSearch={handleSearch} />
         </section>
       ) : (
         <section className="view-more-players">
-          <Navigate to={navigate} />
           <h2>Ultimos jugadores</h2>
-          <button className="view-more-players-button" onClick={handleNavigate}>
+          <button className="view-more-players-button">
             Ver mas jugadores
           </button>
         </section>
       )}
       <ul>
-        {data.map((el) => (
+        {filteredPlayerList.map((el) => (
           <Player
+            key={el._id}
             name={el.name}
-            imageRoute={el.imageRoute}
-            positions={el.position}
+            imageRoute="./welcome.jpg"
+            positions={el.tags}
             score={el.score}
             description={el.description}
-            key={el.imageRoute}
+            handleClick={() => handleClick(el._id)}
           />
         ))}
       </ul>
@@ -45,17 +72,21 @@ function Players({ data, showFilter }) {
   );
 }
 
-function SortPlayers() {
+function SortPlayers({ handleSort }) {
   const [sortBy, setSortBy] = useState("input");
 
-  if (sortBy === "input") console.log("Ordenar por orden de entrada");
-  if (sortBy === "position") console.log("Ordenar por posicion");
-  if (sortBy === "score") console.log("Ordenar por valoracion");
+  const handleSelectChange = (e) => {
+    const selectedValue = e.target.value;
+    setSortBy(selectedValue);
+    if (selectedValue === "score") {
+      handleSort();
+    }
+  };
 
   return (
     <div className="sort-players">
       <h2>Ordenar jugadores por:</h2>
-      <select value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
+      <select value={sortBy} onChange={handleSelectChange}>
         <option value="input">Orden de entrada</option>
         <option value="position">Posicion</option>
         <option value="score">Valoracion</option>

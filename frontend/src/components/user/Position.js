@@ -1,22 +1,37 @@
 import { useState, useEffect } from "react";
+import axios from "axios";
 
 function Position({ position }) {
   const [color, setColor] = useState("");
+  const [tagList, setTagList] = useState([]);
+  const [tag, setTag] = useState("");
 
   useEffect(() => {
-    if (position === "Delantero" || position === "Extremo") setColor("#D2231E");
-    if (position === "Defensor") setColor("#60DAFB");
-    if (position === "Mediocampo") setColor("#51A35F");
-    if (position === "Arquero") setColor("#EFD81D");
-    if (position === "Barcelona FC") setColor("#D2231E");
-    if (position === "PSG") setColor("#223B8E");
-    if (position === "Inter Miami") setColor("#B83981");
+    fetchTags();
   }, []);
 
+  async function fetchTags() {
+    try {
+      const tagsResponse = await axios.get("http://localhost:4000/api/tags");
+      const tagsData = tagsResponse.data;
+      setTagList(tagsData);
+
+      // Encuentra la etiqueta correspondiente al id
+      const tagData = tagsData.find((tag) => tag._id === position);
+      if (tagData) {
+        setTag(tagData.tagName);
+        setColor(tagData.tagColor);
+      }
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  }
+
+  // Mostrar el componente solo cuando los datos estén cargados
   return (
     <div className="skill" style={{ backgroundColor: color }}>
       <span>
-        <strong>{position}</strong>
+        <strong>{tag}</strong>
       </span>
     </div>
   );

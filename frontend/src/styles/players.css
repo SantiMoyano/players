@@ -117,11 +117,12 @@
   border-radius: 5px;
   display: flex;
   align-items: center;
+  border: solid black 2px;
   gap: 8px;
 }
 
 .skill span {
-  color: white;
+  color: rgb(0, 0, 0);
 }
 
 /* ANIMATIONS */

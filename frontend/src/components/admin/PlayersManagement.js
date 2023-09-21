@@ -1,7 +1,51 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+
+import SearchPlayer from "../user/SearchPlayer";
 
 function PlayersManagement({ data }) {
   const [filter, setFilter] = useState("default");
+  const [playerList, setPlayerList] = useState([]);
+  const [filteredPlayerList, setFilteredPlayerList] = useState([]);
+  const navigate = useNavigate();
+
+  /*
+   * TODO:
+   * fetch players
+   * agregar busqueda a mano
+   * handle delete y update
+   */
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  function handleSearch(searchTerm) {
+    const filteredPlayers = playerList.filter((player) =>
+      player.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    setFilteredPlayerList(filteredPlayers);
+  }
+
+  async function fetchData() {
+    try {
+      const res = await axios.get("http://localhost:4000/api/players");
+      setPlayerList(res.data);
+      setFilteredPlayerList(res.data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  }
+
+  async function handleDelete(playerId) {
+    await axios.delete("http://localhost:4000/api/players/" + playerId);
+    fetchData();
+  }
+
+  async function handleUpdate(playerId) {
+    navigate("/create-player/" + playerId);
+  }
 
   return (
     <section className="management-content">
@@ -13,13 +57,17 @@ function PlayersManagement({ data }) {
           <option value="nameOnly">Solo nombre</option>
         </select>
       </div>
+      <SearchPlayer handleSearch={handleSearch} />
 
       <ul>
-        {data.map((el) => (
+        {filteredPlayerList.map((player) => (
           <Player
-            name={el.name}
-            imageRoute={el.imageRoute}
+            key={player._id}
+            name={player.name}
+            imageRoute="./welcome.jpg"
             filter={filter}
+            handleDelete={() => handleDelete(player._id)}
+            handleUpdate={() => handleUpdate(player._id)}
           ></Player>
         ))}
       </ul>
@@ -27,7 +75,7 @@ function PlayersManagement({ data }) {
   );
 }
 
-function Player({ name, imageRoute, filter }) {
+function Player({ name, imageRoute, filter, handleDelete, handleUpdate }) {
   return (
     <li>
       {filter === "default" ? (
@@ -45,8 +93,8 @@ function Player({ name, imageRoute, filter }) {
           filter !== "default" ? "align-buttons" : ""
         }`}
       >
-        <button>Editar</button>
-        <button>Eliminar</button>
+        <button onClick={handleUpdate}>Editar</button>
+        <button onClick={handleDelete}>Eliminar</button>
       </div>
     </li>
   );

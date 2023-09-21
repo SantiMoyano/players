@@ -2,30 +2,18 @@ import { useState } from "react";
 import Position from "./Position";
 import { Navigate } from "react-router-dom";
 
-function Player({ name, imageRoute, positions, score, description }) {
-  const [isClicked, setIsClicked] = useState(false);
-  const [navigate, setNavigate] = useState("");
-
-  const handleClick = () => {
-    setIsClicked(true);
-
-    setTimeout(() => {
-      setIsClicked(false);
-
-      setTimeout(() => {
-        setNavigate("/players/1"); // navega para esa ruta despues de la animacion
-      }, 200);
-    }, 300);
-  };
-
+function Player({
+  handleClick,
+  name,
+  imageRoute,
+  positions,
+  score,
+  description,
+}) {
   return (
-    <li
-      className={`player ${isClicked ? "clicked" : ""}`}
-      onClick={handleClick}
-    >
+    <li className="player">
       <figure>
-        <Navigate to={navigate} />
-        <img src={imageRoute} alt="arbol" />
+        <img src={imageRoute} alt="arbol" onClick={handleClick} />
         <div className="content">
           <div className="top">
             <h2>{name}</h2>
@@ -36,7 +24,7 @@ function Player({ name, imageRoute, positions, score, description }) {
 
           <div className="skill-list">
             {positions.map((el) => (
-              <Position position={el} key={el + name} />
+              <Position position={el} key={el} />
             ))}
           </div>
 
