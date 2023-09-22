@@ -1,46 +1,55 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import axios from "axios";
 
 import Position from "./Position";
 
-function DetailedPlayer({ data }) {
-  const [isAdmin, setIsAdmin] = useState(true);
+function DetailedPlayer() {
+  const [playerData, setPlayerData] = useState([]);
+  const [tags, setTags] = useState([]);
+  const { id } = useParams();
+
+  useEffect(() => {
+    fetchPlayer();
+  }, []);
+
+  async function fetchPlayer() {
+    const res = await axios.get("http://localhost:4000/api/players/" + id);
+    const player = res.data;
+    setPlayerData({ ...player });
+    const tagList = player.tags;
+    setTags(tagList);
+  }
 
   return (
     <section className="detailed-player">
       <main>
         <section className="top-detailed-player">
-          <h1>{data.name}</h1>
-          {isAdmin ? <Link to="/create-player">Edit</Link> : ""}
+          <h1>{playerData.name}</h1>
           <span>
-            <strong>{data.score}</strong>⭐
+            <strong>{playerData.score}</strong>⭐
           </span>
         </section>
         <figure>
-          <img src={data.imageRoute} alt={data.imageRoute} />
+          <img src="../welcome.jpg" alt="data" />
         </figure>
 
         <div className="player-content">
           <div className="tags">
             <div className="skill-list">
-              {data.positions.map((el) => (
-                <Position position={el} key={el + data.name} />
-              ))}
-            </div>
-            <div className="skill-list">
-              {data.teams.map((el) => (
-                <Position position={el} key={el + data.name} />
+              {tags.map((el) => (
+                <Position position={el} key={el} />
               ))}
             </div>
           </div>
 
           <figure>
             <figcaption className="player-description">
-              {data.description}
+              {playerData.description}
             </figcaption>
-            <img src={data.gifRoute} alt={data.gifRoute} />
+            <img src="../ankaramessi-barcelona.gif" alt="messi" />
           </figure>
-          <h2>{`Trofeos ganados: ${data.trophies}`}</h2>
+          <h2>{`Trofeos ganados: ${playerData.trophies}`}</h2>
         </div>
       </main>
     </section>

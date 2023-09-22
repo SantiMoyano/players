@@ -10,13 +10,6 @@ function PlayersManagement({ data }) {
   const [filteredPlayerList, setFilteredPlayerList] = useState([]);
   const navigate = useNavigate();
 
-  /*
-   * TODO:
-   * fetch players
-   * agregar busqueda a mano
-   * handle delete y update
-   */
-
   useEffect(() => {
     fetchData();
   }, []);

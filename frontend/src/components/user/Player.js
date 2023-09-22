@@ -1,6 +1,4 @@
-import { useState } from "react";
 import Position from "./Position";
-import { Navigate } from "react-router-dom";
 
 function Player({
   handleClick,

@@ -1,27 +1,19 @@
 import { useState, useEffect } from "react";
+import { useContext } from "react";
+import MyDataContext from "../../MyDataContext";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 import Player from "./Player";
+import SortPlayers from "./SortPlayers";
 import SearchPlayer from "./SearchPlayer.js";
 
 function Players({ showFilter }) {
-  const [playerSearched, setPlayerSearched] = useState("");
-  const [playerList, setPlayerList] = useState([]);
-  const [filteredPlayerList, setFilteredPlayerList] = useState([]);
-
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  async function fetchData() {
-    try {
-      const res = await axios.get("http://localhost:4000/api/players");
-      setPlayerList(res.data);
-      setFilteredPlayerList(res.data);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  }
+  const playerList = useContext(MyDataContext)[0];
+  const filteredPlayerList = useContext(MyDataContext)[2];
+  const setFilteredPlayerList = useContext(MyDataContext)[3];
+  console.log(playerList);
+  const navigate = useNavigate();
 
   function handleSearch(searchTerm) {
     const filteredPlayers = playerList.filter((player) =>
@@ -30,14 +22,14 @@ function Players({ showFilter }) {
     setFilteredPlayerList(filteredPlayers);
   }
 
-  function handleClick(playerId) {
-    console.log(playerId);
-  }
-
   function handleSort() {
     const sortedPlayers = [...filteredPlayerList];
     sortedPlayers.sort((a, b) => b.score - a.score);
     setFilteredPlayerList(sortedPlayers);
+  }
+
+  function handleClick(playerId) {
+    navigate("/players/" + playerId);
   }
 
   return (
@@ -55,6 +47,9 @@ function Players({ showFilter }) {
           </button>
         </section>
       )}
+      {filteredPlayerList.length === 0 && (
+        <span>"No se encontraron resultados :c"</span>
+      )}
       <ul>
         {filteredPlayerList.map((el) => (
           <Player
@@ -69,29 +64,6 @@ function Players({ showFilter }) {
         ))}
       </ul>
     </section>
-  );
-}
-
-function SortPlayers({ handleSort }) {
-  const [sortBy, setSortBy] = useState("input");
-
-  const handleSelectChange = (e) => {
-    const selectedValue = e.target.value;
-    setSortBy(selectedValue);
-    if (selectedValue === "score") {
-      handleSort();
-    }
-  };
-
-  return (
-    <div className="sort-players">
-      <h2>Ordenar jugadores por:</h2>
-      <select value={sortBy} onChange={handleSelectChange}>
-        <option value="input">Orden de entrada</option>
-        <option value="position">Posicion</option>
-        <option value="score">Valoracion</option>
-      </select>
-    </div>
   );
 }
 
