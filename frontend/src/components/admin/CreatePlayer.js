@@ -1,71 +1,55 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
+import MyDataContext from "../../MyDataContext";
 import axios from "axios";
 
 function CreatePlayer() {
+  const {
+    tagList,
+    fetchPlayer,
+    playerData,
+    avaibleTagList,
+    setAvaibleTagList,
+    handleSubmitPlayer,
+  } = useContext(MyDataContext);
+
   const { id } = useParams();
   const [name, setName] = useState("");
   const [score, setScore] = useState(0);
   const [trophies, setTrophies] = useState(0);
   const [description, setDescription] = useState("");
-  const [tagList, setTagsList] = useState([]);
-  const [filterTagList, setFilterTagList] = useState([]);
   const [tagSearched, setTagSearched] = useState("");
   const [selectedTags, setSelectedTags] = useState([]);
   const [updateMode, setUpdateMode] = useState(false);
-  const [playerData, setPlayerData] = useState([]);
+
+  const data = {
+    name,
+    score,
+    trophies,
+    description,
+    selectedTags,
+    updateMode,
+    id,
+  };
 
   useEffect(() => {
     if (id) {
       setUpdateMode(true);
-      fetchPlayer();
-      setName(playerData.name);
-      setScore(playerData.score);
-      setTrophies(playerData.trophies);
-      setDescription(playerData.description);
+      getPlayerData();
     }
-    fetchTags();
   }, []);
 
-  async function fetchPlayer() {
-    const res = await axios.get("http://localhost:4000/api/players/" + id);
-    const player = res.data;
-    setPlayerData({ ...player });
+  async function getPlayerData() {
+    const res = await fetchPlayer(id);
+    setName(playerData.name);
+    setScore(playerData.score);
+    setTrophies(playerData.trophies);
+    setDescription(playerData.description);
   }
 
-  async function fetchTags() {
-    try {
-      const res = await axios.get("http://localhost:4000/api/tags");
-      setTagsList(res.data);
-      setFilterTagList(res.data);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  }
-
-  async function handleSubmit(e) {
+  function handleSubmit(e) {
     e.preventDefault();
-    const tags = selectedTags.map((tag) => tag._id);
-    if (!updateMode) {
-      await axios.post("http://localhost:4000/api/players", {
-        name,
-        score,
-        trophies,
-        description,
-        tags,
-      });
-      alert("jugador creado!");
-    } else {
-      await axios.put("http://localhost:4000/api/players/" + id, {
-        name,
-        score,
-        trophies,
-        description,
-        tags,
-      });
-      setUpdateMode(false);
-      alert("jugador actualizado!");
-    }
+    handleSubmitPlayer(data);
   }
 
   function handleChangeName(e) {
@@ -86,7 +70,7 @@ function CreatePlayer() {
 
   function handleChangeTags(e) {
     setTagSearched(e.target.value);
-    setFilterTagList(
+    setAvaibleTagList(
       tagList.filter((tag) =>
         tag.tagName
           .toLocaleLowerCase()
@@ -98,18 +82,15 @@ function CreatePlayer() {
 
   function addTag(tagId) {
     // Busca la etiqueta correspondiente al tagId
-    const tagToAdd = filterTagList.find((tag) => tag._id === tagId);
-
+    const tagToAdd = avaibleTagList.find((tag) => tag._id === tagId);
     if (tagToAdd) {
       // Agrega la etiqueta al array selectedTags
       setSelectedTags([...selectedTags, tagToAdd]);
     }
-
     // Crea una nueva lista de tags que excluye el tag seleccionado
-    const updatedTagList = filterTagList.filter((tag) => tag._id !== tagId);
-
+    const updatedTagList = avaibleTagList.filter((tag) => tag._id !== tagId);
     // Actualiza la lista de tags disponibles
-    setFilterTagList(updatedTagList);
+    setAvaibleTagList(updatedTagList);
   }
 
   return (
@@ -177,7 +158,7 @@ function CreatePlayer() {
             onChange={handleChangeTags}
           />
           <select onChange={(e) => addTag(e.target.value)}>
-            {filterTagList.map((tag) => (
+            {avaibleTagList.map((tag) => (
               <option key={tag._id} value={tag._id}>
                 {tag.tagName}
               </option>

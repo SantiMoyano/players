@@ -1,13 +1,13 @@
 import { useState } from "react";
 
-function SortPlayers({ handleSort }) {
+function SortPlayers({ handleSortByScore }) {
   const [sortBy, setSortBy] = useState("input");
 
   const handleSelectChange = (e) => {
     const selectedValue = e.target.value;
     setSortBy(selectedValue);
     if (selectedValue === "score") {
-      handleSort();
+      handleSortByScore();
     }
   };
 

@@ -1,44 +1,17 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import { useContext } from "react";
+import MyDataContext from "../../MyDataContext";
 
 import SearchPlayer from "../user/SearchPlayer";
 
-function PlayersManagement({ data }) {
+function PlayersManagement() {
+  const {
+    filteredPlayerList,
+    handleDeletePlayer,
+    handleUpdatePlayer,
+    handleSearch,
+  } = useContext(MyDataContext);
   const [filter, setFilter] = useState("default");
-  const [playerList, setPlayerList] = useState([]);
-  const [filteredPlayerList, setFilteredPlayerList] = useState([]);
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  function handleSearch(searchTerm) {
-    const filteredPlayers = playerList.filter((player) =>
-      player.name.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-    setFilteredPlayerList(filteredPlayers);
-  }
-
-  async function fetchData() {
-    try {
-      const res = await axios.get("http://localhost:4000/api/players");
-      setPlayerList(res.data);
-      setFilteredPlayerList(res.data);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  }
-
-  async function handleDelete(playerId) {
-    await axios.delete("http://localhost:4000/api/players/" + playerId);
-    fetchData();
-  }
-
-  async function handleUpdate(playerId) {
-    navigate("/create-player/" + playerId);
-  }
 
   return (
     <section className="management-content">
@@ -59,8 +32,8 @@ function PlayersManagement({ data }) {
             name={player.name}
             imageRoute="./welcome.jpg"
             filter={filter}
-            handleDelete={() => handleDelete(player._id)}
-            handleUpdate={() => handleUpdate(player._id)}
+            handleDelete={() => handleDeletePlayer(player._id)}
+            handleUpdate={() => handleUpdatePlayer(player._id)}
           ></Player>
         ))}
       </ul>
