@@ -1,12 +1,15 @@
 import { useState } from "react";
 function Login() {
   const [isLogin, setIsLogin] = useState("false");
+
   function handleClick() {
     setIsLogin(!isLogin);
   }
+
   return (
-    <section className="login">
+    <section className="form-section">
       <h2>{isLogin ? "LOGIN" : "REGISTER"}</h2>
+
       <form>
         <div>
           <label htmlFor="name">Ingrese su usuario:</label>
@@ -23,7 +26,7 @@ function Login() {
           </div>
         )}
         <div className="button-submit">
-          <button>submit</button>
+          <button>Enviar</button>
         </div>
         <div className="auth-switch">
           <span>
