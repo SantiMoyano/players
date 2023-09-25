@@ -1,27 +1,18 @@
-import { useState } from "react";
-import axios from "axios";
+import { useState, useContext } from "react";
+import MyDataContext from "../../MyDataContext";
 
 function CreateTag({ handleUpdatedTag, updateTag, tagNameEditing, id }) {
+  const { handleSubmitTag } = useContext(MyDataContext);
   const [tagName, setTagName] = useState("");
   const [tagColor, setTagColor] = useState("");
   const [tagType, setTagType] = useState("position");
 
-  async function handleSubmit(e) {
+  const data = { tagName, tagColor, tagType, updateTag, id };
+
+  function handleSubmit(e) {
     e.preventDefault();
-    if (!updateTag) {
-      await axios.post("http://localhost:4000/api/tags", {
-        tagName: tagName,
-        tagColor: tagColor,
-        tagType: tagType,
-      });
-    } else {
-      await axios.put("http://localhost:4000/api/tags/" + id, {
-        tagName: tagName,
-        tagColor: tagColor,
-        tagType: tagType,
-      });
-      handleUpdatedTag();
-    }
+    handleSubmitTag(data);
+    handleUpdatedTag();
   }
 
   function handleChangeUsername(e) {

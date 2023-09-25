@@ -10,6 +10,7 @@ import "./styles/detailed-player.css";
 import "./styles/management.css";
 import "./styles/create-player.css";
 import "./styles/tags.css";
+import "./styles/login.css";
 
 // Components
 import Header from "./components/user/Header";
@@ -20,6 +21,7 @@ import DetailedPlayer from "./components/user/DetailedPlayer";
 import PlayersManagement from "./components/admin/PlayersManagement";
 import CreatePlayer from "./components/admin/CreatePlayer";
 import TagsManagement from "./components/admin/TagsManagement";
+import Login from "./components/user/Login";
 
 function App() {
   return (
@@ -36,6 +38,7 @@ function App() {
             <Route path="/create-player" element={<CreatePlayer />} />
             <Route path="/create-player/:id" element={<CreatePlayer />} />
             <Route path="/tags-management" element={<TagsManagement />} />
+            <Route path="/login" element={<Login />} />
           </Routes>
           <Footer />
         </div>

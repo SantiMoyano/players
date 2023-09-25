@@ -1,13 +1,11 @@
 import { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import MyDataContext from "../../MyDataContext";
-import axios from "axios";
 
 function CreatePlayer() {
   const {
     tagList,
     fetchPlayer,
-    playerData,
     avaibleTagList,
     setAvaibleTagList,
     handleSubmitPlayer,
@@ -21,6 +19,7 @@ function CreatePlayer() {
   const [tagSearched, setTagSearched] = useState("");
   const [selectedTags, setSelectedTags] = useState([]);
   const [updateMode, setUpdateMode] = useState(false);
+  const [playerData, setPlayerData] = useState([]);
 
   const data = {
     name,
@@ -40,7 +39,8 @@ function CreatePlayer() {
   }, []);
 
   async function getPlayerData() {
-    const res = await fetchPlayer(id);
+    const data = await fetchPlayer(id);
+    setPlayerData(data);
     setName(playerData.name);
     setScore(playerData.score);
     setTrophies(playerData.trophies);
@@ -48,8 +48,19 @@ function CreatePlayer() {
   }
 
   function handleSubmit(e) {
-    e.preventDefault();
+    // The inputs are not resetting visually, but this issue is resolved by forcefully not using preventDefault.
+    // e.preventDefault();
     handleSubmitPlayer(data);
+    resetInputs();
+    setUpdateMode(false);
+  }
+
+  function resetInputs() {
+    setName("");
+    setScore(0);
+    setTrophies(0);
+    setDescription("");
+    setSelectedTags([]);
   }
 
   function handleChangeName(e) {

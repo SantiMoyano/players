@@ -1,19 +1,20 @@
-import { useState } from "react";
-import axios from "axios";
+import { useState, useContext } from "react";
 
 import CreateTag from "./CreateTag";
 import TagsList from "./TagsList";
+import MyDataContext from "../../MyDataContext";
 
 function TagsManagement() {
+  const { fetchTag } = useContext(MyDataContext);
   const [toggled, setToggled] = useState(false);
   const [updateTag, setUpdateTag] = useState(false);
   const [tagName, setTagName] = useState("");
   const [tagId, setTagId] = useState("");
 
   async function handleEdit(id) {
+    const tagData = await fetchTag(id);
+    setTagName(tagData.tagName);
     setUpdateTag(true);
-    const res = await axios.get("http://localhost:4000/api/tags/" + id);
-    setTagName(res.data.tagName);
     setTagId(id);
     setToggled(!toggled);
   }

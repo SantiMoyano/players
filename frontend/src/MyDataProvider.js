@@ -1,4 +1,4 @@
-import React, { createContext, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import MyDataContext from "./MyDataContext";
@@ -8,14 +8,15 @@ export const MyDataProvider = ({ children }) => {
   const [filteredPlayerList, setFilteredPlayerList] = useState([]);
   const [tagList, setTagList] = useState([]);
   const [avaibleTagList, setAvaibleTagList] = useState([]);
-  const [playerData, setPlayerData] = useState([]);
   const navigate = useNavigate();
 
+  // Fetch player and tag data when the component mounts
   useEffect(() => {
     fetchPlayers();
-    fetchTagData(); // Llama a la función para obtener los tags
+    fetchTags();
   }, []);
 
+  // Fetch the list of players from the API
   async function fetchPlayers() {
     try {
       const res = await axios.get("http://localhost:4000/api/players");
@@ -27,27 +28,42 @@ export const MyDataProvider = ({ children }) => {
     }
   }
 
-  async function fetchTagData() {
+  // Fetch the list of tags from the API
+  async function fetchTags() {
     try {
       const res = await axios.get("http://localhost:4000/api/tags");
-      setTagList(res.data); // Almacena los datos de los tags
+      setTagList(res.data); // Store tag data
       setAvaibleTagList(res.data);
     } catch (error) {
       console.error("Error fetching tag data:", error);
     }
   }
 
+  // Fetch data for a specific player by ID
   async function fetchPlayer(id) {
     const res = await axios.get("http://localhost:4000/api/players/" + id);
-    const player = res.data;
-    setPlayerData({ ...player });
+    return res.data;
   }
 
+  // Fetch data for a specific tag by ID
+  async function fetchTag(id) {
+    const res = await axios.get("http://localhost:4000/api/tags/" + id);
+    return res.data;
+  }
+
+  // Handle the deletion of a player by ID
   async function handleDeletePlayer(playerId) {
     await axios.delete("http://localhost:4000/api/players/" + playerId);
-    fetchPlayers();
+    fetchPlayers(); // Refresh the player list
   }
 
+  // Handle the deletion of a tag by ID
+  async function handleDeleteTag(id) {
+    await axios.delete("http://localhost:4000/api/tags/" + id);
+    fetchTags(); // Refresh the tag list
+  }
+
+  // Handle the submission of player data
   async function handleSubmitPlayer(data) {
     const selectedTags = data.selectedTags || [];
     const tags = selectedTags.map((tag) => tag._id);
@@ -59,7 +75,7 @@ export const MyDataProvider = ({ children }) => {
         description: data.description,
         tags: tags,
       });
-      alert("jugador creado!");
+      alert("Player created!");
     } else {
       await axios.put("http://localhost:4000/api/players/" + data.id, {
         name: data.name,
@@ -68,16 +84,37 @@ export const MyDataProvider = ({ children }) => {
         description: data.description,
         tags: tags,
       });
-      //setUpdateMode(false);
-      alert("jugador actualizado!");
+      alert("Player updated!");
     }
-    fetchPlayers();
+    fetchPlayers(); // Refresh the player list
   }
 
+  // Handle the submission of tag data
+  async function handleSubmitTag(data) {
+    if (!data.updateTag) {
+      await axios.post("http://localhost:4000/api/tags", {
+        tagName: data.tagName,
+        tagColor: data.tagColor,
+        tagType: data.tagType,
+      });
+      alert("Tag created!");
+    } else {
+      await axios.put("http://localhost:4000/api/tags/" + data.id, {
+        tagName: data.tagName,
+        tagColor: data.tagColor,
+        tagType: data.tagType,
+      });
+      alert("Tag updated!");
+    }
+    fetchTags(); // Refresh the tag list
+  }
+
+  // Handle the navigation to the player update page
   function handleUpdatePlayer(playerId) {
     navigate("/create-player/" + playerId);
   }
 
+  // Handle searching for players by name
   function handleSearch(searchTerm) {
     const filteredPlayers = playerList.filter((player) =>
       player.name.toLowerCase().includes(searchTerm.toLowerCase())
@@ -85,6 +122,7 @@ export const MyDataProvider = ({ children }) => {
     setFilteredPlayerList(filteredPlayers);
   }
 
+  // Handle sorting players by score
   function handleSortByScore() {
     const sortedPlayers = [...filteredPlayerList];
     sortedPlayers.sort((a, b) => b.score - a.score);
@@ -94,22 +132,20 @@ export const MyDataProvider = ({ children }) => {
   return (
     <MyDataContext.Provider
       value={{
-        playerList,
         setPlayerList,
         filteredPlayerList,
-        setFilteredPlayerList,
         tagList,
-        fetchPlayers,
-        fetchTagData,
         handleDeletePlayer,
         handleUpdatePlayer,
         handleSearch,
         handleSortByScore,
-        playerData,
         fetchPlayer,
         avaibleTagList,
         setAvaibleTagList,
         handleSubmitPlayer,
+        handleDeleteTag,
+        handleSubmitTag,
+        fetchTag,
       }}
     >
       {children}

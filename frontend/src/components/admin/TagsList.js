@@ -1,27 +1,9 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
+import { useState, useContext } from "react";
+import MyDataContext from "../../MyDataContext";
 
 function TagsList({ handleEdit }) {
-  const [tagList, setTagList] = useState([]);
+  const { tagList, handleDeleteTag } = useContext(MyDataContext);
   const [selectedFilter, setSelectedFilter] = useState("position");
-
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  async function fetchData() {
-    try {
-      const res = await axios.get("http://localhost:4000/api/tags");
-      setTagList(res.data);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  }
-
-  async function handleDelete(id) {
-    await axios.delete("http://localhost:4000/api/tags/" + id);
-    fetchData();
-  }
 
   function handleFilterChange(value) {
     setSelectedFilter(value);
@@ -42,7 +24,7 @@ function TagsList({ handleEdit }) {
             name={el.tagName}
             color={el.tagColor}
             handleEdit={() => handleEdit(el._id)}
-            handleDelete={() => handleDelete(el._id)}
+            handleDelete={() => handleDeleteTag(el._id)}
           />
         ))}
       </ul>

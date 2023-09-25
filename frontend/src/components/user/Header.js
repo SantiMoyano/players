@@ -60,7 +60,7 @@ function NavElems({ isAdmin }) {
           </Link>
         </li>
         <li>
-          <Link to="/profile" style={linkStyle}>
+          <Link to="/login" style={linkStyle}>
             Perfil
           </Link>
         </li>
