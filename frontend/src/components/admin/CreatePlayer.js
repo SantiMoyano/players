@@ -105,7 +105,8 @@ function CreatePlayer() {
   }
 
   return (
-    <section className="create-player-content">
+    <section className="form-section">
+      <h2>{updateMode ? "ACTUALIZAR JUGADOR" : "CREAR JUGADOR"}</h2>
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="name">Name:</label>
@@ -138,14 +139,6 @@ function CreatePlayer() {
           />
         </div>
         <div>
-          <label htmlFor="image">IMAGEN:</label>
-          <input type="file" id="image" name="image" accept="image/image" />
-        </div>
-        <div>
-          <label htmlFor="gif">GIF: </label>
-          <input type="file" id="gif" name="gif" accept="image/gif" />
-        </div>
-        <div>
           <label htmlFor="description">Description:</label>
           <textarea
             id="description"
@@ -176,9 +169,21 @@ function CreatePlayer() {
             ))}
           </select>
         </div>
-        <button type="submit">
-          {updateMode ? "ACTUALIZAR JUGADOR" : "CREAR JUGADOR"}
-        </button>
+
+        {/* TODO: not implemented yet
+         <div>
+          <label htmlFor="image">IMAGEN:</label>
+          <input type="file" id="image" name="image" accept="image/image" />
+        </div>
+        <div>
+          <label htmlFor="gif">GIF: </label>
+          <input type="file" id="gif" name="gif" accept="image/gif" />
+        </div> */}
+        <div className="button-submit">
+          <button type="submit">
+            {updateMode ? "ACTUALIZAR JUGADOR" : "CREAR JUGADOR"}
+          </button>
+        </div>
       </form>
     </section>
   );
