@@ -1,32 +1,16 @@
-.tags-management-container {
-  display: flex;
-  flex-direction: column;
-  padding-top: 3rem;
-}
-
-.tags-management-container button {
-  background-color: #d62f2f;
-  color: white;
-  padding: 0.5rem 1.4rem;
-  border: none;
-  border-radius: 0.3rem;
-  font-size: larger;
-  cursor: pointer;
-}
-
-.tags-management-container ul {
+.form-section ul {
   margin: 1rem 0 0 0;
   padding: 0 3rem;
 }
 
-.tags-management-container li {
+.form-section li {
   display: flex;
   justify-content: space-between;
   list-style: none;
   padding: 0.5rem 0;
 }
 
-.tags-management-container li span {
+.form-section li span {
   color: black;
   font-weight: bold;
   font-size: 1.3rem;
@@ -34,31 +18,7 @@
   border-radius: 5px;
 }
 
-.tags-management-container form {
-  padding: 0 3rem;
-}
-
-.tags-management-container form select {
-  padding: 0.5rem 0;
-}
-
-.tags-management-container input[type="color"] {
-  min-width: 100%;
-  min-height: 2.25rem;
-}
-
-.tags-management-container form button {
-  margin-top: 3rem;
-}
-
 @media screen and (width >= 768px) {
-  .tags-management-container {
-    justify-content: center;
-    padding-top: 0;
-    margin: 0 350px;
-    min-height: 100dvh;
-  }
-
   #delete-icon {
     cursor: pointer;
   }

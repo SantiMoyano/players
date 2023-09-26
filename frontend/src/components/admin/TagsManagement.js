@@ -31,8 +31,11 @@ function TagsManagement() {
   }
 
   return (
-    <section className="tags-management-container">
-      <button onClick={(handleClick, handleUpdatedTag)}>
+    <section className="form-section">
+      <button
+        className="button-submit"
+        onClick={(handleClick, handleUpdatedTag)}
+      >
         <strong>{toggled ? "Crear un nuevo tag" : "Ver tags"}</strong>
       </button>
 

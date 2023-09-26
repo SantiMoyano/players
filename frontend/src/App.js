@@ -8,7 +8,6 @@ import "./styles/players.css";
 import "./styles/profile.css";
 import "./styles/detailed-player.css";
 import "./styles/management.css";
-//import "./styles/create-player.css";
 import "./styles/tags.css";
 import "./styles/form.css";
 

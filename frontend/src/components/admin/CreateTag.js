@@ -50,9 +50,11 @@ function CreateTag({ handleUpdatedTag, updateTag, tagNameEditing, id }) {
         <label htmlFor="name">Color:</label>
         <input type="color" id="colorPicker" onChange={handleChangeColor} />
       </div>
-      <button type="submit">
-        <strong>{!updateTag ? "Crear Tag" : "Actualizar Tag"}</strong>
-      </button>
+      <div className="button-submit">
+        <button type="submit">
+          <strong>{!updateTag ? "Crear Tag" : "Actualizar Tag"}</strong>
+        </button>
+      </div>
     </form>
   );
 }

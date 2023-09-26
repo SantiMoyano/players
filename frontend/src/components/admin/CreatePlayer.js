@@ -149,18 +149,19 @@ function CreatePlayer() {
           ></textarea>
         </div>
         <div>
-          <div>
-            <label htmlFor="tags">Tags:</label>
+          <div className="tags-selector">
+            <label>Tags:</label>
             {selectedTags.map((tag) => (
               <span>{tag.tagName}</span>
             ))}
+            <input
+              type="text"
+              id="tags"
+              placeholder="Ej. Barcelona, Delantero.."
+              name="tags"
+              onChange={handleChangeTags}
+            />
           </div>
-          <input
-            type="text"
-            id="tags"
-            name="tags"
-            onChange={handleChangeTags}
-          />
           <select onChange={(e) => addTag(e.target.value)}>
             {avaibleTagList.map((tag) => (
               <option key={tag._id} value={tag._id}>
