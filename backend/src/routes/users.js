@@ -2,6 +2,7 @@ const { Router } = require("express");
 const router = Router();
 
 const {
+  getUser,
   getUsers,
   createUser,
   deleteUser,
@@ -16,6 +17,7 @@ router
 //prettier-ignore
 router
     .route("/:id")
+    .get(getUser)
     .delete(deleteUser);
 
 module.exports = router;
