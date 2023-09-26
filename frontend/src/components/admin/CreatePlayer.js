@@ -47,10 +47,9 @@ function CreatePlayer() {
     setDescription(playerData.description);
   }
 
-  function handleSubmit(e) {
-    // The inputs are not resetting visually, but this issue is resolved by forcefully not using preventDefault.
-    // e.preventDefault();
-    handleSubmitPlayer(data);
+  async function handleSubmit(e) {
+    e.preventDefault();
+    await handleSubmitPlayer(data);
     resetInputs();
     setUpdateMode(false);
   }

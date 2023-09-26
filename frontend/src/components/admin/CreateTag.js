@@ -1,13 +1,24 @@
-import { useState, useContext } from "react";
+import { useState, useEffect, useContext } from "react";
 import MyDataContext from "../data/MyDataContext";
 
 function CreateTag({ handleUpdatedTag, updateTag, tagNameEditing, id }) {
-  const { handleSubmitTag } = useContext(MyDataContext);
+  const { handleSubmitTag, fetchTag } = useContext(MyDataContext);
   const [tagName, setTagName] = useState("");
   const [tagColor, setTagColor] = useState("");
   const [tagType, setTagType] = useState("position");
 
   const data = { tagName, tagColor, tagType, updateTag, id };
+
+  useEffect(() => {
+    if (updateTag) {
+      getTagData();
+    }
+  }, []);
+
+  async function getTagData() {
+    const data = await fetchTag(id);
+    setTagName(data.tagName);
+  }
 
   function handleSubmit(e) {
     e.preventDefault();

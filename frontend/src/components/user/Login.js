@@ -1,5 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import MyDataContext from "../data/MyDataContext";
 function Login() {
+  const { createUser } = useContext(MyDataContext);
   const [isLogin, setIsLogin] = useState("false");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
