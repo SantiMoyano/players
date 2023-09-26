@@ -1,4 +1,4 @@
-import SearchIcon from "./icons/search";
+import SearchIcon from "../user/icons/search";
 
 function SearchPlayer({ handleSearch }) {
   function handleChange(e) {

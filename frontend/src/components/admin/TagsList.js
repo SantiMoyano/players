@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import MyDataContext from "../../MyDataContext";
+import MyDataContext from "../data/MyDataContext";
 
 function TagsList({ handleEdit }) {
   const { tagList, handleDeleteTag } = useContext(MyDataContext);

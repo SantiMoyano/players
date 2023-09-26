@@ -2,7 +2,7 @@ import { useState, useContext } from "react";
 
 import CreateTag from "./CreateTag";
 import TagsList from "./TagsList";
-import MyDataContext from "../../MyDataContext";
+import MyDataContext from "../data/MyDataContext";
 
 function TagsManagement() {
   const { fetchTag } = useContext(MyDataContext);

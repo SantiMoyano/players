@@ -1,7 +1,7 @@
 import { useEffect, useState, useContext } from "react";
-import MyDataContext from "../../MyDataContext";
+import MyDataContext from "../data/MyDataContext";
 
-import SearchPlayer from "../user/SearchPlayer";
+import SearchPlayer from "../players/SearchPlayer";
 
 function PlayersManagement() {
   const {

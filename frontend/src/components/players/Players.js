@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useContext } from "react";
-import MyDataContext from "../../MyDataContext";
+import MyDataContext from "../data/MyDataContext";
 import { useNavigate } from "react-router-dom";
 
 import Player from "./Player";

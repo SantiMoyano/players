@@ -1,5 +1,5 @@
-import Players from "./Players";
-import SearchPlayer from "./SearchPlayer.js";
+import Players from "../players/Players";
+import SearchPlayer from "../players/SearchPlayer";
 
 function Content({ players }) {
   return (

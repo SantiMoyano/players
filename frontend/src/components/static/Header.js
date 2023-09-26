@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-import MenuIcon from "./icons/menu.js";
+import MenuIcon from "../user/icons/menu.js";
 
 function Header() {
   const [anchoPantalla, setAnchoPantalla] = useState(window.innerWidth);

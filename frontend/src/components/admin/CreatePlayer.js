@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
-import MyDataContext from "../../MyDataContext";
+import MyDataContext from "../data/MyDataContext";
 
 function CreatePlayer() {
   const {

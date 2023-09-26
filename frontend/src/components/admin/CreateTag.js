@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import MyDataContext from "../../MyDataContext";
+import MyDataContext from "../data/MyDataContext";
 
 function CreateTag({ handleUpdatedTag, updateTag, tagNameEditing, id }) {
   const { handleSubmitTag } = useContext(MyDataContext);
