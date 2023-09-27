@@ -17,4 +17,8 @@ const userSchema = new Schema(
   }
 );
 
+userSchema.methods.validPassword = function (password) {
+  return this.password === password; // Comparar la contraseña proporcionada con la almacenada
+};
+
 module.exports = model("User", userSchema);

@@ -27,6 +27,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // routes
+app.use("/api/login", require("./routes/login"));
 app.use("/api/users", require("./routes/users"));
 app.use("/api/tags", require("./routes/tags"));
 app.use("/api/players", require("./routes/players"));

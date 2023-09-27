@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import MyDataContext from "./MyDataContext";
+import axios from "axios";
+
 //prettier-ignore
 import { fetchPlayers, fetchPlayer, deletePlayer, updateOrCreatePlayer,} from "./PlayerAPI";
 import { fetchTags, fetchTag, deleteTag, updateOrCreateTag } from "./TagsAPI";
@@ -11,12 +13,32 @@ export const MyDataProvider = ({ children }) => {
   const [filteredPlayerList, setFilteredPlayerList] = useState([]);
   const [tagList, setTagList] = useState([]);
   const [avaibleTagList, setAvaibleTagList] = useState([]);
+  const [isLogged, setIsLogged] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
     getPlayers();
     getTags();
   }, []);
+
+  async function checkLogin(data) {
+    try {
+      // Realiza la solicitud de inicio de sesión
+      const response = await axios.post(
+        "http://localhost:4000/api/login/",
+        data
+      );
+
+      // Si la solicitud fue exitosa (código 200 OK), el inicio de sesión fue exitoso
+      console.log("Inicio de sesión exitoso:", response.data);
+    } catch (error) {
+      if (error.response && error.response.status === 401) {
+        console.error("Contraseña incorrecta. Por favor, inténtalo de nuevo.");
+      } else {
+        console.error("Error al iniciar sesión:", error.message);
+      }
+    }
+  }
 
   async function getPlayers() {
     const data = await fetchPlayers();
@@ -73,6 +95,7 @@ export const MyDataProvider = ({ children }) => {
   return (
     <MyDataContext.Provider
       value={{
+        checkLogin,
         fetchUsers,
         createUser,
         fetchTag,

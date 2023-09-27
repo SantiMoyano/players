@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from "react";
 import MyDataContext from "../data/MyDataContext";
 function Login() {
-  const { createUser } = useContext(MyDataContext);
+  const { createUser, checkLogin } = useContext(MyDataContext);
   const [isLogin, setIsLogin] = useState(false);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -28,11 +28,11 @@ function Login() {
     setPasswordMatches(password === confirmPassword);
   }, [password, confirmPassword]);
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
-    const data = { username, password };
-    if (!isLogin) createUser(data); // register user
-    //TODO: if (isLogin)  login user
+    const data = await { username, password };
+    if (!isLogin) createUser(data); // register user on database
+    if (isLogin) checkLogin(data);
   }
 
   return (
