@@ -2,7 +2,7 @@ import { useState, useEffect, useContext } from "react";
 import MyDataContext from "../data/MyDataContext";
 function Login() {
   const { createUser } = useContext(MyDataContext);
-  const [isLogin, setIsLogin] = useState("false");
+  const [isLogin, setIsLogin] = useState(false);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -30,6 +30,9 @@ function Login() {
 
   function handleSubmit(e) {
     e.preventDefault();
+    const data = { username, password };
+    if (!isLogin) createUser(data); // register user
+    //TODO: if (isLogin)  login user
   }
 
   return (

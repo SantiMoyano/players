@@ -1,14 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import MyDataContext from "./MyDataContext";
-import {
-  fetchPlayers,
-  fetchPlayer,
-  deletePlayer,
-  updateOrCreatePlayer,
-} from "./PlayerAPI";
-
+//prettier-ignore
+import { fetchPlayers, fetchPlayer, deletePlayer, updateOrCreatePlayer,} from "./PlayerAPI";
 import { fetchTags, fetchTag, deleteTag, updateOrCreateTag } from "./TagsAPI";
+import { fetchUsers, createUser } from "./UserAPI";
 
 export const MyDataProvider = ({ children }) => {
   const [playerList, setPlayerList] = useState([]);
@@ -39,9 +35,9 @@ export const MyDataProvider = ({ children }) => {
   }
 
   async function getTags() {
-    const tagsito = await fetchTags();
-    setTagList(tagsito);
-    setAvaibleTagList(tagsito);
+    const tags = await fetchTags();
+    setTagList(tags);
+    setAvaibleTagList(tags);
   }
 
   async function handleDeleteTag(id) {
@@ -77,6 +73,8 @@ export const MyDataProvider = ({ children }) => {
   return (
     <MyDataContext.Provider
       value={{
+        fetchUsers,
+        createUser,
         fetchTag,
         fetchPlayer,
         setPlayerList,
