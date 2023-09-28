@@ -1,6 +1,7 @@
 const loginCtrl = {};
 
 const User = require("../models/User");
+const jwt = require("jsonwebtoken");
 
 loginCtrl.checkLogin = async (req, res) => {
   const { username, password } = req.body;
@@ -16,11 +17,15 @@ loginCtrl.checkLogin = async (req, res) => {
       return res.status(401).json({ message: "Contraseña incorrecta" });
     }
 
-    // En este punto, las credenciales son válidas, puedes iniciar sesión o generar un token de autenticación si lo deseas.
-    // Por ejemplo, puedes usar Passport.js para generar un token de sesión.
+    // Generar token
+    const token = jwt.sign(
+      { userId: user._id, username: user.username },
+      "mynewsecret",
+      { expiresIn: "1h" }
+    );
 
     // Devuelve una respuesta de éxito si las credenciales son válidas
-    return res.status(200).json({ message: "Inicio de sesión exitoso" });
+    return res.status(200).json({ message: "Inicio de sesión exitoso", token });
   } catch (error) {
     // Maneja cualquier error que pueda ocurrir durante el proceso
     console.error("Error al iniciar sesión:", error);

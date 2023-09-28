@@ -13,13 +13,20 @@ export const MyDataProvider = ({ children }) => {
   const [filteredPlayerList, setFilteredPlayerList] = useState([]);
   const [tagList, setTagList] = useState([]);
   const [avaibleTagList, setAvaibleTagList] = useState([]);
-  const [isLogged, setIsLogged] = useState([]);
+  const [isLogged, setIsLogged] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
     getPlayers();
     getTags();
   }, []);
+
+  useEffect(() => {
+    const authToken = localStorage.getItem("authToken");
+    if (authToken) {
+      setIsLogged(true);
+    }
+  }, [isLogged]);
 
   async function checkLogin(data) {
     try {
@@ -28,9 +35,8 @@ export const MyDataProvider = ({ children }) => {
         "http://localhost:4000/api/login/",
         data
       );
-
-      // Si la solicitud fue exitosa (código 200 OK), el inicio de sesión fue exitoso
-      console.log("Inicio de sesión exitoso:", response.data);
+      const token = response.data.token;
+      handleLogin(token);
     } catch (error) {
       if (error.response && error.response.status === 401) {
         console.error("Contraseña incorrecta. Por favor, inténtalo de nuevo.");
@@ -38,6 +44,16 @@ export const MyDataProvider = ({ children }) => {
         console.error("Error al iniciar sesión:", error.message);
       }
     }
+  }
+
+  function handleLogin(token) {
+    localStorage.setItem("authToken", token);
+    setIsLogged(true);
+    alert("Te logueaste!");
+  }
+
+  function handleLogout() {
+    localStorage.removeItem("authToken");
   }
 
   async function getPlayers() {
@@ -95,6 +111,8 @@ export const MyDataProvider = ({ children }) => {
   return (
     <MyDataContext.Provider
       value={{
+        handleLogout,
+        isLogged,
         checkLogin,
         fetchUsers,
         createUser,

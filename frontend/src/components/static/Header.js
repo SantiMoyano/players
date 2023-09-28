@@ -1,9 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import MyDataContext from "../data/MyDataContext.js";
 import { Link } from "react-router-dom";
 
 import MenuIcon from "../user/icons/menu.js";
 
 function Header() {
+  const { isLogged, handleLogout } = useContext(MyDataContext);
   const [anchoPantalla, setAnchoPantalla] = useState(window.innerWidth);
   const [clickedMenu, setClickedMenu] = useState(false);
   const [isAdmin, setIsAdmin] = useState(true); // Admin hardcodeado
@@ -23,7 +25,7 @@ function Header() {
     return () => {
       window.removeEventListener("resize", actualizarAnchoPantalla);
     };
-  }, []);
+  }, [isLogged]);
 
   /*
    * SI ES MOBILE ENTONCES MUESTRA HAMBURGUESA Y ALTERNA EL RESTO DE ELEMENTOS DEL HEADER
@@ -37,13 +39,17 @@ function Header() {
           {clickedMenu ? <NavElems isAdmin={isAdmin} /> : ""}
         </>
       ) : (
-        <NavElems isAdmin={isAdmin} />
+        <NavElems
+          isLogged={isLogged}
+          isAdmin={isAdmin}
+          handleLogout={handleLogout}
+        />
       )}
     </header>
   );
 }
 
-function NavElems({ isAdmin }) {
+function NavElems({ isAdmin, isLogged, handleLogout }) {
   const linkStyle = { color: "white", textDecoration: "none" };
 
   return (
@@ -59,11 +65,7 @@ function NavElems({ isAdmin }) {
             Jugadores
           </Link>
         </li>
-        <li>
-          <Link to="/login" style={linkStyle}>
-            Perfil
-          </Link>
-        </li>
+
         {isAdmin && (
           <>
             <li>
@@ -82,6 +84,27 @@ function NavElems({ isAdmin }) {
               </Link>
             </li>
           </>
+        )}
+
+        {isLogged ? (
+          <>
+            <li>
+              <Link to="/profile" style={linkStyle}>
+                Perfil
+              </Link>
+            </li>
+            <li>
+              <Link to="/" style={linkStyle} onClick={handleLogout}>
+                Desloguearse
+              </Link>
+            </li>
+          </>
+        ) : (
+          <li>
+            <Link to="/login" style={linkStyle}>
+              Registrarse
+            </Link>
+          </li>
         )}
       </ul>
     </div>

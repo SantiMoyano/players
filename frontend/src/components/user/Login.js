@@ -48,7 +48,7 @@ function Login() {
           <label htmlFor="password">Ingrese su contraseña:</label>
           <input
             type="password"
-            id="name"
+            id="password"
             name="name"
             onChange={handlePassword}
           />
@@ -59,7 +59,7 @@ function Login() {
 
             <input
               type="password"
-              id="name"
+              id="confirmPassword"
               name="name"
               onChange={handleConfirmPassword}
             />

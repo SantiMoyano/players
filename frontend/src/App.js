@@ -15,7 +15,7 @@ import "./styles/form.css";
 import Header from "./components/static/Header";
 import Content from "./components/user/Content";
 import Players from "./components/players/Players";
-import Profile from "./components/user/Profile";
+//import Profile from "./components/user/Profile";
 import DetailedPlayer from "./components/players/DetailedPlayer";
 import PlayersManagement from "./components/admin/PlayersManagement";
 import CreatePlayer from "./components/admin/CreatePlayer";
@@ -32,18 +32,27 @@ function App() {
           <Routes>
             <Route path="/" exact element={<Content />} />
             <Route path="/players" element={<Players showFilter={true} />} />
-            <Route path="/players/:id" element={<DetailedPlayer />}></Route>
-            <Route path="/profile" element={<Profile />} />
+            <Route path="/players/:id" element={<DetailedPlayer />} />
             <Route path="/management" element={<PlayersManagement />} />
             <Route path="/create-player" element={<CreatePlayer />} />
             <Route path="/create-player/:id" element={<CreatePlayer />} />
             <Route path="/tags-management" element={<TagsManagement />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/profile" element={<Profile />} />
           </Routes>
           <Footer />
         </div>
       </MyDataProvider>
     </Router>
+  );
+}
+
+function Profile() {
+  return (
+    <section>
+      <h2>PERFIL</h2>
+      <p>Bienvenido al perfil de scorpion!</p>
+    </section>
   );
 }
 
