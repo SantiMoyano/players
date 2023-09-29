@@ -31,6 +31,7 @@ function Header() {
    * SI ES MOBILE ENTONCES MUESTRA HAMBURGUESA Y ALTERNA EL RESTO DE ELEMENTOS DEL HEADER
    * SI ES DESKTOP MUESTRA TODOS LOS ELEMENTOS DEL HEADER (Sin la hamburguesa)
    */
+
   return (
     <header className={`main-header  ${clickedMenu ? "background-menu" : ""}`}>
       {anchoPantalla < 768 ? (

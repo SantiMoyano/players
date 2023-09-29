@@ -3,6 +3,9 @@
 
 .players {
   padding-top: 100px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
 /*STYLES FOR PLAYERS PAGE*/
@@ -81,14 +84,19 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  max-width: 100dvw;
+  max-width: 90%;
   padding: 0;
 }
 
 .players li {
   margin: 30px 0;
   width: 100%;
-  background-color: white;
+  background-color: #191919;
+}
+
+.players hr {
+  min-width: 100%;
+  border-color: #636363;
 }
 
 .player li:hover {
@@ -146,20 +154,26 @@
     display: flex;
     flex-direction: unset;
     flex-wrap: wrap;
+    max-width: 90%;
   }
 
   .players li {
-    max-width: calc(35%);
     margin: 20px 50px;
-    outline: #bcbcbc 1px solid;
-    border-radius: 3px;
+    max-width: calc(35%);
+    transition: background-color 0.4s ease, transform 0.4s ease;
+    border: 1px solid #ffffff;
   }
 
   .players li:hover {
     transform: scale(1.05);
+    background-color: #353535;
+  }
+
+  .players hr {
+    display: none;
   }
 
   .players .content {
-    padding: 20px 30px 40px 20px;
+    padding: 20px 30px 30px 30px;
   }
 }

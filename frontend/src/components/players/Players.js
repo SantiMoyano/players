@@ -36,15 +36,18 @@ function Players({ showFilter }) {
       )}
       <ul>
         {filteredPlayerList.map((el) => (
-          <Player
-            key={el._id}
-            name={el.name}
-            imageRoute="./welcome.jpg"
-            positions={el.tags}
-            score={el.score}
-            description={el.description}
-            handleClick={() => handlePlayerClicked(el._id)}
-          />
+          <>
+            <Player
+              key={el._id}
+              name={el.name}
+              imageRoute="./welcome.jpg"
+              positions={el.tags}
+              score={el.score}
+              description={el.description}
+              handleClick={() => handlePlayerClicked(el._id)}
+            />
+            <hr style={{ borderColor: "#636363" }} />
+          </>
         ))}
       </ul>
     </section>
