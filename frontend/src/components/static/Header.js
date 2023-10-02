@@ -55,12 +55,12 @@ function NavElems({ isAdmin, isLogged, handleLogout }) {
 
   return (
     <div className="menu-content">
+      <div>
+        <Link to="/" style={linkStyle}>
+          PLAYERS APP ⚽
+        </Link>
+      </div>
       <ul>
-        <li>
-          <Link to="/" style={linkStyle}>
-            Home
-          </Link>
-        </li>
         <li>
           <Link to="/players" style={linkStyle}>
             Jugadores

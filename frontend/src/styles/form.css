@@ -41,12 +41,12 @@
   padding: 0.6rem;
   border: 1px solid #ccc;
   border-radius: 4px;
-  min-width: calc(100dvw - 56px);
+  min-width: calc(90dvw - 56px);
 }
 
 .form-section form select,
 #colorPicker {
-  min-width: calc(100dvw - 36.8px);
+  min-width: calc(90dvw - 36.8px);
 }
 
 #colorPicker {
