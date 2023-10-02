@@ -31,7 +31,7 @@ function DetailedPlayer() {
           </span>
         </section>
         <figure>
-          <img src="../welcome.jpg" alt="data" />
+          <img src={playerData.imageUrl} alt="data" />
         </figure>
 
         <div className="player-content">

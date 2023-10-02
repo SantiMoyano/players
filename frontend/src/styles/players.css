@@ -104,7 +104,9 @@
 }
 
 .players li figure img {
+  aspect-ratio: 16/9;
   width: 100%;
+  object-fit: cover;
 }
 
 .players .content {

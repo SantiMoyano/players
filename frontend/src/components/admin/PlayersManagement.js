@@ -1,5 +1,7 @@
 import { useEffect, useState, useContext } from "react";
 import MyDataContext from "../data/MyDataContext";
+import PencilIcon from "../user/icons/pencil";
+import CloseIcon from "../user/icons/close";
 
 import SearchPlayer from "../players/SearchPlayer";
 
@@ -29,7 +31,7 @@ function PlayersManagement() {
           <Player
             key={player._id}
             name={player.name}
-            imageRoute="./welcome.jpg"
+            imageUrl={player.imageUrl}
             filter={filter}
             handleDelete={() => handleDeletePlayer(player._id)}
             handleUpdate={() => handleUpdatePlayer(player._id)}
@@ -40,12 +42,12 @@ function PlayersManagement() {
   );
 }
 
-function Player({ name, imageRoute, filter, handleDelete, handleUpdate }) {
+function Player({ name, imageUrl, filter, handleDelete, handleUpdate }) {
   return (
     <li>
       {filter === "default" ? (
         <figure>
-          <img src={imageRoute} alt={imageRoute} />
+          <img src={imageUrl} alt={name} />
           <figcaption>{name}</figcaption>
         </figure>
       ) : (
@@ -58,8 +60,12 @@ function Player({ name, imageRoute, filter, handleDelete, handleUpdate }) {
           filter !== "default" ? "align-buttons" : ""
         }`}
       >
-        <button onClick={handleUpdate}>Editar</button>
-        <button onClick={handleDelete}>Eliminar</button>
+        <button onClick={handleUpdate}>
+          <PencilIcon />
+        </button>
+        <button style={{ backgroundColor: "red" }} onClick={handleDelete}>
+          <CloseIcon />
+        </button>
       </div>
     </li>
   );
