@@ -3,15 +3,16 @@ import Position from "./Position";
 function Player({
   handleClick,
   name,
-  imageRoute,
+  imageUrl,
   positions,
   score,
   description,
 }) {
+  console.log(imageUrl);
   return (
     <li className="player">
       <figure>
-        <img src={imageRoute} alt="arbol" onClick={handleClick} />
+        <img src={imageUrl} alt={name} onClick={handleClick} />
         <div className="content">
           <div className="top">
             <h2>{name}</h2>

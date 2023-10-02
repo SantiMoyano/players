@@ -40,7 +40,7 @@ function Players({ showFilter }) {
             <Player
               key={el._id}
               name={el.name}
-              imageRoute="./welcome.jpg"
+              imageUrl={el.imageUrl}
               positions={el.tags}
               score={el.score}
               description={el.description}

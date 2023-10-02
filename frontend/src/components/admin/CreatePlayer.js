@@ -16,6 +16,7 @@ function CreatePlayer() {
   const [score, setScore] = useState(0);
   const [trophies, setTrophies] = useState(0);
   const [description, setDescription] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
   const [tagSearched, setTagSearched] = useState("");
   const [selectedTags, setSelectedTags] = useState([]);
   const [updateMode, setUpdateMode] = useState(false);
@@ -26,6 +27,7 @@ function CreatePlayer() {
     score,
     trophies,
     description,
+    imageUrl,
     selectedTags,
     updateMode,
     id,
@@ -44,6 +46,7 @@ function CreatePlayer() {
     setName(playerData.name);
     setScore(playerData.score);
     setTrophies(playerData.trophies);
+    setImageUrl(playerData.imageUrl);
     setDescription(playerData.description);
   }
 
@@ -59,6 +62,7 @@ function CreatePlayer() {
     setScore(0);
     setTrophies(0);
     setDescription("");
+    setImageUrl("");
     setSelectedTags([]);
   }
 
@@ -76,6 +80,10 @@ function CreatePlayer() {
 
   function handleChangeDescription(e) {
     setDescription(e.target.value);
+  }
+
+  function handleChangeImageUrl(e) {
+    setImageUrl(e.target.value);
   }
 
   function handleChangeTags(e) {
@@ -168,6 +176,17 @@ function CreatePlayer() {
               </option>
             ))}
           </select>
+        </div>
+        <div>
+          <label htmlFor="name">Image Url:</label>
+          <input
+            type="text"
+            id="imageUrl"
+            name="name"
+            defaultValue={playerData.imageUrl}
+            onChange={handleChangeImageUrl}
+            onPaste={handleChangeImageUrl}
+          />
         </div>
 
         {/* TODO: not implemented yet

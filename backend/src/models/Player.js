@@ -14,6 +14,9 @@ const playerSchema = new Schema(
     description: {
       type: String,
     },
+    imageUrl: {
+      type: String,
+    },
     tags: [
       {
         type: Schema.Types.ObjectId,

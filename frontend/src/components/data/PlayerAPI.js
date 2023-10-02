@@ -33,6 +33,7 @@ export async function updateOrCreatePlayer(data) {
       score: data.score,
       trophies: data.trophies,
       description: data.description,
+      imageUrl: data.imageUrl,
       tags: tags,
     });
     alert("Player created!");
@@ -42,6 +43,7 @@ export async function updateOrCreatePlayer(data) {
       score: data.score,
       trophies: data.trophies,
       description: data.description,
+      imageUrl: data.imageUrl,
       tags: tags,
     });
     alert("Player updated!");
