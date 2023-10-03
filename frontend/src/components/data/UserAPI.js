@@ -9,13 +9,23 @@ export async function fetchUsers() {
   }
 }
 
+export async function getUserByName(name) {
+  const users = await fetchUsers();
+  const user = await users.find((us) => us.username === name);
+  if (user) {
+    return user._id;
+  } else {
+    return 0;
+  }
+}
+
 export async function fetchUser(id) {
-  const res = await axios.get("http://localhost:4000/api/Users/" + id);
+  const res = await axios.get("http://localhost:4000/api/users/" + id);
   return res.data;
 }
 
 export async function deleteUser(id) {
-  await axios.delete("http://localhost:4000/api/Users/" + id);
+  await axios.delete("http://localhost:4000/api/users/" + id);
 }
 
 export async function createUser(data) {

@@ -6,7 +6,7 @@ import axios from "axios";
 //prettier-ignore
 import { fetchPlayers, fetchPlayer, deletePlayer, updateOrCreatePlayer,} from "./PlayerAPI";
 import { fetchTags, fetchTag, deleteTag, updateOrCreateTag } from "./TagsAPI";
-import { fetchUsers, createUser } from "./UserAPI";
+import { fetchUser, fetchUsers, createUser, getUserByName } from "./UserAPI";
 
 export const MyDataProvider = ({ children }) => {
   const [playerList, setPlayerList] = useState([]);
@@ -36,7 +36,7 @@ export const MyDataProvider = ({ children }) => {
         data
       );
       const token = response.data.token;
-      handleLogin(token);
+      handleLogin(token, data.username);
     } catch (error) {
       if (error.response && error.response.status === 401) {
         console.error("Contraseña incorrecta. Por favor, inténtalo de nuevo.");
@@ -46,10 +46,12 @@ export const MyDataProvider = ({ children }) => {
     }
   }
 
-  function handleLogin(token) {
+  async function handleLogin(token, username) {
     localStorage.setItem("authToken", token);
     setIsLogged(true);
+    const id = await getUserByName(username);
     alert("Te logueaste!");
+    navigate("/profile/" + id);
   }
 
   function handleLogout() {
@@ -111,6 +113,7 @@ export const MyDataProvider = ({ children }) => {
   return (
     <MyDataContext.Provider
       value={{
+        fetchUser,
         handleLogout,
         isLogged,
         checkLogin,

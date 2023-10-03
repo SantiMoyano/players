@@ -15,13 +15,13 @@ import "./styles/form.css";
 import Header from "./components/static/Header";
 import Content from "./components/user/Content";
 import Players from "./components/players/Players";
-//import Profile from "./components/user/Profile";
 import DetailedPlayer from "./components/players/DetailedPlayer";
 import PlayersManagement from "./components/admin/PlayersManagement";
 import CreatePlayer from "./components/admin/CreatePlayer";
 import TagsManagement from "./components/admin/TagsManagement";
 import Login from "./components/user/Login";
 import Footer from "./components/static/Footer";
+import Profile from "./components/user/Profile";
 
 function App() {
   return (
@@ -38,21 +38,12 @@ function App() {
             <Route path="/create-player/:id" element={<CreatePlayer />} />
             <Route path="/tags-management" element={<TagsManagement />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/profile" element={<Profile />} />
+            <Route path="/profile/:id" element={<Profile />} />
           </Routes>
           <Footer />
         </div>
       </MyDataProvider>
     </Router>
-  );
-}
-
-function Profile() {
-  return (
-    <section>
-      <h2>PERFIL</h2>
-      <p>Bienvenido al perfil de scorpion!</p>
-    </section>
   );
 }
 
