@@ -13,13 +13,24 @@ playerCtrl.getPlayers = async (req, res) => {
 };
 
 playerCtrl.createPlayer = async (req, res) => {
-  const { name, score, trophies, description, imageUrl, tags } = req.body;
+  const {
+    name,
+    score,
+    trophies,
+    shortDescription,
+    description,
+    imageUrl,
+    gifUrl,
+    tags,
+  } = req.body;
   const newPlayer = new Player({
     name,
     score,
     trophies,
+    shortDescription,
     description,
     imageUrl,
+    gifUrl,
     tags,
   });
 
@@ -34,13 +45,24 @@ playerCtrl.deletePlayer = async (req, res) => {
 };
 
 playerCtrl.updatePlayer = async (req, res) => {
-  const { name, score, trophies, description, imageUrl, tags } = req.body;
+  const {
+    name,
+    score,
+    trophies,
+    shortDescription,
+    description,
+    imageUrl,
+    gifUrl,
+    tags,
+  } = req.body;
   await Player.findByIdAndUpdate(req.params.id, {
     name,
     score,
     trophies,
+    shortDescription,
     description,
     imageUrl,
+    gifUrl,
     tags,
   });
   res.json({ message: "Player Updated" });

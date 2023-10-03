@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 120px;
+  padding-top: 4rem;
 }
 
 .manage-buttons button {
@@ -85,6 +85,10 @@
 }
 
 @media screen and (width >= 768px) {
+  .management-content {
+    padding-top: 120px;
+  }
+
   .management-content figure {
     min-width: 248px;
     max-width: 248px;

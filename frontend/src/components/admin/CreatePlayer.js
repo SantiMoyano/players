@@ -15,8 +15,10 @@ function CreatePlayer() {
   const [name, setName] = useState("");
   const [score, setScore] = useState(0);
   const [trophies, setTrophies] = useState(0);
+  const [shortDescription, setShortDescription] = useState("");
   const [description, setDescription] = useState("");
   const [imageUrl, setImageUrl] = useState("");
+  const [gifUrl, setGifUrl] = useState("");
   const [tagSearched, setTagSearched] = useState("");
   const [selectedTags, setSelectedTags] = useState([]);
   const [updateMode, setUpdateMode] = useState(false);
@@ -26,8 +28,10 @@ function CreatePlayer() {
     name,
     score,
     trophies,
+    shortDescription,
     description,
     imageUrl,
+    gifUrl,
     selectedTags,
     updateMode,
     id,
@@ -47,6 +51,8 @@ function CreatePlayer() {
     setScore(playerData.score);
     setTrophies(playerData.trophies);
     setImageUrl(playerData.imageUrl);
+    setGifUrl(playerData.gifUrl);
+    setShortDescription(playerData.shortDescription);
     setDescription(playerData.description);
   }
 
@@ -61,8 +67,10 @@ function CreatePlayer() {
     setName("");
     setScore(0);
     setTrophies(0);
+    setShortDescription("");
     setDescription("");
     setImageUrl("");
+    setGifUrl("");
     setSelectedTags([]);
   }
 
@@ -78,12 +86,20 @@ function CreatePlayer() {
     setTrophies(e.target.value);
   }
 
+  function handleChangeShortDescription(e) {
+    setShortDescription(e.target.value);
+  }
+
   function handleChangeDescription(e) {
     setDescription(e.target.value);
   }
 
   function handleChangeImageUrl(e) {
     setImageUrl(e.target.value);
+  }
+
+  function handleChangeGifUrl(e) {
+    setGifUrl(e.target.value);
   }
 
   function handleChangeTags(e) {
@@ -113,7 +129,7 @@ function CreatePlayer() {
 
   return (
     <section className="form-section">
-      <h2>{updateMode ? "ACTUALIZAR JUGADOR" : "CREAR JUGADOR"}</h2>
+      <h2>{updateMode ? "UPDATE PLAYER" : "CREATE PLAYER"}</h2>
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="name">Name:</label>
@@ -146,7 +162,19 @@ function CreatePlayer() {
           />
         </div>
         <div>
-          <label htmlFor="description">Description:</label>
+          <label htmlFor="description">
+            Short description: (Max. 100 Chars.)
+          </label>
+          <textarea
+            id="short-description"
+            name="short-description"
+            rows="4"
+            defaultValue={playerData.shortDescription}
+            onChange={handleChangeShortDescription}
+          ></textarea>
+        </div>
+        <div>
+          <label htmlFor="description">Description: (Min. 400 Chars.)</label>
           <textarea
             id="description"
             name="description"
@@ -178,7 +206,7 @@ function CreatePlayer() {
           </select>
         </div>
         <div>
-          <label htmlFor="name">Image Url:</label>
+          <label htmlFor="name">Image URL:</label>
           <input
             type="text"
             id="imageUrl"
@@ -186,6 +214,17 @@ function CreatePlayer() {
             defaultValue={playerData.imageUrl}
             onChange={handleChangeImageUrl}
             onPaste={handleChangeImageUrl}
+          />
+        </div>
+        <div>
+          <label htmlFor="name">Gif URL: (Optional)</label>
+          <input
+            type="text"
+            id="gifUrl"
+            name="name"
+            defaultValue={playerData.gifUrl}
+            onChange={handleChangeGifUrl}
+            onPaste={handleChangeGifUrl}
           />
         </div>
         <div className="button-submit">

@@ -11,10 +11,16 @@ const playerSchema = new Schema(
     trophies: {
       type: Number,
     },
+    shortDescription: {
+      type: String,
+    },
     description: {
       type: String,
     },
     imageUrl: {
+      type: String,
+    },
+    gifUrl: {
       type: String,
     },
     tags: [

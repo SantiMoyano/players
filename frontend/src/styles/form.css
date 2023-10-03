@@ -3,7 +3,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding-top: 120px;
+  padding-top: 4rem;
   min-height: calc(100dvh - 280px);
 }
 
@@ -23,6 +23,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 0.2rem 0;
 }
 
 .form-section form label {
@@ -42,6 +43,10 @@
   border: 1px solid #ccc;
   border-radius: 4px;
   min-width: calc(90dvw - 56px);
+}
+
+.form-section form #short-description {
+  max-height: 2rem;
 }
 
 .form-section form select,
@@ -98,6 +103,14 @@
 }
 
 @media screen and (width >= 768px) {
+  .form-section {
+    padding-top: 120px;
+  }
+
+  .form-section h2 {
+    font-size: 44px;
+  }
+
   .form-section form input,
   .form-section form textarea,
   .form-section form select {

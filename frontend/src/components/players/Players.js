@@ -43,7 +43,7 @@ function Players({ showFilter }) {
               imageUrl={el.imageUrl}
               positions={el.tags}
               score={el.score}
-              description={el.description}
+              description={el.shortDescription}
               handleClick={() => handlePlayerClicked(el._id)}
             />
             <hr style={{ borderColor: "#636363" }} />

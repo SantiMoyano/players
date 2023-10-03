@@ -2,7 +2,7 @@
 @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&display=swap");
 
 .players {
-  padding-top: 100px;
+  padding-top: 4rem;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -147,6 +147,10 @@
 }
 
 @media screen and (width >= 768px) {
+  .players {
+    padding-top: 120px;
+  }
+
   .sort-players {
     flex-direction: row;
     gap: 20px;

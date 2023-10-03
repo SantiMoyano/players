@@ -47,7 +47,7 @@ function DetailedPlayer() {
             <figcaption className="player-description">
               {playerData.description}
             </figcaption>
-            <img src="../ankaramessi-barcelona.gif" alt="messi" />
+            <img src={playerData.gifUrl} alt="messi" />
           </figure>
           <h3>{`Trofeos ganados: ${playerData.trophies}`}</h3>
         </div>
