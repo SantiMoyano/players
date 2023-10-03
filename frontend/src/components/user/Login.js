@@ -2,7 +2,7 @@ import { useState, useEffect, useContext } from "react";
 import MyDataContext from "../data/MyDataContext";
 function Login() {
   const { createUser, checkLogin } = useContext(MyDataContext);
-  const [isLogin, setIsLogin] = useState(false);
+  const [isLogin, setIsLogin] = useState(true);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -67,7 +67,7 @@ function Login() {
           </div>
         )}
         <div className="button-submit">
-          <button>Enviar</button>
+          <button>{isLogin ? "INICIAR SESIÓN" : "CREAR CUENTA"}</button>
         </div>
         <div className="auth-switch">
           <span>

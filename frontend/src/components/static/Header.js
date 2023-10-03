@@ -51,7 +51,7 @@ function Header() {
 }
 
 function NavElems({ isAdmin, isLogged, handleLogout }) {
-  const linkStyle = { color: "white", textDecoration: "none" };
+  const linkStyle = { textDecoration: "none" };
 
   return (
     <div className="menu-content">
@@ -71,7 +71,7 @@ function NavElems({ isAdmin, isLogged, handleLogout }) {
           <>
             <li>
               <Link to="/management" style={linkStyle}>
-                Administrar Jugadores
+                Admin Jugadores
               </Link>
             </li>
             <li>
@@ -103,7 +103,7 @@ function NavElems({ isAdmin, isLogged, handleLogout }) {
         ) : (
           <li>
             <Link to="/login" style={linkStyle}>
-              Registrarse
+              Ingresar
             </Link>
           </li>
         )}

@@ -56,12 +56,13 @@
 .search-input button {
   display: flex;
   justify-content: center;
-  background-color: rgb(176, 36, 36);
+  background-color: rgb(115, 53, 186);
   border-radius: 0 50px 50px 0;
   width: 66px;
   padding: 12px 20px;
   margin: 0;
   border: 0;
+  transition: background-color 0.2s ease;
 }
 
 @media screen and (width >= 768px) {
@@ -94,6 +95,6 @@
 
   .search-input button:hover {
     cursor: pointer;
-    background-color: rgb(144, 35, 35);
+    background-color: rgb(77, 34, 125);
   }
 }

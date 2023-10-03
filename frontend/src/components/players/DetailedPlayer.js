@@ -49,7 +49,7 @@ function DetailedPlayer() {
             </figcaption>
             <img src="../ankaramessi-barcelona.gif" alt="messi" />
           </figure>
-          <h2>{`Trofeos ganados: ${playerData.trophies}`}</h2>
+          <h3>{`Trofeos ganados: ${playerData.trophies}`}</h3>
         </div>
       </main>
     </section>

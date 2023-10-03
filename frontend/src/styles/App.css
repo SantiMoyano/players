@@ -6,16 +6,30 @@ body {
   background-color: rgb(15, 15, 15);
 }
 
-h2 {
+h1,
+h2,
+h3,
+a,
+#auth-span {
   color: rgb(255, 255, 255);
 }
 
 figcaption,
 p,
 label,
-#auth-span,
 .auth-switch {
   color: rgb(199, 199, 199);
+}
+
+.menu-content div a {
+  color: rgb(115, 53, 186);
+  font-size: 1.6rem;
+  transition: color 0.2s ease;
+  font-weight: bold;
+}
+
+.menu-content div a:hover {
+  color: rgb(255, 255, 255);
 }
 
 h1,
@@ -56,6 +70,17 @@ figure {
   padding: 0.8rem 0;
   list-style: none;
   font-size: larger;
+  font-weight: bold;
+  animation: color 0.3s ease;
+}
+
+.main-header ul li a {
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.main-header ul li a:hover {
+  color: rgb(115, 53, 186);
 }
 
 .menu-content {
@@ -107,11 +132,11 @@ footer span {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0 2rem;
+    padding: 0 1.2rem;
     font-size: medium;
   }
 
-  .main-header ul li a {
+  .main-header a {
     text-align: center;
   }
 }

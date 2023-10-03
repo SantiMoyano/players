@@ -188,16 +188,6 @@ function CreatePlayer() {
             onPaste={handleChangeImageUrl}
           />
         </div>
-
-        {/* TODO: not implemented yet
-         <div>
-          <label htmlFor="image">IMAGEN:</label>
-          <input type="file" id="image" name="image" accept="image/image" />
-        </div>
-        <div>
-          <label htmlFor="gif">GIF: </label>
-          <input type="file" id="gif" name="gif" accept="image/gif" />
-        </div> */}
         <div className="button-submit">
           <button type="submit">
             {updateMode ? "ACTUALIZAR JUGADOR" : "CREAR JUGADOR"}
