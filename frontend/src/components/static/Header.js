@@ -5,10 +5,9 @@ import { Link } from "react-router-dom";
 import MenuIcon from "../user/icons/menu.js";
 
 function Header() {
-  const { isLogged, handleLogout, userId } = useContext(MyDataContext);
+  const { isLogged, handleLogout, userId, isAdmin } = useContext(MyDataContext);
   const [anchoPantalla, setAnchoPantalla] = useState(window.innerWidth);
   const [clickedMenu, setClickedMenu] = useState(false);
-  const [isAdmin, setIsAdmin] = useState(true); // Admin hardcodeado
 
   const handleMenuClick = () => {
     setClickedMenu(!clickedMenu);

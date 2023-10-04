@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { url } from "../../CONST";
 import axios from "axios";
 
 function Position({ position }) {
@@ -12,7 +13,7 @@ function Position({ position }) {
 
   async function fetchTags() {
     try {
-      const tagsResponse = await axios.get("http://localhost:4000/api/tags");
+      const tagsResponse = await axios.get(url + "/api/tags");
       const tagsData = tagsResponse.data;
       setTagList(tagsData);
 

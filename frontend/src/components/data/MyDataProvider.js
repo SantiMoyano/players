@@ -16,6 +16,7 @@ export const MyDataProvider = ({ children }) => {
   const [avaibleTagList, setAvaibleTagList] = useState([]);
   const [isLogged, setIsLogged] = useState(false);
   const [userId, setUserId] = useState(0);
+  const [isAdmin, setIsAdmin] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -26,8 +27,10 @@ export const MyDataProvider = ({ children }) => {
   useEffect(() => {
     const authToken = localStorage.getItem("authToken");
     const sessionId = localStorage.getItem("sessionId");
+    const admin = localStorage.getItem("admin");
     if (sessionId) setUserId(sessionId);
     if (authToken) setIsLogged(true);
+    if (admin) setIsAdmin(true);
   }, [isLogged]);
 
   async function checkLogin(data) {
@@ -50,6 +53,7 @@ export const MyDataProvider = ({ children }) => {
     setIsLogged(true);
     const id = await getUserByName(username);
     setUserId(id);
+    if (username === "scorpion") localStorage.setItem("admin", true);
     localStorage.setItem("sessionId", id);
     alert("Te logueaste!");
     navigate("/profile/" + id);
@@ -58,6 +62,7 @@ export const MyDataProvider = ({ children }) => {
   function handleLogout() {
     localStorage.removeItem("authToken");
     localStorage.removeItem("sessionId");
+    localStorage.removeItem("admin");
   }
 
   async function getPlayers() {
@@ -115,6 +120,7 @@ export const MyDataProvider = ({ children }) => {
   return (
     <MyDataContext.Provider
       value={{
+        isAdmin,
         userId,
         fetchUser,
         handleLogout,
