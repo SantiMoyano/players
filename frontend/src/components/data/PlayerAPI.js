@@ -3,7 +3,6 @@ import { url } from "../../CONST";
 
 export async function fetchPlayers() {
   try {
-    //const res = await axios.get("http://localhost:4000/api/players");
     const res = await axios.get(url + "/api/players");
     return res.data;
   } catch (error) {
@@ -14,7 +13,7 @@ export async function fetchPlayers() {
 
 export async function fetchPlayer(id) {
   try {
-    const res = await axios.get("http://localhost:4000/api/players/" + id);
+    const res = await axios.get(url + "/api/players/" + id);
     return res.data;
   } catch (error) {
     console.error("Error fetching player by ID:", error);
@@ -23,14 +22,14 @@ export async function fetchPlayer(id) {
 }
 
 export async function deletePlayer(playerId) {
-  await axios.delete("http://localhost:4000/api/players/" + playerId);
+  await axios.delete(url + "/api/players/" + playerId);
 }
 
 export async function updateOrCreatePlayer(data) {
   const selectedTags = data.selectedTags || [];
   const tags = selectedTags.map((tag) => tag._id);
   if (!data.updateMode) {
-    await axios.post("http://localhost:4000/api/players", {
+    await axios.post(url + "/api/players", {
       name: data.name,
       score: data.score,
       trophies: data.trophies,
@@ -42,7 +41,7 @@ export async function updateOrCreatePlayer(data) {
     });
     alert("Player created!");
   } else {
-    await axios.put("http://localhost:4000/api/players/" + data.id, {
+    await axios.put(url + "/api/players/" + data.id, {
       name: data.name,
       score: data.score,
       trophies: data.trophies,

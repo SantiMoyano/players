@@ -1,8 +1,9 @@
 import axios from "axios";
+import { url } from "../../CONST";
 
 export async function fetchUsers() {
   try {
-    const res = await axios.get("http://localhost:4000/api/users");
+    const res = await axios.get(url + "/api/users");
     return res.data;
   } catch (error) {
     console.error("Error fetching User data:", error);
@@ -20,17 +21,17 @@ export async function getUserByName(name) {
 }
 
 export async function fetchUser(id) {
-  const res = await axios.get("http://localhost:4000/api/users/" + id);
+  const res = await axios.get(url + "/api/users/" + id);
   return res.data;
 }
 
 export async function deleteUser(id) {
-  await axios.delete("http://localhost:4000/api/users/" + id);
+  await axios.delete(url + "/api/users/" + id);
 }
 
 export async function createUser(data) {
   if (!data.isUpdate) {
-    await axios.post("http://localhost:4000/api/users", {
+    await axios.post(url + "/api/users", {
       username: data.username,
       password: data.password,
     });

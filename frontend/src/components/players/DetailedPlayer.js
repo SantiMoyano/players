@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { url } from "../../CONST";
 import axios from "axios";
 
 import Position from "./Position";
@@ -14,7 +15,7 @@ function DetailedPlayer() {
   }, []);
 
   async function fetchPlayer() {
-    const res = await axios.get("http://localhost:4000/api/players/" + id);
+    const res = await axios.get(url + "/api/players/" + id);
     const player = res.data;
     setPlayerData({ ...player });
     const tagList = player.tags;

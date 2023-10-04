@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import MyDataContext from "./MyDataContext";
 import axios from "axios";
+import { url } from "../../CONST";
 
 //prettier-ignore
 import { fetchPlayers, fetchPlayer, deletePlayer, updateOrCreatePlayer,} from "./PlayerAPI";
@@ -32,10 +33,7 @@ export const MyDataProvider = ({ children }) => {
   async function checkLogin(data) {
     try {
       // Realiza la solicitud de inicio de sesión
-      const response = await axios.post(
-        "http://localhost:4000/api/login/",
-        data
-      );
+      const response = await axios.post(url + "/api/login/", data);
       const token = response.data.token;
       handleLogin(token, data.username);
     } catch (error) {
