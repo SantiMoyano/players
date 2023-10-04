@@ -1,8 +1,10 @@
 import axios from "axios";
+import { url } from "../../CONST";
 
 export async function fetchPlayers() {
   try {
-    const res = await axios.get("http://localhost:4000/api/players");
+    //const res = await axios.get("http://localhost:4000/api/players");
+    const res = await axios.get(url + "/api/players");
     return res.data;
   } catch (error) {
     console.error("Error fetching player data:", error);

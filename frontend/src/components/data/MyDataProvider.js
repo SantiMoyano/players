@@ -14,6 +14,7 @@ export const MyDataProvider = ({ children }) => {
   const [tagList, setTagList] = useState([]);
   const [avaibleTagList, setAvaibleTagList] = useState([]);
   const [isLogged, setIsLogged] = useState(false);
+  const [userId, setUserId] = useState(0);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -23,9 +24,9 @@ export const MyDataProvider = ({ children }) => {
 
   useEffect(() => {
     const authToken = localStorage.getItem("authToken");
-    if (authToken) {
-      setIsLogged(true);
-    }
+    const sessionId = localStorage.getItem("sessionId");
+    if (sessionId) setUserId(sessionId);
+    if (authToken) setIsLogged(true);
   }, [isLogged]);
 
   async function checkLogin(data) {
@@ -50,12 +51,15 @@ export const MyDataProvider = ({ children }) => {
     localStorage.setItem("authToken", token);
     setIsLogged(true);
     const id = await getUserByName(username);
+    setUserId(id);
+    localStorage.setItem("sessionId", id);
     alert("Te logueaste!");
     navigate("/profile/" + id);
   }
 
   function handleLogout() {
     localStorage.removeItem("authToken");
+    localStorage.removeItem("sessionId");
   }
 
   async function getPlayers() {
@@ -113,6 +117,7 @@ export const MyDataProvider = ({ children }) => {
   return (
     <MyDataContext.Provider
       value={{
+        userId,
         fetchUser,
         handleLogout,
         isLogged,

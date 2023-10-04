@@ -16,8 +16,4 @@ app.use("/api/users", require("./routes/users"));
 app.use("/api/tags", require("./routes/tags"));
 app.use("/api/players", require("./routes/players"));
 
-app.get("/jugadores", (req, res) => {
-  res.send("¡Bienvenido a la página de jugadores!");
-});
-
 module.exports = app;

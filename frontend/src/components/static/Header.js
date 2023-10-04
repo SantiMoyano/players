@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import MenuIcon from "../user/icons/menu.js";
 
 function Header() {
-  const { isLogged, handleLogout } = useContext(MyDataContext);
+  const { isLogged, handleLogout, userId } = useContext(MyDataContext);
   const [anchoPantalla, setAnchoPantalla] = useState(window.innerWidth);
   const [clickedMenu, setClickedMenu] = useState(false);
   const [isAdmin, setIsAdmin] = useState(true); // Admin hardcodeado
@@ -44,20 +44,21 @@ function Header() {
           isLogged={isLogged}
           isAdmin={isAdmin}
           handleLogout={handleLogout}
+          userId={userId}
         />
       )}
     </header>
   );
 }
 
-function NavElems({ isAdmin, isLogged, handleLogout }) {
+function NavElems({ isAdmin, isLogged, handleLogout, userId }) {
   const linkStyle = { textDecoration: "none" };
 
   return (
     <div className="menu-content">
       <div>
         <Link to="/" style={linkStyle}>
-          PLAYERS APP ⚽
+          ⚽ PLAYERS APP
         </Link>
       </div>
       <ul>
@@ -90,7 +91,7 @@ function NavElems({ isAdmin, isLogged, handleLogout }) {
         {isLogged ? (
           <>
             <li>
-              <Link to="/profile" style={linkStyle}>
+              <Link to={`/profile/${userId}`} style={linkStyle}>
                 Perfil
               </Link>
             </li>
