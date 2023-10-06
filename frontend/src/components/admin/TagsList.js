@@ -1,5 +1,6 @@
 import { useState, useContext } from "react";
 import MyDataContext from "../data/MyDataContext";
+import Edit from "../user/icons/pencil";
 
 function TagsList({ handleEdit }) {
   const { tagList, handleDeleteTag } = useContext(MyDataContext);
@@ -49,14 +50,23 @@ function SortTags({ handleFilterChange, selectedFilter }) {
 
 function Tag({ name, color, handleDelete, handleEdit }) {
   return (
-    <li>
-      <span>{name}</span>
-      <span style={{ backgroundColor: color }}>{color}</span>
-      <span onClick={handleEdit}>Edit</span>
-      <span id="delete-icon" onClick={handleDelete}>
-        X
-      </span>
-    </li>
+    <>
+      <li>
+        <div className="tag">
+          <span>{name}</span>
+          <span style={{ backgroundColor: color }}>{color}</span>
+        </div>
+        <div>
+          <span onClick={handleEdit}>
+            <Edit />
+          </span>
+          <span id="delete-icon" onClick={handleDelete}>
+            X
+          </span>
+        </div>
+      </li>
+      <hr />
+    </>
   );
 }
 

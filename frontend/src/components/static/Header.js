@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import MenuIcon from "../user/icons/menu.js";
 
 function Header() {
-  const { isLogged, handleLogout, userId, isAdmin } = useContext(MyDataContext);
+  const { isAdmin } = useContext(MyDataContext);
   const [anchoPantalla, setAnchoPantalla] = useState(window.innerWidth);
   const [clickedMenu, setClickedMenu] = useState(false);
 
@@ -24,7 +24,7 @@ function Header() {
     return () => {
       window.removeEventListener("resize", actualizarAnchoPantalla);
     };
-  }, [isLogged]);
+  }, []);
 
   /*
    * SI ES MOBILE ENTONCES MUESTRA HAMBURGUESA Y ALTERNA EL RESTO DE ELEMENTOS DEL HEADER
@@ -39,19 +39,17 @@ function Header() {
           {clickedMenu ? <NavElems isAdmin={isAdmin} /> : ""}
         </>
       ) : (
-        <NavElems
-          isLogged={isLogged}
-          isAdmin={isAdmin}
-          handleLogout={handleLogout}
-          userId={userId}
-        />
+        <NavElems />
       )}
     </header>
   );
 }
 
-function NavElems({ isAdmin, isLogged, handleLogout, userId }) {
+function NavElems() {
+  const { isLogged, handleLogout, userId, isAdmin } = useContext(MyDataContext);
   const linkStyle = { textDecoration: "none" };
+
+  useEffect(() => {}, [isLogged, isAdmin, handleLogout]);
 
   return (
     <div className="menu-content">

@@ -73,6 +73,7 @@
   cursor: pointer;
   margin: 24px 0;
   min-width: calc(100dvw - 200px);
+  max-width: 48px;
 }
 
 .form-section form button {

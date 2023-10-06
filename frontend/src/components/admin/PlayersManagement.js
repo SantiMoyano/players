@@ -44,30 +44,33 @@ function PlayersManagement() {
 
 function Player({ name, imageUrl, filter, handleDelete, handleUpdate }) {
   return (
-    <li>
-      {filter === "default" ? (
-        <figure>
-          <img src={imageUrl} alt={name} />
-          <figcaption>{name}</figcaption>
-        </figure>
-      ) : (
-        <div className="player-name">
-          <span>{name}</span>
+    <>
+      <li>
+        {filter === "default" ? (
+          <figure>
+            <img src={imageUrl} alt={name} />
+            <figcaption>{name}</figcaption>
+          </figure>
+        ) : (
+          <div className="player-name">
+            <span>{name}</span>
+          </div>
+        )}
+        <div
+          className={`manage-buttons ${
+            filter !== "default" ? "align-buttons" : ""
+          }`}
+        >
+          <button onClick={handleUpdate}>
+            <PencilIcon />
+          </button>
+          <button style={{ backgroundColor: "red" }} onClick={handleDelete}>
+            <CloseIcon />
+          </button>
         </div>
-      )}
-      <div
-        className={`manage-buttons ${
-          filter !== "default" ? "align-buttons" : ""
-        }`}
-      >
-        <button onClick={handleUpdate}>
-          <PencilIcon />
-        </button>
-        <button style={{ backgroundColor: "red" }} onClick={handleDelete}>
-          <CloseIcon />
-        </button>
-      </div>
-    </li>
+      </li>
+      <hr />
+    </>
   );
 }
 

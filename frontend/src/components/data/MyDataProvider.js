@@ -22,7 +22,7 @@ export const MyDataProvider = ({ children }) => {
   useEffect(() => {
     getPlayers();
     getTags();
-  }, []);
+  }, [isLogged, isAdmin]);
 
   useEffect(() => {
     const authToken = localStorage.getItem("authToken");
@@ -31,7 +31,7 @@ export const MyDataProvider = ({ children }) => {
     if (sessionId) setUserId(sessionId);
     if (authToken) setIsLogged(true);
     if (admin) setIsAdmin(true);
-  }, [isLogged]);
+  }, []);
 
   async function checkLogin(data) {
     try {
@@ -53,7 +53,10 @@ export const MyDataProvider = ({ children }) => {
     setIsLogged(true);
     const id = await getUserByName(username);
     setUserId(id);
-    if (username === "scorpion") localStorage.setItem("admin", true);
+    if (username === "scorpion") {
+      localStorage.setItem("admin", true);
+      await setIsAdmin(true);
+    }
     localStorage.setItem("sessionId", id);
     alert("Te logueaste!");
     navigate("/profile/" + id);
@@ -63,6 +66,8 @@ export const MyDataProvider = ({ children }) => {
     localStorage.removeItem("authToken");
     localStorage.removeItem("sessionId");
     localStorage.removeItem("admin");
+    setIsAdmin(false);
+    setIsLogged(false);
   }
 
   async function getPlayers() {

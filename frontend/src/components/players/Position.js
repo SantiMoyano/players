@@ -1,24 +1,19 @@
-import { useState, useEffect } from "react";
-import { url } from "../../CONST";
-import axios from "axios";
+import { useState, useEffect, useContext } from "react";
+import MyDataContext from "../data/MyDataContext";
 
 function Position({ position }) {
+  const { tagList } = useContext(MyDataContext);
   const [color, setColor] = useState("");
-  const [tagList, setTagList] = useState([]);
   const [tag, setTag] = useState("");
 
   useEffect(() => {
-    fetchTags();
+    searchTags();
   }, []);
 
-  async function fetchTags() {
+  async function searchTags() {
     try {
-      const tagsResponse = await axios.get(url + "/api/tags");
-      const tagsData = tagsResponse.data;
-      setTagList(tagsData);
-
       // Encuentra la etiqueta correspondiente al id
-      const tagData = tagsData.find((tag) => tag._id === position);
+      const tagData = tagList.find((tag) => tag._id === position);
       if (tagData) {
         setTag(tagData.tagName);
         setColor(tagData.tagColor);
