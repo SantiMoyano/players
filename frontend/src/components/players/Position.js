@@ -11,15 +11,11 @@ function Position({ position }) {
   }, []);
 
   async function searchTags() {
-    try {
-      // Encuentra la etiqueta correspondiente al id
-      const tagData = tagList.find((tag) => tag._id === position);
-      if (tagData) {
-        setTag(tagData.tagName);
-        setColor(tagData.tagColor);
-      }
-    } catch (error) {
-      console.error("Error fetching data:", error);
+    // Encuentra la etiqueta correspondiente al id
+    const tagData = await tagList.find((tag) => tag._id === position);
+    if (tagData) {
+      setTag(tagData.tagName);
+      setColor(tagData.tagColor);
     }
   }
 

@@ -57,7 +57,7 @@ function DetailedPlayer() {
     </section>
   ) : (
     <section className="loading">
-      <h2>...</h2>
+      <h2>. . .</h2>
     </section>
   );
 }
