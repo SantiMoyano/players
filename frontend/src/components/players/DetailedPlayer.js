@@ -1,28 +1,29 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
-import { url } from "../../CONST";
-import axios from "axios";
+import MyDataContext from "../data/MyDataContext";
 
 import Position from "./Position";
 
 function DetailedPlayer() {
+  const { fetchPlayer } = useContext(MyDataContext);
   const [playerData, setPlayerData] = useState([]);
   const [tags, setTags] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const { id } = useParams();
 
   useEffect(() => {
-    fetchPlayer();
+    getPlayer();
   }, []);
 
-  async function fetchPlayer() {
-    const res = await axios.get(url + "/api/players/" + id);
-    const player = res.data;
+  async function getPlayer() {
+    const player = await fetchPlayer(id);
     setPlayerData({ ...player });
     const tagList = player.tags;
     setTags(tagList);
+    if (player) setIsLoading(false);
   }
 
-  return (
+  return !isLoading ? (
     <section className="detailed-player">
       <main>
         <section className="top-detailed-player">
@@ -53,6 +54,10 @@ function DetailedPlayer() {
           <h3>{`Trofeos ganados: ${playerData.trophies}`}</h3>
         </div>
       </main>
+    </section>
+  ) : (
+    <section className="loading">
+      <h2>...</h2>
     </section>
   );
 }

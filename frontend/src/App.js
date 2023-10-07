@@ -22,11 +22,13 @@ import TagsManagement from "./components/admin/TagsManagement";
 import Login from "./components/user/Login";
 import Footer from "./components/static/Footer";
 import Profile from "./components/user/Profile";
+import ScrollToTop from "./ScrollToTop";
 
 function App() {
   return (
     <Router>
       <MyDataProvider>
+        <ScrollToTop />
         <div className="App">
           <Header />
           <Routes>
