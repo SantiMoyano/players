@@ -3,14 +3,10 @@ import { useParams } from "react-router-dom";
 import MyDataContext from "../data/MyDataContext";
 
 function CreatePlayer() {
-  const {
-    tagList,
-    fetchPlayer,
-    avaibleTagList,
-    setAvaibleTagList,
-    handleSubmitPlayer,
-  } = useContext(MyDataContext);
+  const { fetchTags, fetchPlayer, handleSubmitPlayer } =
+    useContext(MyDataContext);
 
+  // player info
   const { id } = useParams();
   const [name, setName] = useState("");
   const [score, setScore] = useState(0);
@@ -19,11 +15,14 @@ function CreatePlayer() {
   const [description, setDescription] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [gifUrl, setGifUrl] = useState("");
-  const [tagSearched, setTagSearched] = useState("");
-  const [selectedTags, setSelectedTags] = useState([]);
-  const [updateMode, setUpdateMode] = useState(false);
   const [playerData, setPlayerData] = useState([]);
 
+  // tags info
+  const [selectedTags, setSelectedTags] = useState([]);
+  const [tagList, setTagList] = useState([]);
+  const [myTagList, setMyTagList] = useState([]);
+
+  const [updateMode, setUpdateMode] = useState(false);
   const data = {
     name,
     score,
@@ -38,11 +37,18 @@ function CreatePlayer() {
   };
 
   useEffect(() => {
+    getTags();
     if (id) {
       setUpdateMode(true);
       getPlayerData();
     }
   }, []);
+
+  async function getTags() {
+    const tags = await fetchTags();
+    setTagList(tags);
+    setMyTagList(tags);
+  }
 
   async function getPlayerData() {
     const data = await fetchPlayer(id);
@@ -103,34 +109,71 @@ function CreatePlayer() {
   }
 
   function handleChangeTags(e) {
-    setTagSearched(e.target.value);
-    setAvaibleTagList(
-      tagList.filter((tag) =>
-        tag.tagName
-          .toLocaleLowerCase()
-          .includes(tagSearched.toLocaleLowerCase())
-      ),
-      false
+    const search = e.target.value;
+    setMyTagList(
+      tagList.filter(
+        (tag) =>
+          tag.tagName
+            .toLocaleLowerCase()
+            .includes(search.toLocaleLowerCase()) &&
+          !selectedTags.some((selectedTag) => selectedTag._id === tag._id)
+      )
     );
   }
 
   function addTag(tagId) {
     // Busca la etiqueta correspondiente al tagId
-    const tagToAdd = avaibleTagList.find((tag) => tag._id === tagId);
+    const tagToAdd = myTagList.find((tag) => tag._id === tagId);
     if (tagToAdd) {
       // Agrega la etiqueta al array selectedTags
       setSelectedTags([...selectedTags, tagToAdd]);
     }
     // Crea una nueva lista de tags que excluye el tag seleccionado
-    const updatedTagList = avaibleTagList.filter((tag) => tag._id !== tagId);
+    const updatedTagList = myTagList.filter((tag) => tag._id !== tagId);
     // Actualiza la lista de tags disponibles
-    setAvaibleTagList(updatedTagList);
+    setMyTagList(updatedTagList);
+  }
+
+  function deleteTagFromSelected(tag) {
+    const updatedSelectedTags = selectedTags.filter(
+      (selectedTag) => selectedTag._id !== tag._id
+    );
+    setSelectedTags(updatedSelectedTags);
+    setMyTagList([...myTagList, tag]);
   }
 
   return (
     <section className="form-section">
       <h2>{updateMode ? "UPDATE PLAYER" : "CREATE PLAYER"}</h2>
       <form onSubmit={handleSubmit}>
+        <div>
+          <div className="tags-selector">
+            <label>Tags:</label>
+            <div className="tag-list">
+              {selectedTags.map((tag) => (
+                <div>
+                  <span style={{ color: tag.tagColor }}>{tag.tagName}</span>
+                  <span onClick={() => deleteTagFromSelected(tag)}>X</span>
+                </div>
+              ))}
+            </div>
+            <input
+              type="text"
+              id="tags"
+              placeholder="Ej. Barcelona, Delantero.."
+              name="tags"
+              onClick={handleChangeTags}
+              onChange={handleChangeTags}
+            />
+          </div>
+          <select onChange={(e) => addTag(e.target.value)}>
+            {myTagList.map((tag) => (
+              <option key={tag._id} value={tag._id}>
+                {tag.tagName}
+              </option>
+            ))}
+          </select>
+        </div>
         <div>
           <label htmlFor="name">Name:</label>
           <input
@@ -182,28 +225,6 @@ function CreatePlayer() {
             defaultValue={playerData.description}
             onChange={handleChangeDescription}
           ></textarea>
-        </div>
-        <div>
-          <div className="tags-selector">
-            <label>Tags:</label>
-            {selectedTags.map((tag) => (
-              <span>{tag.tagName}</span>
-            ))}
-            <input
-              type="text"
-              id="tags"
-              placeholder="Ej. Barcelona, Delantero.."
-              name="tags"
-              onChange={handleChangeTags}
-            />
-          </div>
-          <select onChange={(e) => addTag(e.target.value)}>
-            {avaibleTagList.map((tag) => (
-              <option key={tag._id} value={tag._id}>
-                {tag.tagName}
-              </option>
-            ))}
-          </select>
         </div>
         <div>
           <label htmlFor="name">Image URL:</label>

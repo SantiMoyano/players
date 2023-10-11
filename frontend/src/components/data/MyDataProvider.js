@@ -134,6 +134,7 @@ export const MyDataProvider = ({ children }) => {
         fetchUsers,
         createUser,
         fetchTag,
+        fetchTags,
         fetchPlayer,
         setPlayerList,
         filteredPlayerList,

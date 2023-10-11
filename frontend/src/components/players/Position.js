@@ -13,10 +13,8 @@ function Position({ position }) {
   async function searchTags() {
     // Encuentra la etiqueta correspondiente al id
     const tagData = await tagList.find((tag) => tag._id === position);
-    if (tagData) {
-      setTag(tagData.tagName);
-      setColor(tagData.tagColor);
-    }
+    setTag(tagData.tagName);
+    setColor(tagData.tagColor);
   }
 
   // Mostrar el componente solo cuando los datos estén cargados

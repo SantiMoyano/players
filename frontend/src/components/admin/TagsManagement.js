@@ -39,6 +39,8 @@ function TagsManagement() {
         <strong>{toggled ? "Crear un nuevo tag" : "Ver tags"}</strong>
       </button>
 
+      {!toggled ? <h2>Crear nuevo tag</h2> : <h2>Lista de tags</h2>}
+
       {toggled ? (
         <TagsList handleEdit={handleEdit} />
       ) : (
