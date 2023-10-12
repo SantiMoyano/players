@@ -7,7 +7,15 @@ import { url } from "../../CONST";
 //prettier-ignore
 import { fetchPlayers, fetchPlayer, deletePlayer, updateOrCreatePlayer,} from "./PlayerAPI";
 import { fetchTags, fetchTag, deleteTag, updateOrCreateTag } from "./TagsAPI";
-import { fetchUser, fetchUsers, createUser, getUserByName } from "./UserAPI";
+import {
+  fetchUser,
+  fetchUsers,
+  createUser,
+  getUserByName,
+  addFavouritePlayer,
+  removeFavouritePlayer,
+  getFavouritePlayers,
+} from "./UserAPI";
 
 export const MyDataProvider = ({ children }) => {
   const [playerList, setPlayerList] = useState([]);
@@ -125,6 +133,8 @@ export const MyDataProvider = ({ children }) => {
   return (
     <MyDataContext.Provider
       value={{
+        addFavouritePlayer,
+        removeFavouritePlayer,
         isAdmin,
         userId,
         fetchUser,
@@ -148,6 +158,7 @@ export const MyDataProvider = ({ children }) => {
         handleSubmitPlayer,
         handleDeleteTag,
         handleSubmitTag,
+        getFavouritePlayers,
       }}
     >
       {children}

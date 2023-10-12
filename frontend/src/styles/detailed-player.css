@@ -60,6 +60,27 @@
   width: 100%;
 }
 
+.add-fav-player {
+  display: flex;
+  justify-content: end;
+}
+
+.add-fav-player button {
+  font-size: larger;
+  font-weight: bold;
+  border: none;
+  border-radius: 0.4rem;
+  color: white;
+  background-color: rgba(33, 33, 33, 0);
+  padding: 0.4rem;
+  transition: background-color 0.3s ease;
+}
+
+.add-fav-player button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  cursor: pointer;
+}
+
 @media screen and (width >= 768px) {
   .detailed-player {
     padding-top: 120px;

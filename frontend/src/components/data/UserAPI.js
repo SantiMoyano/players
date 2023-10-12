@@ -10,6 +10,23 @@ export async function fetchUsers() {
   }
 }
 
+export async function getFavouritePlayers() {
+  try {
+    const res = await axios.get(url + "/api/users/players/");
+    return res.data;
+  } catch (error) {
+    console.error("Error fetching Players data:", error);
+  }
+}
+
+export async function addFavouritePlayer(id) {
+  await axios.post(url + "/api/users/players/" + id);
+}
+
+export async function removeFavouritePlayer(id) {
+  await axios.delete(url + "/api/users/players/" + id);
+}
+
 export async function getUserByName(name) {
   const users = await fetchUsers();
   const user = await users.find((us) => us.username === name);
