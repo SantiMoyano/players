@@ -20,9 +20,10 @@ function DetailedPlayer() {
 
   useEffect(() => {
     getPlayer();
-    if (getFavouritePlayers.includes(id)) {
-      setIsFavourite(true);
-    }
+    // Verifica si el jugador mostrado es favorito
+    // if (getFavouritePlayers.includes(id)) {
+    //   setIsFavourite(true);
+    // }
   }, []);
 
   async function handleAddFavourite() {

@@ -20,4 +20,6 @@ router
     .get(getUser)
     .delete(deleteUser);
 
+router.route("/players").get(getPlayers).post(addPlayer).delete(deletePlayers);
+
 module.exports = router;
