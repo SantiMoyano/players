@@ -57,7 +57,8 @@ userCtrl.addFavouritePlayer = async (req, res) => {
       return res.status(404).json({ message: "Usuario no encontrado" });
     }
 
-    user.favoritePlayers = [...user.favoritePlayers, playerId];
+    user.favouritePlayers = [...user.favouritePlayers, playerId];
+    s;
     await user.save();
 
     res.json({ message: "Jugador favorito agregado al usuario" });
@@ -75,8 +76,8 @@ userCtrl.removeFavouritePlayer = async (req, res) => {
       return res.status(404).json({ message: "Usuario no encontrado" });
     }
 
-    user.favoritePlayers = user.favoritePlayers.filter(
-      (favoritePlayer) => favoritePlayer !== playerId
+    user.favouritePlayers = user.favouritePlayers.filter(
+      (favouritePlayers) => favouritePlayers !== playerId
     );
     await user.save();
 
