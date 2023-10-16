@@ -50,6 +50,7 @@ userCtrl.deleteUser = async (req, res) => {
 userCtrl.addFavouritePlayer = async (req, res) => {
   try {
     const { userId, playerId } = req.body;
+    console.log(userId, playerId);
     const user = await User.findById(userId);
 
     if (!user) {

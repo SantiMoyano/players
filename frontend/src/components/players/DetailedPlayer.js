@@ -8,9 +8,9 @@ function DetailedPlayer() {
   const {
     fetchPlayer,
     isLogged,
-    addFavouritePlayer,
-    removeFavouritePlayer,
-    getFavouritePlayers,
+    handleAddFavouritePlayer,
+    handleRemoveFavouritePlayer,
+    handleGetUser,
   } = useContext(MyDataContext);
   const [playerData, setPlayerData] = useState([]);
   const [tags, setTags] = useState([]);
@@ -20,19 +20,24 @@ function DetailedPlayer() {
 
   useEffect(() => {
     getPlayer();
-    // Verifica si el jugador mostrado es favorito
-    // if (getFavouritePlayers.includes(id)) {
-    //   setIsFavourite(true);
-    // }
+    getUserData();
   }, []);
 
+  async function getUserData() {
+    const userData = await handleGetUser();
+    //Verifica si el jugador mostrado es favorito
+    if (!userData.favouritePlayers.includes(id)) {
+      setIsFavourite(true);
+    }
+  }
+
   async function handleAddFavourite() {
-    await addFavouritePlayer(id);
+    await handleAddFavouritePlayer(id);
     setIsFavourite(true);
   }
 
   async function handleRemoveFavourite() {
-    await removeFavouritePlayer(id);
+    await handleRemoveFavouritePlayer(id);
     setIsFavourite(false);
   }
 

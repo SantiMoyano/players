@@ -21,8 +21,11 @@ function Profile() {
 
   async function getPlayersFromId() {
     const playersIds = await userData.favouritePlayers;
-    console.log(playersIds);
-    // mappear ids y buscar respectivo jugador
+
+    for (const id of playersIds) {
+      const player = await fetchPlayer(id);
+      setFavouritePlayers([...favouritePlayers, player]);
+    }
   }
 
   return (

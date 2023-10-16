@@ -82,6 +82,14 @@ export const MyDataProvider = ({ children }) => {
     return data;
   }
 
+  async function handleAddFavouritePlayer(playerId) {
+    addFavouritePlayer(userId, playerId);
+  }
+
+  async function handleRemoveFavouritePlayer(playerId) {
+    removeFavouritePlayer(userId, playerId);
+  }
+
   async function getPlayers() {
     const data = await fetchPlayers();
     setPlayerList(data);
@@ -137,8 +145,8 @@ export const MyDataProvider = ({ children }) => {
   return (
     <MyDataContext.Provider
       value={{
-        addFavouritePlayer,
-        removeFavouritePlayer,
+        handleAddFavouritePlayer,
+        handleRemoveFavouritePlayer,
         isAdmin,
         userId,
         fetchUser,
