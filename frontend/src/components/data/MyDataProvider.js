@@ -14,7 +14,6 @@ import {
   getUserByName,
   addFavouritePlayer,
   removeFavouritePlayer,
-  getFavouritePlayers,
 } from "./UserAPI";
 
 export const MyDataProvider = ({ children }) => {
@@ -76,6 +75,11 @@ export const MyDataProvider = ({ children }) => {
     localStorage.removeItem("admin");
     setIsAdmin(false);
     setIsLogged(false);
+  }
+
+  async function handleGetUser() {
+    const data = await fetchUser(userId);
+    return data;
   }
 
   async function getPlayers() {
@@ -158,7 +162,7 @@ export const MyDataProvider = ({ children }) => {
         handleSubmitPlayer,
         handleDeleteTag,
         handleSubmitTag,
-        getFavouritePlayers,
+        handleGetUser,
       }}
     >
       {children}

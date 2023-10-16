@@ -6,6 +6,8 @@ const {
   getUsers,
   createUser,
   deleteUser,
+  addFavouritePlayer,
+  removeFavouritePlayer,
 } = require("../controllers/users.controllers");
 
 //prettier-ignore
@@ -20,6 +22,6 @@ router
     .get(getUser)
     .delete(deleteUser);
 
-router.route("/players").get(getPlayers).post(addPlayer).delete(deletePlayers);
+router.route("/players").post(addFavouritePlayer).delete(removeFavouritePlayer);
 
 module.exports = router;
