@@ -65,4 +65,24 @@ userCtrl.addFavouritePlayer = async (req, res) => {
   }
 };
 
+userCtrl.removeFavouritePlayer = async (req, res) => {
+  try {
+    const { userId, playerId } = req.body;
+    const user = await User.findById(userId);
+
+    if (!user) {
+      return res.status(404).json({ message: "Usuario no encontrado" });
+    }
+
+    user.favoritePlayers = user.favoritePlayers.filter(
+      (favoritePlayer) => favoritePlayer !== playerId
+    );
+    await user.save();
+
+    res.json({ message: "Jugador favorito eliminado" });
+  } catch (error) {
+    res.status(500).json({ message: "Error al eliminar jugador favorito" });
+  }
+};
+
 module.exports = userCtrl;
