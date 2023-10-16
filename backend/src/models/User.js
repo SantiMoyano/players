@@ -11,6 +11,12 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
+    favouritePlayers: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Player",
+      },
+    ],
   },
   {
     timestamps: true,
