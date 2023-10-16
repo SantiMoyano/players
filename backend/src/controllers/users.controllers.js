@@ -57,8 +57,7 @@ userCtrl.addFavouritePlayer = async (req, res) => {
       return res.status(404).json({ message: "Usuario no encontrado" });
     }
 
-    user.favouritePlayers = [...user.favouritePlayers, playerId];
-    s;
+    user.favouritePlayers.push(playerId);
     await user.save();
 
     res.json({ message: "Jugador favorito agregado al usuario" });

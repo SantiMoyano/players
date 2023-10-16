@@ -83,11 +83,11 @@ export const MyDataProvider = ({ children }) => {
   }
 
   async function handleAddFavouritePlayer(playerId) {
-    addFavouritePlayer(userId, playerId);
+    await addFavouritePlayer(userId, playerId);
   }
 
   async function handleRemoveFavouritePlayer(playerId) {
-    removeFavouritePlayer(userId, playerId);
+    await removeFavouritePlayer(userId, playerId);
   }
 
   async function getPlayers() {
