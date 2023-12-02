@@ -35,14 +35,20 @@ function Login() {
     const data = await { username, password };
     // register user on database
     if (!isLogin) {
-      createUser(data);
-      changeMessage("Te registraste con exito!", "green");
-      setIsLogin(!isLogin);
+      if (passwordMatches) {
+        createUser(data);
+        changeMessage("Te registraste con exito!", "green");
+        setIsLogin(!isLogin);
+      }
     }
     // login user on database
     if (isLogin) {
-      checkLogin(data);
-      changeMessage("Te logueaste con exito!", "green");
+      const tryLogin = await checkLogin(data);
+      if (tryLogin === false) {
+        changeMessage("Contraseña o usuario incorrectas", "red");
+      } else {
+        changeMessage("Te logueaste con exito!", "green");
+      }
     }
   }
 
@@ -84,16 +90,23 @@ function Login() {
               onChange={handleConfirmPassword}
             />
             {!passwordMatches && (
-              <span style={{ color: "red", paddingTop: "8px" }}>
+              <span
+                style={{ color: "red", paddingTop: "8px", fontWeight: "bold" }}
+              >
                 Las contraseñas no coinciden
               </span>
             )}
           </div>
         )}
+        <div>
+          <span style={{ color: messageColor, fontWeight: "bold" }}>
+            {message}
+          </span>
+        </div>
         <div className="button-submit">
           <button>{isLogin ? "INICIAR SESIÓN" : "CREAR CUENTA"}</button>
         </div>
-        <span style={{ color: messageColor }}>{message}</span>
+
         <div className="auth-switch">
           <span>
             {isLogin ? "No tenes una cuenta aun?" : "Ya tenes una cuenta?"}

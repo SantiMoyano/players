@@ -48,9 +48,12 @@ export const MyDataProvider = ({ children }) => {
       handleLogin(token, data.username);
     } catch (error) {
       if (error.response && error.response.status === 401) {
+        console.log("malio sal");
         console.error("Contraseña incorrecta. Por favor, inténtalo de nuevo.");
+        return false;
       } else {
         console.error("Error al iniciar sesión:", error.message);
+        return false;
       }
     }
   }
