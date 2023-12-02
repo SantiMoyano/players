@@ -15,7 +15,9 @@ export async function addFavouritePlayer(userId, playerId) {
 }
 
 export async function removeFavouritePlayer(userId, playerId) {
-  await axios.delete(url + "/api/users/players/action", { userId, playerId });
+  await axios.delete(`${url}/api/users/players/action`, {
+    data: { userId, playerId },
+  });
 }
 
 export async function getUserByName(name) {
