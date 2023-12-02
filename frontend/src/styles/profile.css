@@ -1,11 +1,60 @@
 .profile {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  text-align: center;
   padding-top: 6rem;
+  min-height: 100dvh;
 }
 
 .profile h2 {
   color: white;
+}
+
+.profile .favourite-players {
+  padding-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile ul {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  text-align: start;
+  color: white;
+  max-width: 90dvw;
+}
+
+.profile ul li {
+  width: 100%;
+  display: flex;
+}
+
+@media screen and (width >= 768px) {
+  .profile {
+    padding-top: 8rem;
+  }
+
+  .player {
+    min-width: 400px;
+  }
+
+  .profile ul {
+    max-width: 800px;
+  }
+
+  .profile figure {
+    max-width: 400px;
+    min-width: 400px;
+  }
+
+  .profile figure img {
+    width: 100%;
+  }
 }

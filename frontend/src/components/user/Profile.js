@@ -5,27 +5,29 @@ import MyDataContext from "../data/MyDataContext";
 
 function Profile() {
   const { fetchUser, fetchPlayer } = useContext(MyDataContext);
-  const [userData, setUserData] = useState([]);
-  const [favouritePlayersIds, setFavouritePlayersIds] = useState([]);
+  const [userData, setUserData] = useState({});
   const [favouritePlayers, setFavouritePlayers] = useState([]);
   const { id } = useParams();
 
   useEffect(() => {
-    getUserData();
-    getPlayersFromId();
-  }, [setUserData]);
+    const fetchData = async () => {
+      try {
+        const data = await fetchUser(id);
+        setUserData(data);
 
-  async function getUserData() {
-    const data = await fetchUser(id);
-    setUserData({ ...data });
-  }
+        const playerIds = data.favouritePlayers || [];
+        const players = await Promise.all(
+          playerIds.map(async (id) => await fetchPlayer(id))
+        );
 
-  async function getPlayersFromId() {
-    for (const id of userData.favouritePlayers) {
-      const player = await fetchPlayer(id);
-      setFavouritePlayers(favouritePlayers.push(player));
-    }
-  }
+        setFavouritePlayers(players);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, [id, fetchUser, fetchPlayer]);
 
   return (
     <section className="profile">
@@ -41,14 +43,37 @@ function Profile() {
 
 function FavouritePlayers({ userData, favouritePlayers }) {
   return (
-    <section className="favourite-players">
+    <section className="favourite-players players">
       <h2>Jugadores favoritos de {userData.username}</h2>
       <ul>
         {favouritePlayers.map((el) => (
-          <li>{el.name}</li>
+          <FavouritePlayer
+            key={el.id}
+            name={el.name}
+            image={el.imageUrl}
+            score={el.score}
+          />
         ))}
       </ul>
     </section>
+  );
+}
+
+function FavouritePlayer({ name, image, score }) {
+  return (
+    <li className="player">
+      <figure>
+        <img src={image} alt={name} />
+        <div className="content">
+          <div className="top">
+            <h2>{name}</h2>
+            <span>
+              <strong>{score}</strong>⭐
+            </span>
+          </div>
+        </div>
+      </figure>
+    </li>
   );
 }
 
