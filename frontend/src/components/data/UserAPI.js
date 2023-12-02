@@ -11,11 +11,11 @@ export async function fetchUsers() {
 }
 
 export async function addFavouritePlayer(userId, playerId) {
-  await axios.post(url + "/api/users/players", { userId, playerId });
+  await axios.post(url + "/api/users/players/action", { userId, playerId });
 }
 
 export async function removeFavouritePlayer(userId, playerId) {
-  await axios.delete(url + "/api/users/players", { userId, playerId });
+  await axios.delete(url + "/api/users/players/action", { userId, playerId });
 }
 
 export async function getUserByName(name) {

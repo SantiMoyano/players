@@ -22,6 +22,9 @@ router
     .get(getUser)
     .delete(deleteUser);
 
-router.route("/players").post(addFavouritePlayer).delete(removeFavouritePlayer);
+router
+  .route("/players/action")
+  .post(addFavouritePlayer)
+  .delete(removeFavouritePlayer);
 
 module.exports = router;
