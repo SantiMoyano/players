@@ -45,6 +45,5 @@ export async function createUser(data) {
       username: data.username,
       password: data.password,
     });
-    alert("User created!");
   }
 }

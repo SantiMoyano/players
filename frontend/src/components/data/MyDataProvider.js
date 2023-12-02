@@ -65,7 +65,6 @@ export const MyDataProvider = ({ children }) => {
       await setIsAdmin(true);
     }
     localStorage.setItem("sessionId", id);
-    alert("Te logueaste!");
     navigate("/profile/" + id);
   }
 

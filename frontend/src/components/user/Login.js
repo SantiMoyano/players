@@ -7,6 +7,8 @@ function Login() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [passwordMatches, setPasswordMatches] = useState(false);
+  const [message, setMessage] = useState("");
+  const [messageColor, setMessageColor] = useState("");
 
   function handleClick() {
     setIsLogin(!isLogin);
@@ -31,8 +33,26 @@ function Login() {
   async function handleSubmit(e) {
     e.preventDefault();
     const data = await { username, password };
-    if (!isLogin) createUser(data); // register user on database
-    if (isLogin) checkLogin(data);
+    // register user on database
+    if (!isLogin) {
+      createUser(data);
+      changeMessage("Te registraste con exito!", "green");
+      setIsLogin(!isLogin);
+    }
+    // login user on database
+    if (isLogin) {
+      checkLogin(data);
+      changeMessage("Te logueaste con exito!", "green");
+    }
+  }
+
+  function changeMessage(message, color) {
+    setMessage(message);
+    setMessageColor(color);
+    setTimeout(() => {
+      setMessage("");
+      setMessageColor("");
+    }, 3000);
   }
 
   return (
@@ -63,12 +83,17 @@ function Login() {
               name="name"
               onChange={handleConfirmPassword}
             />
-            {!passwordMatches && <span>La contraseña no coincide</span>}
+            {!passwordMatches && (
+              <span style={{ color: "red", paddingTop: "8px" }}>
+                Las contraseñas no coinciden
+              </span>
+            )}
           </div>
         )}
         <div className="button-submit">
           <button>{isLogin ? "INICIAR SESIÓN" : "CREAR CUENTA"}</button>
         </div>
+        <span style={{ color: messageColor }}>{message}</span>
         <div className="auth-switch">
           <span>
             {isLogin ? "No tenes una cuenta aun?" : "Ya tenes una cuenta?"}
