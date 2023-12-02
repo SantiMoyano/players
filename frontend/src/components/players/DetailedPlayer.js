@@ -33,12 +33,12 @@ function DetailedPlayer() {
 
   async function handleAddFavourite() {
     await handleAddFavouritePlayer(id);
-    setIsFavourite(true);
+    setIsFavourite(false);
   }
 
   async function handleRemoveFavourite() {
     await handleRemoveFavouritePlayer(id);
-    setIsFavourite(false);
+    setIsFavourite(true);
   }
 
   async function getPlayer() {

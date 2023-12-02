@@ -6,25 +6,24 @@ import MyDataContext from "../data/MyDataContext";
 function Profile() {
   const { fetchUser, fetchPlayer } = useContext(MyDataContext);
   const [userData, setUserData] = useState([]);
+  const [favouritePlayersIds, setFavouritePlayersIds] = useState([]);
   const [favouritePlayers, setFavouritePlayers] = useState([]);
   const { id } = useParams();
 
   useEffect(() => {
     getUserData();
-  }, []);
+    getPlayersFromId();
+  }, [setUserData]);
 
   async function getUserData() {
     const data = await fetchUser(id);
     setUserData({ ...data });
-    getPlayersFromId();
   }
 
   async function getPlayersFromId() {
-    const playersIds = await userData.favouritePlayers;
-
-    for (const id of playersIds) {
+    for (const id of userData.favouritePlayers) {
       const player = await fetchPlayer(id);
-      setFavouritePlayers([...favouritePlayers, player]);
+      setFavouritePlayers(favouritePlayers.push(player));
     }
   }
 
