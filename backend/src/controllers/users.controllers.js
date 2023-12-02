@@ -76,8 +76,9 @@ userCtrl.removeFavouritePlayer = async (req, res) => {
     }
 
     user.favouritePlayers = user.favouritePlayers.filter(
-      (favouritePlayers) => favouritePlayers !== playerId
+      (favouritePlayer) => favouritePlayer.toString() !== playerId
     );
+
     await user.save();
 
     res.json({ message: "Jugador favorito eliminado" });

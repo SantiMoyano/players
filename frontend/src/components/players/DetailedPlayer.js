@@ -21,7 +21,7 @@ function DetailedPlayer() {
   useEffect(() => {
     getPlayer();
     getUserData();
-  }, []);
+  }, [isFavourite]);
 
   async function getUserData() {
     const userData = await handleGetUser();
