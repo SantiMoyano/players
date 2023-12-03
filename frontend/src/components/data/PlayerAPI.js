@@ -39,7 +39,6 @@ export async function updateOrCreatePlayer(data) {
       gifUrl: data.gifUrl,
       tags: tags,
     });
-    alert("Player created!");
   } else {
     await axios.put(url + "/api/players/" + data.id, {
       name: data.name,
@@ -51,6 +50,5 @@ export async function updateOrCreatePlayer(data) {
       gifUrl: data.gifUrl,
       tags: tags,
     });
-    alert("Player updated!");
   }
 }

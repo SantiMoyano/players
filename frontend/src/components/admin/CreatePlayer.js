@@ -36,6 +36,9 @@ function CreatePlayer() {
     id,
   };
 
+  const [message, setMessage] = useState("");
+  const [messageColor, setMessageColor] = useState("");
+
   useEffect(() => {
     getTags();
     if (id) {
@@ -65,8 +68,22 @@ function CreatePlayer() {
   async function handleSubmit(e) {
     e.preventDefault();
     await handleSubmitPlayer(data);
+    if (updateMode) {
+      changeMessage("Jugador actualizado con exito!", "green");
+    } else {
+      changeMessage("Jugador creado con exito!", "green");
+    }
     resetInputs();
     setUpdateMode(false);
+  }
+
+  function changeMessage(message, color) {
+    setMessage(message);
+    setMessageColor(color);
+    setTimeout(() => {
+      setMessage("");
+      setMessageColor("");
+    }, 3000);
   }
 
   function resetInputs() {
@@ -247,6 +264,11 @@ function CreatePlayer() {
             onChange={handleChangeGifUrl}
             onPaste={handleChangeGifUrl}
           />
+        </div>
+        <div>
+          <span style={{ color: messageColor, fontWeight: "bold" }}>
+            {message}
+          </span>
         </div>
         <div className="button-submit">
           <button type="submit">
