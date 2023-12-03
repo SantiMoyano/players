@@ -37,7 +37,7 @@ function Login() {
     if (!isLogin) {
       if (passwordMatches) {
         createUser(data);
-        changeMessage("Te registraste con exito!", "green");
+        changeMessage("Te registraste con exito!", "limegreen");
         setIsLogin(!isLogin);
       }
     }
@@ -47,7 +47,7 @@ function Login() {
       if (tryLogin === false) {
         changeMessage("Contraseña o usuario incorrectas", "red");
       } else {
-        changeMessage("Te logueaste con exito!", "green");
+        changeMessage("Te logueaste con exito!", "limegreen");
       }
     }
   }

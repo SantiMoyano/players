@@ -77,10 +77,12 @@ figure {
 .main-header ul li a {
   text-decoration: none;
   transition: color 0.2s ease;
+  transition: transform 0.3s ease;
 }
 
 .main-header ul li a:hover {
-  color: rgb(115, 53, 186);
+  color: rgb(156, 70, 255);
+  transform: scale(1.05);
 }
 
 .menu-content {

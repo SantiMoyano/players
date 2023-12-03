@@ -8,7 +8,6 @@ function Player({
   score,
   description,
 }) {
-  console.log(imageUrl);
   return (
     <li className="player">
       <figure>

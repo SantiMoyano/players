@@ -64,7 +64,6 @@
   border: 0;
   transition: background-color 0.2s ease;
 }
-
 @media screen and (width >= 768px) {
   .welcome {
     min-height: 550px;

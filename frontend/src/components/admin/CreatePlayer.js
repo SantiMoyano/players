@@ -69,9 +69,9 @@ function CreatePlayer() {
     e.preventDefault();
     await handleSubmitPlayer(data);
     if (updateMode) {
-      changeMessage("Jugador actualizado con exito!", "green");
+      changeMessage("Jugador actualizado con exito!", "limegreen");
     } else {
-      changeMessage("Jugador creado con exito!", "green");
+      changeMessage("Jugador creado con exito!", "limegreen");
     }
     resetInputs();
     setUpdateMode(false);

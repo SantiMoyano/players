@@ -17,6 +17,10 @@ function Players({ showFilter, showFirstFive }) {
     navigate("/players/" + playerId);
   }
 
+  function navigateToMorePlayers() {
+    navigate("/players");
+  }
+
   useEffect(() => {
     getPlayers();
   }, [filteredPlayerList]);
@@ -39,7 +43,10 @@ function Players({ showFilter, showFirstFive }) {
       ) : (
         <section className="view-more-players">
           <h2>Ultimos jugadores</h2>
-          <button className="view-more-players-button">
+          <button
+            onClick={navigateToMorePlayers}
+            className="view-more-players-button"
+          >
             Ver mas jugadores
           </button>
         </section>

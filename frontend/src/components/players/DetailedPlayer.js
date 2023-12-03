@@ -20,7 +20,9 @@ function DetailedPlayer() {
 
   useEffect(() => {
     getPlayer();
-    getUserData();
+    if (isLogged) {
+      getUserData();
+    }
   }, [isFavourite]);
 
   async function getUserData() {

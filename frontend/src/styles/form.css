@@ -63,7 +63,7 @@
 }
 
 .form-section button {
-  background-color: #de3232;
+  background-color: rgb(115, 53, 186);
   color: #fff;
   border: none;
   border-radius: 4px;
@@ -74,6 +74,11 @@
   margin: 24px 0;
   min-width: calc(100dvw - 200px);
   max-width: 48px;
+  transition: background-color 0.3s ease;
+}
+
+.form-section button:hover {
+  background-color: rgb(81, 38, 130);
 }
 
 .form-section form button {
