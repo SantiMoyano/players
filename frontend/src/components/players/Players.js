@@ -7,13 +7,26 @@ import Player from "./Player";
 import SortPlayers from "./SortPlayers";
 import SearchPlayer from "./SearchPlayer.js";
 
-function Players({ showFilter }) {
+function Players({ showFilter, showFirstFive }) {
   const { filteredPlayerList, handleSortByScore, handleSearch } =
     useContext(MyDataContext);
   const navigate = useNavigate();
+  const [playerList, setPlayerList] = useState([]);
 
   function handlePlayerClicked(playerId) {
     navigate("/players/" + playerId);
+  }
+
+  useEffect(() => {
+    getPlayers();
+  }, [filteredPlayerList]);
+
+  async function getPlayers() {
+    const players = await filteredPlayerList;
+    setPlayerList(players);
+    if (showFirstFive) {
+      setPlayerList(players.slice(0, 5));
+    }
   }
 
   return (
@@ -35,7 +48,7 @@ function Players({ showFilter }) {
         <span>"No se encontraron resultados :c"</span>
       )}
       <ul>
-        {filteredPlayerList.map((el) => (
+        {playerList.map((el) => (
           <>
             <Player
               key={el._id}

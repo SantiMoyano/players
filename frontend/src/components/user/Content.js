@@ -1,7 +1,16 @@
+import { useContext } from "react";
 import Players from "../players/Players";
 import SearchPlayer from "../players/SearchPlayer";
+import MyDataContext from "../data/MyDataContext";
 
 function Content({ players }) {
+  const { handleSearch } = useContext(MyDataContext);
+  let originalPlayers = [];
+
+  if (players) {
+    originalPlayers = [...players];
+  }
+
   return (
     <main>
       <section className="welcome">
@@ -9,10 +18,10 @@ function Content({ players }) {
         <div className="welcome-content">
           <h1>PLAYERS APP</h1>
           <h3>Busca info de tus jugadores favoritos aca!</h3>
-          <SearchPlayer />
+          <SearchPlayer handleSearch={handleSearch} />
         </div>
       </section>
-      <Players data={players}></Players>
+      <Players showFirstFive={true}></Players>
     </main>
   );
 }

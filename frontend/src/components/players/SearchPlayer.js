@@ -1,9 +1,14 @@
+import { useNavigate } from "react-router-dom";
 import SearchIcon from "../user/icons/search";
 
 function SearchPlayer({ handleSearch }) {
   function handleChange(e) {
     const searchTerm = e.target.value;
     handleSearch(searchTerm);
+  }
+  const navigate = useNavigate();
+  function navigateToPlayers() {
+    navigate("/players");
   }
 
   return (
@@ -13,7 +18,7 @@ function SearchPlayer({ handleSearch }) {
         placeholder="Ej. Lionel Andrés Messi"
         onChange={handleChange}
       />
-      <button onClick={handleSearch}>
+      <button onClick={(handleSearch, navigateToPlayers)}>
         <SearchIcon />
       </button>
     </div>

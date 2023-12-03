@@ -33,7 +33,10 @@ function App() {
           <Header />
           <Routes>
             <Route path="/" exact element={<Content />} />
-            <Route path="/players" element={<Players showFilter={true} />} />
+            <Route
+              path="/players"
+              element={<Players showFilter={true} showFirstFive={false} />}
+            />
             <Route path="/players/:id" element={<DetailedPlayer />} />
             <Route path="/management" element={<PlayersManagement />} />
             <Route path="/create-player" element={<CreatePlayer />} />
