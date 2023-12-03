@@ -2,13 +2,19 @@ import { useContext } from "react";
 import Players from "../players/Players";
 import SearchPlayer from "../players/SearchPlayer";
 import MyDataContext from "../data/MyDataContext";
+import { useNavigate } from "react-router-dom";
 
 function Content({ players }) {
   const { handleSearch } = useContext(MyDataContext);
+  const navigate = useNavigate();
   let originalPlayers = [];
 
   if (players) {
     originalPlayers = [...players];
+  }
+
+  function navigateLogin() {
+    navigate("/login");
   }
 
   return (
@@ -19,6 +25,18 @@ function Content({ players }) {
           <h1>PLAYERS APP</h1>
           <h3>Busca info de tus jugadores favoritos aca!</h3>
           <SearchPlayer handleSearch={handleSearch} />
+          <p
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              color: "white",
+            }}
+          >
+            <strong onClick={navigateLogin} style={{ cursor: "pointer" }}>
+              Log in
+            </strong>{" "}
+            &nbsp;to create tags and players.
+          </p>
         </div>
       </section>
       <Players showFirstFive={true}></Players>
