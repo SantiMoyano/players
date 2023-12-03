@@ -26,13 +26,11 @@ export async function updateOrCreateTag(data) {
       tagColor: data.tagColor,
       tagType: data.tagType,
     });
-    alert("Tag created!");
   } else {
     await axios.put(url + "/api/tags/" + data.id, {
       tagName: data.tagName,
       tagColor: data.tagColor,
       tagType: data.tagType,
     });
-    alert("Tag updated!");
   }
 }

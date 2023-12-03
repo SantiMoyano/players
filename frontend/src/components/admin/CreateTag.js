@@ -6,6 +6,8 @@ function CreateTag({ handleUpdatedTag, updateTag, tagNameEditing, id }) {
   const [tagName, setTagName] = useState("");
   const [tagColor, setTagColor] = useState("");
   const [tagType, setTagType] = useState("position");
+  const [message, setMessage] = useState("");
+  const [messageColor, setMessageColor] = useState("");
 
   const data = { tagName, tagColor, tagType, updateTag, id };
 
@@ -23,11 +25,27 @@ function CreateTag({ handleUpdatedTag, updateTag, tagNameEditing, id }) {
   function handleSubmit(e) {
     e.preventDefault();
     handleSubmitTag(data);
-    handleUpdatedTag();
+    if (updateTag) {
+      changeMessage("Tag actualizado con éxito!", "limegreen");
+    } else {
+      changeMessage("Tag creado con éxito!", "limegreen");
+    }
+    setTimeout(() => {
+      handleUpdatedTag();
+    }, 2000);
+  }
+
+  function changeMessage(message, color) {
+    setMessage(message);
+    setMessageColor(color);
+    setTimeout(() => {
+      setMessage("");
+      setMessageColor("");
+    }, 2000);
   }
 
   function handleChangeUsername(e) {
-    setTagName(e.target.value);
+    setTagName(e.target.value.toUpperCase()); // Convertir a mayúsculas
   }
 
   function handleChangeColor(e) {
@@ -60,6 +78,11 @@ function CreateTag({ handleUpdatedTag, updateTag, tagNameEditing, id }) {
       <div>
         <label htmlFor="name">Color:</label>
         <input type="color" id="colorPicker" onChange={handleChangeColor} />
+      </div>
+      <div>
+        <span style={{ color: messageColor, fontWeight: "bold" }}>
+          {message}
+        </span>
       </div>
       <div className="button-submit">
         <button type="submit">
