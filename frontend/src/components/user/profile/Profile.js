@@ -8,6 +8,7 @@ function Profile() {
   const { fetchUser, fetchPlayer } = useContext(MyDataContext);
   const [userData, setUserData] = useState({});
   const [favouritePlayers, setFavouritePlayers] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const { id } = useParams();
 
   useEffect(() => {
@@ -22,15 +23,16 @@ function Profile() {
         );
 
         setFavouritePlayers(players);
+        setIsLoading(false);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
     };
 
     fetchData();
-  }, [id, fetchUser, fetchPlayer]);
+  }, [id, fetchUser, fetchPlayer, isLoading]);
 
-  return (
+  return !isLoading ? (
     <section className="profile">
       <div className="banner">
         {/* Contenido del banner, por ejemplo, un título */}
@@ -58,6 +60,10 @@ function Profile() {
         userData={userData}
         favouritePlayers={favouritePlayers}
       />
+    </section>
+  ) : (
+    <section className="loading">
+      <h2>. . .</h2>
     </section>
   );
 }
