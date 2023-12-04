@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import MenuIcon from "../user/icons/menu.js";
 
 function Header() {
-  const { isAdmin } = useContext(MyDataContext);
+  const { isAdmin, isLogged } = useContext(MyDataContext);
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
   const [clickedMenu, setClickedMenu] = useState(false);
 
@@ -65,7 +65,7 @@ function NavElems() {
           </Link>
         </li>
 
-        {isAdmin && (
+        {isLogged && (
           <>
             <li>
               <Link to="/management" style={linkStyle}>

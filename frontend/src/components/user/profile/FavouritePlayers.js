@@ -7,7 +7,7 @@ export function FavouritePlayers({
 }) {
   return (
     <section className="favourite-players players">
-      <h2>Favorite players of {userData.username}</h2>
+      <h2>{userData.username}'s Favorite players</h2>
       <ul>
         {favouritePlayers.map((el) => (
           <FavouritePlayer

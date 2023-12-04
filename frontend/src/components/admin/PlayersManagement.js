@@ -13,6 +13,14 @@ function PlayersManagement() {
     handleSearch,
   } = useContext(MyDataContext);
   const [filter, setFilter] = useState("default");
+  const [message, setMessage] = useState("");
+
+  function handleDeleteButton() {
+    setMessage("You have to be an administrator to do this.");
+    setTimeout(() => {
+      setMessage("");
+    }, 2000);
+  }
 
   return (
     <section className="management-content">
@@ -26,6 +34,8 @@ function PlayersManagement() {
       </div>
       <SearchPlayer handleSearch={handleSearch} />
 
+      <p>{message}</p>
+
       <ul>
         {filteredPlayerList.map((player) => (
           <Player
@@ -35,6 +45,7 @@ function PlayersManagement() {
             filter={filter}
             handleDelete={() => handleDeletePlayer(player._id)}
             handleUpdate={() => handleUpdatePlayer(player._id)}
+            handleDeleteButton={handleDeleteButton}
           ></Player>
         ))}
       </ul>
@@ -42,7 +53,14 @@ function PlayersManagement() {
   );
 }
 
-function Player({ name, imageUrl, filter, handleDelete, handleUpdate }) {
+function Player({
+  name,
+  imageUrl,
+  filter,
+  handleDelete,
+  handleUpdate,
+  handleDeleteButton,
+}) {
   return (
     <>
       <li>
@@ -64,7 +82,10 @@ function Player({ name, imageUrl, filter, handleDelete, handleUpdate }) {
           <button onClick={handleUpdate}>
             <PencilIcon />
           </button>
-          <button style={{ backgroundColor: "red" }} onClick={handleDelete}>
+          <button
+            style={{ backgroundColor: "red" }}
+            onClick={handleDeleteButton}
+          >
             <CloseIcon />
           </button>
         </div>
