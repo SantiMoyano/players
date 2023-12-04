@@ -92,11 +92,6 @@ function NavElems() {
                 Profile
               </Link>
             </li>
-            <li>
-              <Link to="/" style={linkStyle} onClick={handleLogout}>
-                Logout
-              </Link>
-            </li>
           </>
         ) : (
           <li>

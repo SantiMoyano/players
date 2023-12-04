@@ -5,7 +5,7 @@ import MyDataContext from "../data/MyDataContext";
 import { useNavigate } from "react-router-dom";
 
 function Content({ players }) {
-  const { handleSearch } = useContext(MyDataContext);
+  const { handleSearch, isLogged } = useContext(MyDataContext);
   const navigate = useNavigate();
   let originalPlayers = [];
 
@@ -25,18 +25,20 @@ function Content({ players }) {
           <h1>PLAYERS APP</h1>
           <h3>Search info about your favorite players here!</h3>
           <SearchPlayer handleSearch={handleSearch} />
-          <p
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              color: "white",
-            }}
-          >
-            <strong onClick={navigateLogin} style={{ cursor: "pointer" }}>
-              Log in
-            </strong>{" "}
-            &nbsp;to create tags and players.
-          </p>
+          {!isLogged && (
+            <p
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                color: "white",
+              }}
+            >
+              <strong onClick={navigateLogin} style={{ cursor: "pointer" }}>
+                Log in
+              </strong>{" "}
+              &nbsp;to create tags and players.
+            </p>
+          )}
         </div>
       </section>
       <Players showFirstFive={true}></Players>
