@@ -5,7 +5,7 @@ import { MyDataProvider } from "./components/data/MyDataProvider";
 import "./styles/App.css";
 import "./styles/content.css";
 import "./styles/players.css";
-import "./styles/profile.css";
+import "./components/user/profile/profile.css";
 import "./styles/detailed-player.css";
 import "./styles/management.css";
 import "./styles/tags.css";
@@ -21,7 +21,7 @@ import CreatePlayer from "./components/admin/CreatePlayer";
 import TagsManagement from "./components/admin/TagsManagement";
 import Login from "./components/user/Login";
 import Footer from "./components/static/Footer";
-import Profile from "./components/user/Profile";
+import Profile from "./components/user/profile/Profile";
 import ScrollToTop from "./ScrollToTop";
 
 function App() {

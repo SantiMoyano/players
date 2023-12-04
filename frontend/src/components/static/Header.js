@@ -33,7 +33,7 @@ function Header() {
 
   return (
     <header className={`main-header ${clickedMenu ? "background-menu" : ""}`}>
-      {screenWidth < 768 ? (
+      {screenWidth < 1145 ? (
         <>
           <MenuIcon handleClick={handleMenuClick} />
           {clickedMenu ? <NavElems isAdmin={isAdmin} /> : ""}

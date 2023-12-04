@@ -1,0 +1,132 @@
+.profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  min-height: 100dvh;
+  width: 100%;
+}
+
+.banner {
+  background-color: rgb(115, 53, 186);
+  color: white;
+  padding: 24px;
+  margin: -32px 0 16px 0;
+  text-align: center;
+  width: 80dvw;
+  border-radius: 8px;
+}
+
+.user {
+  display: flex;
+  justify-content: start;
+  align-items: start;
+  width: 80dvw;
+}
+
+.user-logo {
+  display: flex;
+  justify-content: center;
+  width: 12rem;
+  border-radius: 50%; /* Hace que el contenedor sea circular */
+  align-items: center;
+  overflow: hidden; /* Asegura que la imagen no se desborde */
+}
+
+.user-logo img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  aspect-ratio: 4/4;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  padding: 8px 24px;
+}
+
+.user-info h2 {
+  font-size: 2rem;
+}
+
+.user-info p {
+  margin: 0;
+  text-align: start;
+  font-size: 1rem;
+}
+
+.profile h2 {
+  color: white;
+}
+
+.profile .favourite-players {
+  padding-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile ul {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  text-align: start;
+  color: white;
+  max-width: 90dvw;
+}
+
+.profile ul li {
+  width: 100%;
+  display: flex;
+}
+
+@media screen and (width >= 768px) {
+  .profile {
+    padding-top: 8rem;
+  }
+
+  .banner {
+    width: 40rem;
+  }
+
+  .user {
+    width: 40rem;
+  }
+
+  .user-logo {
+    max-width: 200px;
+    width: 100%;
+  }
+
+  .user-logo img {
+    width: 100%;
+  }
+
+  .user-info {
+    padding: 8px 24px;
+  }
+
+  .player {
+    min-width: 400px;
+  }
+
+  .profile ul {
+    max-width: 800px;
+  }
+
+  .profile figure {
+    max-width: 400px;
+    min-width: 400px;
+  }
+
+  .profile figure img {
+    width: 100%;
+  }
+}
