@@ -1,5 +1,6 @@
 import { useContext, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import MyDataContext from "../../data/MyDataContext";
 import { FavouritePlayers } from "./FavouritePlayers";
@@ -9,7 +10,12 @@ function Profile() {
   const [userData, setUserData] = useState({});
   const [favouritePlayers, setFavouritePlayers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const navigate = useNavigate();
   const { id } = useParams();
+
+  function handlePlayerClicked(playerId) {
+    navigate("/players/" + playerId);
+  }
 
   useEffect(() => {
     const fetchData = async () => {
@@ -59,6 +65,7 @@ function Profile() {
       <FavouritePlayers
         userData={userData}
         favouritePlayers={favouritePlayers}
+        handlePlayerClicked={handlePlayerClicked}
       />
     </section>
   ) : (

@@ -1,6 +1,12 @@
-export function FavouritePlayer({ name, image, score }) {
+export function FavouritePlayer({
+  id,
+  name,
+  image,
+  score,
+  handlePlayerClicked,
+}) {
   return (
-    <li className="player">
+    <li onClick={() => handlePlayerClicked(id)} className="player">
       <figure>
         <img src={image} alt={name} />
         <div className="content">
