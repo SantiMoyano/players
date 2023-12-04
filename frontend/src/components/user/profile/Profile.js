@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import MyDataContext from "../../data/MyDataContext";
 import { FavouritePlayers } from "./FavouritePlayers";
 import { EditProfile } from "./EditProfile";
+import Loading from "../../loading/Loading";
 
 export function Profile() {
   const { fetchUser, fetchPlayer, handleLogout, updateUser } =
@@ -122,9 +123,7 @@ export function Profile() {
       )}
     </section>
   ) : (
-    <section className="loading">
-      <h2>. . .</h2>
-    </section>
+    <Loading />
   );
 }
 

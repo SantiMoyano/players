@@ -1,6 +1,7 @@
 import { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import MyDataContext from "../data/MyDataContext";
+import Loading from "../loading/Loading";
 
 import Position from "./Position";
 
@@ -97,9 +98,7 @@ function DetailedPlayer() {
       </main>
     </section>
   ) : (
-    <section className="loading">
-      <h2>. . .</h2>
-    </section>
+    <Loading />
   );
 }
 
