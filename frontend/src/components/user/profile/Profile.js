@@ -5,7 +5,8 @@ import MyDataContext from "../../data/MyDataContext";
 import { FavouritePlayers } from "./FavouritePlayers";
 
 function Profile() {
-  const { fetchUser, fetchPlayer, handleLogout } = useContext(MyDataContext);
+  const { fetchUser, fetchPlayer, handleLogout, updateUser } =
+    useContext(MyDataContext);
   const [userData, setUserData] = useState({});
   const [favouritePlayers, setFavouritePlayers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -19,6 +20,10 @@ function Profile() {
 
   function goToHome() {
     navigate("/");
+  }
+
+  function goToPlayers() {
+    navigate("/players");
   }
 
   function handleEditMode() {
@@ -49,11 +54,20 @@ function Profile() {
     };
 
     fetchData();
-  }, [id, fetchUser, fetchPlayer, isLoading]);
+  }, [id, fetchUser, fetchPlayer, isLoading, userData]);
+
+  function handleUpdateProfile(data) {
+    const dataAndId = { data, id };
+    updateUser(dataAndId);
+    setEditProfileMode(false);
+  }
 
   return !isLoading ? (
     <section className="profile">
-      <div className="banner">
+      <div
+        style={{ backgroundColor: userData.profileBannerColor }}
+        className="banner"
+      >
         {/* Contenido del banner, por ejemplo, un título */}
       </div>
 
@@ -63,7 +77,7 @@ function Profile() {
         </div>
         <div className="user-info">
           <h2>{userData.username}</h2>
-          <p>Welcome to the {userData.username} profile!</p>
+          <p>{userData.profileBio}</p>
           <div onClick={handleEditMode} className="edit-profile">
             <p>Edit profile</p>
           </div>
@@ -73,7 +87,12 @@ function Profile() {
           <p>Logout</p>
         </div>
       </div>
-      {editProfileMode && <EditProfile userData={userData} />}
+      {editProfileMode && (
+        <EditProfile
+          userData={userData}
+          handleUpdateProfile={handleUpdateProfile}
+        />
+      )}
       <hr
         style={{
           width: "55%",
@@ -83,12 +102,23 @@ function Profile() {
           backgroundColor: "#ddd",
         }}
       />
-
-      <FavouritePlayers
-        userData={userData}
-        favouritePlayers={favouritePlayers}
-        handlePlayerClicked={handlePlayerClicked}
-      />
+      {favouritePlayers.length > 0 ? (
+        <FavouritePlayers
+          userData={userData}
+          favouritePlayers={favouritePlayers}
+          handlePlayerClicked={handlePlayerClicked}
+        />
+      ) : (
+        <>
+          <p>{userData.username} still not have favorite players :c</p>
+          <h3
+            style={{ cursor: "pointer", paddingBottom: "200px" }}
+            onClick={goToPlayers}
+          >
+            View players!
+          </h3>
+        </>
+      )}
     </section>
   ) : (
     <section className="loading">
@@ -97,13 +127,44 @@ function Profile() {
   );
 }
 
-function EditProfile({ userData }) {
+function EditProfile({ userData, handleUpdateProfile }) {
+  const [username, setUsername] = useState(userData.username);
+  const [profileImageUrl, setProfileImageUrl] = useState(
+    userData.profileImageUrl
+  );
+  const [profileBio, setProfileBio] = useState(userData.profileBio);
+  const [profileBannerColor, setBannerColor] = useState(
+    userData.profileBannerColor
+  );
+
+  function handleChangeUsername(e) {
+    setUsername(e.target.value);
+  }
+
+  function handleChangeImageUrl(e) {
+    setProfileImageUrl(e.target.value);
+  }
+
+  function handleChangeBio(e) {
+    setProfileBio(e.target.value);
+  }
+
+  function handleChangeColor(e) {
+    setBannerColor(e.target.value);
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    const data = { username, profileImageUrl, profileBio, profileBannerColor };
+    handleUpdateProfile(data);
+  }
+
   return (
     <section
       className="form-section"
       style={{ padding: "10px", minHeight: "10px" }}
     >
-      <form>
+      <form onSubmit={handleSubmit}>
         <div>
           <div>
             <label htmlFor="name">Username:</label>
@@ -112,6 +173,7 @@ function EditProfile({ userData }) {
               id="name"
               name="name"
               defaultValue={userData.username}
+              onChange={handleChangeUsername}
             />
           </div>
           <div>
@@ -120,7 +182,8 @@ function EditProfile({ userData }) {
               type="text"
               id="name"
               name="name"
-              defaultValue={userData.bio}
+              defaultValue={userData.profileBio}
+              onChange={handleChangeBio}
             />
           </div>
           <div>
@@ -129,12 +192,19 @@ function EditProfile({ userData }) {
               type="text"
               id="imageUrl"
               name="name"
-              defaultValue={userData.profilePhotoUrl}
+              defaultValue={userData.profileImageUrl}
+              onChange={handleChangeImageUrl}
+              onPaste={handleChangeImageUrl}
             />
           </div>
           <div>
             <label htmlFor="name">Banner color:</label>
-            <input type="color" id="colorPicker" />
+            <input
+              type="color"
+              id="colorPicker"
+              defaultValue={userData.profileBannerColor}
+              onChange={handleChangeColor}
+            />
           </div>
           <div className="button-submit">
             <button type="submit">Update profile</button>

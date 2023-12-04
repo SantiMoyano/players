@@ -47,3 +47,7 @@ export async function createUser(data) {
     });
   }
 }
+
+export async function updateUser(data) {
+  await axios.put(url + "/api/users/" + data.id, data.data);
+}

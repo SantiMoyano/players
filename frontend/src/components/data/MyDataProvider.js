@@ -11,6 +11,7 @@ import {
   fetchUser,
   fetchUsers,
   createUser,
+  updateUser,
   getUserByName,
   addFavouritePlayer,
   removeFavouritePlayer,
@@ -173,6 +174,7 @@ export const MyDataProvider = ({ children }) => {
         handleDeleteTag,
         handleSubmitTag,
         handleGetUser,
+        updateUser,
       }}
     >
       {children}
