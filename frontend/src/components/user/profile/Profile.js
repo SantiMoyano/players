@@ -9,6 +9,7 @@ function Profile() {
   const [userData, setUserData] = useState({});
   const [favouritePlayers, setFavouritePlayers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [editProfileMode, setEditProfileMode] = useState(false);
   const navigate = useNavigate();
   const { id } = useParams();
 
@@ -18,6 +19,10 @@ function Profile() {
 
   function goToHome() {
     navigate("/");
+  }
+
+  function handleEditMode() {
+    setEditProfileMode(true);
   }
 
   async function handleLogoutClicked() {
@@ -59,11 +64,16 @@ function Profile() {
         <div className="user-info">
           <h2>{userData.username}</h2>
           <p>Welcome to the {userData.username} profile!</p>
+          <div onClick={handleEditMode} className="edit-profile">
+            <p>Edit profile</p>
+          </div>
         </div>
+
         <div onClick={handleLogoutClicked} className="logout">
           <p>Logout</p>
         </div>
       </div>
+      {editProfileMode && <EditProfile />}
       <hr
         style={{
           width: "55%",
@@ -83,6 +93,36 @@ function Profile() {
   ) : (
     <section className="loading">
       <h2>. . .</h2>
+    </section>
+  );
+}
+
+function EditProfile() {
+  return (
+    <section
+      className="form-section"
+      style={{ padding: "10px", minHeight: "10px" }}
+    >
+      <form>
+        <div>
+          <div>
+            <label htmlFor="name">Username:</label>
+            <input type="text" id="name" name="name" />
+          </div>
+          <div>
+            <label htmlFor="name">Biography:</label>
+            <input type="text" id="name" name="name" />
+          </div>
+          <div>
+            <label htmlFor="name">Image URL:</label>
+            <input type="text" id="imageUrl" name="name" />
+          </div>
+          <div>
+            <label htmlFor="name">Banner color:</label>
+            <input type="color" id="colorPicker" />
+          </div>
+        </div>
+      </form>
     </section>
   );
 }
