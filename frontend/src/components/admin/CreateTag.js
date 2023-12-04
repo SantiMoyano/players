@@ -15,7 +15,7 @@ function CreateTag({ handleUpdatedTag, updateTag, tagNameEditing, id }) {
     if (updateTag) {
       getTagData();
     }
-  }, []);
+  }, [id]);
 
   async function getTagData() {
     const data = await fetchTag(id);
@@ -26,9 +26,9 @@ function CreateTag({ handleUpdatedTag, updateTag, tagNameEditing, id }) {
     e.preventDefault();
     handleSubmitTag(data);
     if (updateTag) {
-      changeMessage("Tag actualizado con éxito!", "limegreen");
+      changeMessage("Tag updated successfully!", "limegreen");
     } else {
-      changeMessage("Tag creado con éxito!", "limegreen");
+      changeMessage("Tag created successfully!", "limegreen");
     }
     setTimeout(() => {
       handleUpdatedTag();
@@ -45,7 +45,7 @@ function CreateTag({ handleUpdatedTag, updateTag, tagNameEditing, id }) {
   }
 
   function handleChangeUsername(e) {
-    setTagName(e.target.value.toUpperCase()); // Convertir a mayúsculas
+    setTagName(e.target.value.toUpperCase()); // Convert to uppercase
   }
 
   function handleChangeColor(e) {
@@ -59,7 +59,7 @@ function CreateTag({ handleUpdatedTag, updateTag, tagNameEditing, id }) {
   return (
     <form onSubmit={handleSubmit}>
       <div>
-        <label htmlFor="name">Nombre:</label>
+        <label htmlFor="name">Name:</label>
         <input
           type="text"
           id="name"
@@ -69,9 +69,9 @@ function CreateTag({ handleUpdatedTag, updateTag, tagNameEditing, id }) {
         />
       </div>
       <div>
-        <label htmlFor="score">Tipo de tag:</label>
+        <label htmlFor="score">Tag Type:</label>
         <select onChange={handleSelectType}>
-          <option value="position">Posición</option>
+          <option value="position">Position</option>
           <option value="club">Club</option>
         </select>
       </div>
@@ -86,7 +86,7 @@ function CreateTag({ handleUpdatedTag, updateTag, tagNameEditing, id }) {
       </div>
       <div className="button-submit">
         <button type="submit">
-          <strong>{!updateTag ? "Crear Tag" : "Actualizar Tag"}</strong>
+          <strong>{!updateTag ? "Create Tag" : "Update Tag"}</strong>
         </button>
       </div>
     </form>

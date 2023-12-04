@@ -272,7 +272,7 @@ function CreatePlayer() {
         </div>
         <div className="button-submit">
           <button type="submit">
-            {updateMode ? "ACTUALIZAR JUGADOR" : "CREAR JUGADOR"}
+            {updateMode ? "UPDATE PLAYER" : "CREATE PLAYER"}
           </button>
         </div>
       </form>

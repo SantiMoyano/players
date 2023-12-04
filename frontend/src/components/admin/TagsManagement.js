@@ -34,12 +34,15 @@ function TagsManagement() {
     <section className="form-section">
       <button
         className="button-submit"
-        onClick={(handleClick, handleUpdatedTag)}
+        onClick={() => {
+          handleClick();
+          handleUpdatedTag();
+        }}
       >
-        <strong>{toggled ? "Crear un nuevo tag" : "Ver tags"}</strong>
+        <strong>{toggled ? "Create a new tag" : "View tags"}</strong>
       </button>
 
-      {!toggled ? <h2>Crear nuevo tag</h2> : <h2>Lista de tags</h2>}
+      {!toggled ? <h2>Create a new tag</h2> : <h2>List of tags</h2>}
 
       {toggled ? (
         <TagsList handleEdit={handleEdit} />

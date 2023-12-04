@@ -1,5 +1,6 @@
 import { useState, useEffect, useContext } from "react";
 import MyDataContext from "../data/MyDataContext";
+
 function Login() {
   const { createUser, checkLogin } = useContext(MyDataContext);
   const [isLogin, setIsLogin] = useState(true);
@@ -32,22 +33,24 @@ function Login() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    const data = await { username, password };
-    // register user on database
+    const data = { username, password };
+
+    // register user on the database
     if (!isLogin) {
       if (passwordMatches) {
         createUser(data);
-        changeMessage("Te registraste con exito!", "limegreen");
+        changeMessage("Registered successfully!", "limegreen");
         setIsLogin(!isLogin);
       }
     }
-    // login user on database
+
+    // login user on the database
     if (isLogin) {
       const tryLogin = await checkLogin(data);
       if (tryLogin === false) {
-        changeMessage("Contraseña o usuario incorrectas", "red");
+        changeMessage("Incorrect password or username", "red");
       } else {
-        changeMessage("Te logueaste con exito!", "limegreen");
+        changeMessage("Logged in successfully!", "limegreen");
       }
     }
   }
@@ -67,11 +70,11 @@ function Login() {
 
       <form onSubmit={handleSubmit}>
         <div>
-          <label htmlFor="name">Ingrese su usuario:</label>
+          <label htmlFor="name">Enter your username:</label>
           <input type="text" id="name" name="name" onChange={handleUsername} />
         </div>
         <div>
-          <label htmlFor="password">Ingrese su contraseña:</label>
+          <label htmlFor="password">Enter your password:</label>
           <input
             type="password"
             id="password"
@@ -81,7 +84,7 @@ function Login() {
         </div>
         {!isLogin && (
           <div>
-            <label htmlFor="password">Reingrese su contraseña:</label>
+            <label htmlFor="password">Re-enter your password:</label>
 
             <input
               type="password"
@@ -93,7 +96,7 @@ function Login() {
               <span
                 style={{ color: "red", paddingTop: "8px", fontWeight: "bold" }}
               >
-                Las contraseñas no coinciden
+                Passwords do not match
               </span>
             )}
           </div>
@@ -104,15 +107,17 @@ function Login() {
           </span>
         </div>
         <div className="button-submit">
-          <button>{isLogin ? "INICIAR SESIÓN" : "CREAR CUENTA"}</button>
+          <button>{isLogin ? "LOGIN" : "CREATE ACCOUNT"}</button>
         </div>
 
         <div className="auth-switch">
           <span>
-            {isLogin ? "No tenes una cuenta aun?" : "Ya tenes una cuenta?"}
+            {isLogin
+              ? "Don't have an account yet?"
+              : "Already have an account?"}
           </span>
           <span id="auth-span" onClick={handleClick}>
-            <u>{isLogin ? "Registrarse" : "Loguearse"}</u>
+            <u>{isLogin ? "Register" : "Login"}</u>
           </span>
         </div>
       </form>

@@ -13,11 +13,10 @@ function SortPlayers({ handleSortByScore }) {
 
   return (
     <div className="sort-players">
-      <h2>Ordenar jugadores por:</h2>
+      <h2>Sort players by:</h2>
       <select value={sortBy} onChange={handleSelectChange}>
-        <option value="input">Orden de entrada</option>
-        <option value="position">Posicion</option>
-        <option value="score">Valoracion</option>
+        <option value="input">Entry order</option>
+        <option value="score">Score</option>
       </select>
     </div>
   );

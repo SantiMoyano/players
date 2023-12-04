@@ -6,7 +6,7 @@ import MenuIcon from "../user/icons/menu.js";
 
 function Header() {
   const { isAdmin } = useContext(MyDataContext);
-  const [anchoPantalla, setAnchoPantalla] = useState(window.innerWidth);
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
   const [clickedMenu, setClickedMenu] = useState(false);
 
   const handleMenuClick = () => {
@@ -14,26 +14,26 @@ function Header() {
   };
 
   useEffect(() => {
-    const actualizarAnchoPantalla = () => {
-      setAnchoPantalla(window.innerWidth);
+    const updateScreenWidth = () => {
+      setScreenWidth(window.innerWidth);
     };
 
-    window.addEventListener("resize", actualizarAnchoPantalla);
+    window.addEventListener("resize", updateScreenWidth);
 
-    // Limpia el listener cuando el componente se desmonta
+    // Clean up the listener when the component unmounts
     return () => {
-      window.removeEventListener("resize", actualizarAnchoPantalla);
+      window.removeEventListener("resize", updateScreenWidth);
     };
   }, []);
 
   /*
-   * SI ES MOBILE ENTONCES MUESTRA HAMBURGUESA Y ALTERNA EL RESTO DE ELEMENTOS DEL HEADER
-   * SI ES DESKTOP MUESTRA TODOS LOS ELEMENTOS DEL HEADER (Sin la hamburguesa)
+   * IF IT'S MOBILE, DISPLAY THE HAMBURGER ICON AND TOGGLE THE OTHER HEADER ELEMENTS
+   * IF IT'S DESKTOP, DISPLAY ALL HEADER ELEMENTS (Without the hamburger icon)
    */
 
   return (
-    <header className={`main-header  ${clickedMenu ? "background-menu" : ""}`}>
-      {anchoPantalla < 768 ? (
+    <header className={`main-header ${clickedMenu ? "background-menu" : ""}`}>
+      {screenWidth < 768 ? (
         <>
           <MenuIcon handleClick={handleMenuClick} />
           {clickedMenu ? <NavElems isAdmin={isAdmin} /> : ""}
@@ -61,7 +61,7 @@ function NavElems() {
       <ul>
         <li>
           <Link to="/players" style={linkStyle}>
-            Jugadores
+            Players
           </Link>
         </li>
 
@@ -69,17 +69,17 @@ function NavElems() {
           <>
             <li>
               <Link to="/management" style={linkStyle}>
-                Admin Jugadores
+                Admin Players
               </Link>
             </li>
             <li>
               <Link to="/create-player" style={linkStyle}>
-                Crear Jugador
+                Create Player
               </Link>
             </li>
             <li>
               <Link to="/tags-management" style={linkStyle}>
-                Editar Tags
+                Edit Tags
               </Link>
             </li>
           </>
@@ -89,19 +89,19 @@ function NavElems() {
           <>
             <li>
               <Link to={`/profile/${userId}`} style={linkStyle}>
-                Perfil
+                Profile
               </Link>
             </li>
             <li>
               <Link to="/" style={linkStyle} onClick={handleLogout}>
-                Desloguearse
+                Logout
               </Link>
             </li>
           </>
         ) : (
           <li>
             <Link to="/login" style={linkStyle}>
-              Ingresar
+              Log In
             </Link>
           </li>
         )}

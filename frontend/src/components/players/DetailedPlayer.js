@@ -27,7 +27,7 @@ function DetailedPlayer() {
 
   async function getUserData() {
     const userData = await handleGetUser();
-    //Verifica si el jugador mostrado es favorito
+    // Checks if the displayed player is a favorite
     if (!userData.favouritePlayers.includes(id)) {
       setIsFavourite(true);
     }
@@ -54,18 +54,16 @@ function DetailedPlayer() {
   return !isLoading ? (
     <section className="detailed-player">
       <main>
-        {/*  if user is logged and displayed player is favourite or not */}
+        {/* If the user is logged in and the displayed player is a favorite or not */}
         {isLogged & isFavourite && (
           <div className="add-fav-player">
-            <button onClick={handleAddFavourite}>
-              Agregar como favorito ⭐
-            </button>
+            <button onClick={handleAddFavourite}>Add to Favorites ⭐</button>
           </div>
         )}
         {isLogged & !isFavourite && (
           <div className="add-fav-player">
             <button onClick={handleRemoveFavourite}>
-              Quitar de mis favoritos ⭐
+              Remove from Favorites ⭐
             </button>
           </div>
         )}
@@ -94,7 +92,7 @@ function DetailedPlayer() {
             </figcaption>
             <img src={playerData.gifUrl} alt="messi" />
           </figure>
-          <h3>{`Trofeos ganados: ${playerData.trophies}`}</h3>
+          <h3>{`Trophies won: ${playerData.trophies}`}</h3>
         </div>
       </main>
     </section>

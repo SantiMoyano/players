@@ -32,7 +32,7 @@ function Profile() {
   return (
     <section className="profile">
       <h2>{userData.username}</h2>
-      <p>Bienvenido al perfil de {userData.username}!</p>
+      <p>Welcome to the profile of {userData.username}!</p>
       <FavouritePlayers
         userData={userData}
         favouritePlayers={favouritePlayers}
@@ -44,7 +44,7 @@ function Profile() {
 function FavouritePlayers({ userData, favouritePlayers }) {
   return (
     <section className="favourite-players players">
-      <h2>Jugadores favoritos de {userData.username}</h2>
+      <h2>Favorite players of {userData.username}</h2>
       <ul>
         {favouritePlayers.map((el) => (
           <FavouritePlayer

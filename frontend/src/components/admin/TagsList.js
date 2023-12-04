@@ -36,13 +36,13 @@ function TagsList({ handleEdit }) {
 function SortTags({ handleFilterChange, selectedFilter }) {
   return (
     <div className="sort-players">
-      <span>Mostrar solo:</span>
+      <span>Show only:</span>
       <select
         onChange={(e) => handleFilterChange(e.target.value)}
         value={selectedFilter}
       >
-        <option value="position">Posiciones</option>
-        <option value="club">Clubes</option>
+        <option value="position">Positions</option>
+        <option value="club">Clubs</option>
       </select>
     </div>
   );

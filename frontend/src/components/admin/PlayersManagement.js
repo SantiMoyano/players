@@ -17,11 +17,11 @@ function PlayersManagement() {
   return (
     <section className="management-content">
       <div className="sort-players">
-        <h2>Cambiar modo de listar:</h2>
+        <h2>Change listing mode:</h2>
 
         <select value={filter} onChange={(e) => setFilter(e.target.value)}>
-          <option value="default">Con imagen</option>
-          <option value="nameOnly">Solo nombre</option>
+          <option value="default">With Image</option>
+          <option value="nameOnly">Name Only</option>
         </select>
       </div>
       <SearchPlayer handleSearch={handleSearch} />

@@ -42,18 +42,16 @@ function Players({ showFilter, showFirstFive }) {
         </section>
       ) : (
         <section className="view-more-players">
-          <h2>Ultimos jugadores</h2>
+          <h2>Latest players</h2>
           <button
             onClick={navigateToMorePlayers}
             className="view-more-players-button"
           >
-            Ver mas jugadores
+            View more players
           </button>
         </section>
       )}
-      {filteredPlayerList.length === 0 && (
-        <span>"No se encontraron resultados :c"</span>
-      )}
+      {filteredPlayerList.length === 0 && <span>"No results found :c"</span>}
       <ul>
         {playerList.map((el) => (
           <>

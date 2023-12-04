@@ -23,7 +23,7 @@ function Content({ players }) {
         <img src="cristiano-ronaldo.jpg" alt="bichu" />
         <div className="welcome-content">
           <h1>PLAYERS APP</h1>
-          <h3>Busca info de tus jugadores favoritos aca!</h3>
+          <h3>Search info about your favorite players here!</h3>
           <SearchPlayer handleSearch={handleSearch} />
           <p
             style={{
