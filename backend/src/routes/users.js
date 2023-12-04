@@ -6,6 +6,7 @@ const {
   getUsers,
   createUser,
   deleteUser,
+  updateUser,
   addFavouritePlayer,
   removeFavouritePlayer,
 } = require("../controllers/users.controllers");
@@ -20,7 +21,8 @@ router
 router
     .route("/:id")
     .get(getUser)
-    .delete(deleteUser);
+    .delete(deleteUser)
+    .put(updateUser);
 
 router
   .route("/players/action")

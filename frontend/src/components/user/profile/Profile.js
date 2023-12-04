@@ -73,7 +73,7 @@ function Profile() {
           <p>Logout</p>
         </div>
       </div>
-      {editProfileMode && <EditProfile />}
+      {editProfileMode && <EditProfile userData={userData} />}
       <hr
         style={{
           width: "55%",
@@ -97,7 +97,7 @@ function Profile() {
   );
 }
 
-function EditProfile() {
+function EditProfile({ userData }) {
   return (
     <section
       className="form-section"
@@ -107,19 +107,37 @@ function EditProfile() {
         <div>
           <div>
             <label htmlFor="name">Username:</label>
-            <input type="text" id="name" name="name" />
+            <input
+              type="text"
+              id="name"
+              name="name"
+              defaultValue={userData.username}
+            />
           </div>
           <div>
-            <label htmlFor="name">Biography:</label>
-            <input type="text" id="name" name="name" />
+            <label htmlFor="name">Bio:</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              defaultValue={userData.bio}
+            />
           </div>
           <div>
             <label htmlFor="name">Image URL:</label>
-            <input type="text" id="imageUrl" name="name" />
+            <input
+              type="text"
+              id="imageUrl"
+              name="name"
+              defaultValue={userData.profilePhotoUrl}
+            />
           </div>
           <div>
             <label htmlFor="name">Banner color:</label>
             <input type="color" id="colorPicker" />
+          </div>
+          <div className="button-submit">
+            <button type="submit">Update profile</button>
           </div>
         </div>
       </form>

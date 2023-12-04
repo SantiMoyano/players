@@ -11,6 +11,15 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
+    profileImageUrl: {
+      type: String,
+    },
+    profileBio: {
+      type: String,
+    },
+    profileBannerColor: {
+      type: String,
+    },
     favouritePlayers: [
       {
         type: Schema.Types.ObjectId,
