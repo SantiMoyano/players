@@ -89,8 +89,27 @@ function DetailedPlayer() {
 
           <figure>
             <figcaption className="player-description">
-              {playerData.description}
+              {playerData.description.split("\n").map((paragraph, index) => (
+                <p key={index}>
+                  {paragraph.includes(":")
+                    ? paragraph
+                        .split(":")
+                        .map((text, i) => (
+                          <span key={i}>
+                            {i === 0 ? <strong>{text}</strong> : text}
+                          </span>
+                        ))
+                    : paragraph.split(" ").map((word, i) => (
+                        <span key={i}>
+                          {/\d+/.test(word) ? <strong>{word}</strong> : word}
+                          {i === paragraph.split(" ").length - 1 ? null : " "}
+                        </span>
+                      ))}
+                  <br />
+                </p>
+              ))}
             </figcaption>
+
             <img src={playerData.gifUrl} alt="messi" />
           </figure>
           <h3>{`Trophies won: ${playerData.trophies}`}</h3>
