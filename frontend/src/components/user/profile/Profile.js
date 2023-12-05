@@ -81,7 +81,9 @@ export function Profile() {
           <h2>{userData.username}</h2>
           <p>{userData.profileBio}</p>
           <div onClick={handleEditMode} className="edit-profile">
-            <p>Edit profile</p>
+            <p>
+              <strong>Edit profile</strong>
+            </p>
           </div>
         </div>
 

@@ -102,13 +102,31 @@ footer {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: rgb(33, 33, 33);
+  background-color: #212121; /* Cambiado a un tono más oscuro */
   min-height: 200px;
   clip-path: polygon(0% 15%, 100% 0, 100% 100%, 0% 100%);
+  padding: 20px; /* Añadido un poco de espacio interno para mejorar la apariencia */
 }
 
 footer span {
-  color: white;
+  color: #fff; /* Utilizando código hexadecimal para el color blanco */
+  margin-bottom: 10px; /* Agregado margen inferior para separar el texto del enlace */
+}
+
+footer a {
+  color: #fff;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+
+footer a:hover {
+  text-decoration: underline; /* Subrayar enlace al pasar el ratón sobre él */
+}
+
+/* Estilos para el ícono de GitHub */
+footer a svg {
+  margin-right: 5px; /* Agregado espacio entre el texto y el ícono */
 }
 
 @media screen and (width >= 1145px) {
