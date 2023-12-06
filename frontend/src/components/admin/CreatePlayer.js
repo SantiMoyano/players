@@ -164,116 +164,118 @@ function CreatePlayer() {
       <h2>{updateMode ? "UPDATE PLAYER" : "CREATE PLAYER"}</h2>
       <form onSubmit={handleSubmit}>
         <div>
-          <div className="tags-selector">
-            <label>Tags:</label>
-            <div className="tag-list">
-              {selectedTags.map((tag) => (
-                <div>
-                  <span style={{ color: tag.tagColor }}>{tag.tagName}</span>
-                  <span onClick={() => deleteTagFromSelected(tag)}>X</span>
-                </div>
-              ))}
+          <div>
+            <div className="tags-selector">
+              <label>Tags:</label>
+              <div className="tag-list">
+                {selectedTags.map((tag) => (
+                  <div>
+                    <span style={{ color: tag.tagColor }}>{tag.tagName}</span>
+                    <span onClick={() => deleteTagFromSelected(tag)}>X</span>
+                  </div>
+                ))}
+              </div>
+              <input
+                type="text"
+                id="tags"
+                placeholder="Ej. Barcelona, Delantero.."
+                name="tags"
+                onClick={handleChangeTags}
+                onChange={handleChangeTags}
+              />
             </div>
+            <select onChange={(e) => addTag(e.target.value)}>
+              {myTagList.map((tag) => (
+                <option key={tag._id} value={tag._id}>
+                  {tag.tagName}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div>
+            <label htmlFor="name">Name:</label>
             <input
               type="text"
-              id="tags"
-              placeholder="Ej. Barcelona, Delantero.."
-              name="tags"
-              onClick={handleChangeTags}
-              onChange={handleChangeTags}
+              id="name"
+              name="name"
+              defaultValue={playerData.name}
+              onChange={handleChangeName}
             />
           </div>
-          <select onChange={(e) => addTag(e.target.value)}>
-            {myTagList.map((tag) => (
-              <option key={tag._id} value={tag._id}>
-                {tag.tagName}
-              </option>
-            ))}
-          </select>
-        </div>
-        <div>
-          <label htmlFor="name">Name:</label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            defaultValue={playerData.name}
-            onChange={handleChangeName}
-          />
-        </div>
-        <div>
-          <label htmlFor="score">Score:</label>
-          <input
-            type="number"
-            id="score"
-            name="score"
-            defaultValue={playerData.score}
-            onChange={handleChangeScore}
-          />
-        </div>
-        <div>
-          <label htmlFor="trophy">Trophies:</label>
-          <input
-            type="number"
-            id="trophy"
-            name="trophy"
-            defaultValue={playerData.trophies}
-            onChange={handleChangeTrophies}
-          />
-        </div>
-        <div>
-          <label htmlFor="description">
-            Short description: (Max. 100 Chars.)
-          </label>
-          <textarea
-            id="short-description"
-            name="short-description"
-            rows="4"
-            defaultValue={playerData.shortDescription}
-            onChange={handleChangeShortDescription}
-          ></textarea>
-        </div>
-        <div>
-          <label htmlFor="description">Description: (Min. 400 Chars.)</label>
-          <textarea
-            id="description"
-            name="description"
-            rows="4"
-            defaultValue={playerData.description}
-            onChange={handleChangeDescription}
-          ></textarea>
-        </div>
-        <div>
-          <label htmlFor="name">Image URL:</label>
-          <input
-            type="text"
-            id="imageUrl"
-            name="name"
-            defaultValue={playerData.imageUrl}
-            onChange={handleChangeImageUrl}
-            onPaste={handleChangeImageUrl}
-          />
-        </div>
-        <div>
-          <label htmlFor="name">Gif URL: (Optional)</label>
-          <input
-            type="text"
-            id="gifUrl"
-            name="name"
-            defaultValue={playerData.gifUrl}
-            onChange={handleChangeGifUrl}
-            onPaste={handleChangeGifUrl}
-          />
-        </div>
-        <div>
-          <span style={{ color: messageColor, fontWeight: "bold" }}>
-            {message}
-          </span>
-        </div>
-        <div className="button-submit">
-          <button type="submit">
-            {updateMode ? "UPDATE PLAYER" : "CREATE PLAYER"}
-          </button>
+          <div>
+            <label htmlFor="score">Score:</label>
+            <input
+              type="number"
+              id="score"
+              name="score"
+              defaultValue={playerData.score}
+              onChange={handleChangeScore}
+            />
+          </div>
+          <div>
+            <label htmlFor="trophy">Trophies:</label>
+            <input
+              type="number"
+              id="trophy"
+              name="trophy"
+              defaultValue={playerData.trophies}
+              onChange={handleChangeTrophies}
+            />
+          </div>
+          <div>
+            <label htmlFor="description">
+              Short description: (Max. 100 Chars.)
+            </label>
+            <textarea
+              id="short-description"
+              name="short-description"
+              rows="4"
+              defaultValue={playerData.shortDescription}
+              onChange={handleChangeShortDescription}
+            ></textarea>
+          </div>
+          <div>
+            <label htmlFor="description">Description: (Min. 400 Chars.)</label>
+            <textarea
+              id="description"
+              name="description"
+              rows="4"
+              defaultValue={playerData.description}
+              onChange={handleChangeDescription}
+            ></textarea>
+          </div>
+          <div>
+            <label htmlFor="name">Image URL:</label>
+            <input
+              type="text"
+              id="imageUrl"
+              name="name"
+              defaultValue={playerData.imageUrl}
+              onChange={handleChangeImageUrl}
+              onPaste={handleChangeImageUrl}
+            />
+          </div>
+          <div>
+            <label htmlFor="name">Gif URL: (Optional)</label>
+            <input
+              type="text"
+              id="gifUrl"
+              name="name"
+              defaultValue={playerData.gifUrl}
+              onChange={handleChangeGifUrl}
+              onPaste={handleChangeGifUrl}
+            />
+          </div>
+          <div>
+            <span style={{ color: messageColor, fontWeight: "bold" }}>
+              {message}
+            </span>
+          </div>
+          <div className="button-submit">
+            <button type="submit">
+              {updateMode ? "UPDATE PLAYER" : "CREATE PLAYER"}
+            </button>
+          </div>
         </div>
       </form>
     </section>
