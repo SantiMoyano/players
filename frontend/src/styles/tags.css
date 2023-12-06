@@ -19,7 +19,8 @@
 }
 
 .form-section .tag {
-  min-width: 16rem;
+  min-width: 12rem;
+  max-width: 12rem;
 }
 
 .sort-players span {
@@ -28,7 +29,7 @@
 }
 
 .form-section hr {
-  min-width: 100%;
+  min-width: 98%;
   border-color: #636363;
 }
 
