@@ -11,13 +11,13 @@ function Position({ position }) {
   }, []);
 
   async function searchTags() {
-    // Encuentra la etiqueta correspondiente al id
+    // Find the tag corresponding to the id
     const tagData = await tagList.find((tag) => tag._id === position);
     setTag(tagData.tagName);
     setColor(tagData.tagColor);
   }
 
-  // Mostrar el componente solo cuando los datos estén cargados
+  // Render the component only when the data is loaded
   return (
     <div className="skill" style={{ backgroundColor: color }}>
       <span>

@@ -1,27 +1,32 @@
 # Players App
 
-**Descripción de la app**: Aplicación web hecha con el stack MERN para gestionar jugadores y etiquetas (tags) con funcionalidad de autenticación de usuarios.
+**App Description**: Web application built with the MERN stack for managing players and tags, featuring user authentication functionality.
 
-## Requisitos Previos
+## Link to the App
 
-Asegúrate de tener instalados los siguientes requisitos antes de comenzar:
+[![Players app](https://cdn.discordapp.com/attachments/1181809063995117568/1181812187837251584/image.png?ex=65826b5e&is=656ff65e&hm=60420ab9ed0369efbdc87c3a1e33c027cd85f24f152aa1f2cabb2a05fe903727&)](https://players-flame.vercel.app)
 
-- **Node.js:** [Descarga Node.js](https://nodejs.org/)
+## Screenshots
 
-- **NPM:** Normalmente se instala junto con Node.js.
+![Frontend](https://cdn.discordapp.com/attachments/1181809063995117568/1181809694260600852/image.png?ex=6582690c&is=656ff40c&hm=818f6d7382d7423230b2be2032e1705115380b8efb0d6a9a6afc359b14db8d79&)
+_Frontend implemented with React (18.2.0), CSS3, and Axios._
 
-- **MongoDB:** Asegúrate de tener MongoDB instalado y ejecutándose. Puedes descargar MongoDB en el [sitio web oficial de MongoDB](https://www.mongodb.com/try/download/community).
+![Backend](https://cdn.discordapp.com/attachments/1181809063995117568/1181811606380879903/image.png?ex=65826ad3&is=656ff5d3&hm=3a950786f1848e5118af2c3953bdc9c90a23296511f3940a0b22049a0415be47&)
+_Backend developed using Node, Express (4.18.2) utilizing MongoDB as the database._
 
-## Dependencias del Proyecto
+![Database](https://cdn.discordapp.com/attachments/1181809063995117568/1181812868300156988/image.png?ex=65826c00&is=656ff700&hm=e8f99b9085a4f392490a43beb532069cc2e1ba2c1d626f8fb81d1c384208b385&)
+_The database has been deployed on MongoDB Atlas, ensuring continuous availability._
 
-Asegúrate de tener las siguientes librerías instaladas antes de ejecutar la aplicación.
+![Backend Deploy](https://cdn.discordapp.com/attachments/1181809063995117568/1181813315660415047/image.png?ex=65826c6b&is=656ff76b&hm=2f2afd206003447e57c733997af141d48f08d8c0ecd035d138b45d516e60eeb9&)
+_The backend was deployed on render.com._
+
+## Detailed dependencies
 
 ### Backend
 
 - **cors**: "^2.8.5"
 - **dotenv**: "^16.3.1"
 - **express**: "^4.18.2"
-- **jsonwebtoken**: "^9.0.2"
 - **mongoose**: "^7.4.5"
 
 ### Frontend
@@ -31,50 +36,19 @@ Asegúrate de tener las siguientes librerías instaladas antes de ejecutar la ap
 - **react-dom**: "^18.2.0"
 - **react-router-dom**: "^6.15.0"
 - **react-scripts**: "5.0.1"
-- **react-transition-group**: "^4.4.5"
+- **react-icons**: "4.12.0"
+- **react-spinners**: "0.13.8"
 
-## Instalación
+## Local Deployment (optional)
 
-Puedes instalarlas simplemente ejecutando `npm install` en la línea de comandos en cada carpeta (backend y frontend) de tu proyecto.
+You can install the dependencies by running `npm install` in the command line in each folder (backend and frontend) of your project.
 
-## Uso
-
-### Frontend
-
-- `npm start`: Ejecuta este comando en la carpeta frontend para iniciar la app (por defecto en el puerto 3000);
-
-### Backend
-
-- `npm run dev`: Ejecuta este comando en la carpeta backend para iniciar la base de datos (por defecto en el puerto 4000);
-
-## Contribución
-
-## Licencia
-
-## Contacto
-
-## Comandos utilizados para la instalacion de librerias y dependencias
+## Usage
 
 ### Frontend
 
-- `npx create-react-app`: Es una utilidad de línea de comandos que se utiliza para crear una nueva aplicación de React con una estructura y configuración predefinidas.
-
-- `npm i react-router-dom`: Esta biblioteca proporciona herramientas de enrutamiento para aplicaciones React. Permite la navegación entre diferentes vistas o páginas dentro de una aplicación React sin necesidad de cargar la página completa.
-
-- `npm i axios`: Axios es una biblioteca de JavaScript que se utiliza para realizar solicitudes HTTP desde el navegador o desde un servidor Node.js. Proporciona una forma sencilla y eficiente de interactuar con servicios web y APIs externas
+- `npm start`: Run this command in the frontend folder to start the app (by default on port 3000);
 
 ### Backend
 
-- `npm init -y`: Inicializa un nuevo proyecto npm en el directorio actual con valores predeterminados para todas las preguntas del asistente de inicialización.
-
-- `npm i express`: Express.js es un framework web rápido, minimalista y flexible para Node.js. Te permite crear aplicaciones web y APIs de manera sencilla y eficiente.
-
-- `npm i mongoose`: Mongoose es una biblioteca de modelado de objetos para MongoDB en Node.js.
-
-- `npm i cors`: CORS (Cross-Origin Resource Sharing) es un middleware que permite a los servidores especificar qué recursos están permitidos para ser accedidos por el navegador desde un origen diferente.
-
-- `npm i dotenv`: Dotenv es una biblioteca que te permite cargar variables de entorno desde un archivo .env en tu proyecto.
-
-- `npm i nodemon -D`: Instala el paquete nodemon como una dependencia de desarrollo en tu proyecto. nodemon es una herramienta que ayuda en el desarrollo de aplicaciones Node.js.
-
-- `npm i jsonwebtoken`: Biblioteca para generar un token de autenticación.
+- `npm run dev`: Run this command in the backend folder to start the database (by default on port 4000);
